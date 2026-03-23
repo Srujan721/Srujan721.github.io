@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Srujan Kumar Chalavadi | Researcher in Rock Mechanics & Earthquake Engineering</title>
+    <meta name="description" content="Personal website of Sai Srujan Kumar Chalavadi — Researcher specializing in Rock Mechanics, Geotechnical Earthquake Engineering, and Seismic Design of Tunnels at IIT Roorkee.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0B1D35;
+            --primary-light: #132D50;
+            --accent: #3B82F6;
+            --accent-hover: #2563EB;
+            --accent-light: rgba(59,130,246,0.1);
+            --gold: #D97706;
+            --gold-light: #FEF3C7;
+            --green: #166534;
+            --green-light: #DCFCE7;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --text-white: #CBD5E1;
+            --bg: #FFFFFF;
+            --bg-alt: #F8FAFC;
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.07),0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1),0 8px 10px -6px rgba(0,0,0,0.04);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;scroll-padding-top:80px}
+        body{font-family:'Inter',-apple-system,sans-serif;color:var(--text);line-height:1.7;background:var(--bg);overflow-x:hidden}
+        a{text-decoration:none;color:inherit}
+        ul{list-style:none}
+
+        /* Container & Sections */
+        .container{max-width:1100px;margin:0 auto;padding:0 24px}
+        .section{padding:90px 0}
+        .section-alt{background:var(--bg-alt)}
+        .section-divider{width:60px;height:4px;background:var(--accent);border-radius:2px;margin-bottom:14px}
+        .section-title{font-size:2rem;font-weight:800;color:var(--primary);margin-bottom:6px}
+        .section-subtitle{font-size:1.02rem;color:var(--text-light);margin-bottom:48px}
+
+        /* Badges */
+        .badge{display:inline-block;padding:4px 14px;border-radius:50px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+        .badge-accent{background:var(--accent-light);color:var(--accent)}
+        .badge-gold{background:var(--gold-light);color:var(--gold)}
+        .badge-green{background:var(--green-light);color:var(--green)}
+
+        /* ===== NAVBAR ===== */
+        .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,29,53,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);transition:var(--transition)}
+        .navbar.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+        .nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;height:68px}
+        .nav-logo{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:-0.3px}
+        .nav-logo span{color:var(--accent)}
+        .nav-links{display:flex;gap:6px}
+        .nav-links a{color:var(--text-white);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:var(--transition)}
+        .nav-links a:hover,.nav-links a.active{background:rgba(59,130,246,0.15);color:var(--accent)}
+        .nav-toggle{display:none;background:none;border:none;cursor:pointer;color:#fff;font-size:1.4rem;padding:8px}
+        @media(max-width:768px){
+            .nav-toggle{display:block}
+            .nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--primary);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,0.1)}
+            .nav-links.open{display:flex}
+        }
+
+        /* ===== HERO ===== */
+        .hero{min-height:100vh;background:linear-gradient(135deg,#0B1D35 0%,#132D50 40%,#1a3a5c 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 24px 80px}
+        .hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);border-radius:50%}
+        .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(217,119,6,0.06) 0%,transparent 70%);border-radius:50%}
+        .hero-content{text-align:center;position:relative;z-index:1;max-width:800px}
+        .hero-avatar{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366F1);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:3rem;color:#fff;border:4px solid rgba(255,255,255,0.1)}
+        .hero h1{font-size:2.8rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-1px}
+        .hero .tagline{font-size:1.15rem;color:var(--accent);font-weight:500;margin-bottom:6px}
+        .hero .sub-tagline{font-size:0.95rem;color:var(--text-white);opacity:0.7;margin-bottom:28px}
+        .hero-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:8px 18px;border-radius:50px;font-size:0.83rem;color:#fff;font-weight:500}
+        .hero-badge i{color:var(--gold);font-size:0.85rem}
+        .hero-buttons{display:flex;gap:14px;justify-content:center;margin-bottom:36px;flex-wrap:wrap}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-size:0.92rem;font-weight:600;transition:var(--transition);cursor:pointer;border:none;font-family:inherit}
+        .btn-primary{background:var(--accent);color:#fff}
+        .btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.3)}
+        .btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.2)}
+        .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+        .hero-social{display:flex;gap:14px;justify-content:center}
+        .hero-social a{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.07);color:var(--text-white);font-size:1.05rem;transition:var(--transition);border:1px solid rgba(255,255,255,0.08)}
+        .hero-social a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
+        @media(max-width:600px){.hero h1{font-size:2rem}.hero .tagline{font-size:0.95rem}}
+
+        /* ===== ABOUT ===== */
+        .bio-text{font-size:1.02rem;line-height:1.9;color:var(--text);max-width:900px;margin-bottom:48px}
+        .subsection{margin-bottom:56px}
+        .subsection:last-child{margin-bottom:0}
+        .subsection-title{font-size:1.25rem;font-weight:700;margin-bottom:24px;color:var(--primary);display:flex;align-items:center;gap:10px}
+        .subsection-title i{color:var(--accent);font-size:1rem}
+
+        .interests-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+        .interest-card{padding:18px 22px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);transition:var(--transition);display:flex;align-items:center;gap:12px}
+        .interest-card:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
+        .interest-card i{color:var(--accent);font-size:1.1rem;flex-shrink:0}
+        .interest-card span{font-weight:500;font-size:0.92rem}
+
+        .timeline{position:relative;padding-left:32px}
+        .timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--border)}
+        .timeline-item{position:relative;margin-bottom:28px}
+        .timeline-item:last-child{margin-bottom:0}
+        .timeline-dot{position:absolute;left:-32px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-alt);box-shadow:var(--shadow-sm)}
+        .timeline-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;transition:var(--transition)}
+        .timeline-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+        .timeline-card h4{font-size:1.02rem;font-weight:700;margin-bottom:3px}
+        .timeline-card .institution{font-size:0.88rem;color:var(--text-light);margin-bottom:8px}
+        .timeline-meta{display:flex;gap:16px;flex-wrap:wrap}
+        .timeline-meta span{font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+        .timeline-meta .year{color:var(--accent)}
+        .timeline-meta .score{color:var(--gold)}
+
+        .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+        .skill-category{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:var(--transition)}
+        .skill-category:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+        .skill-category h4{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:14px}
+        .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+        .skill-tag{padding:6px 14px;border-radius:6px;background:var(--bg-alt);border:1px solid var(--border);font-size:0.83rem;font-weight:500;color:var(--text);transition:var(--transition)}
+        .skill-tag:hover{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
+
+        .lang-grid{display:flex;gap:18px;flex-wrap:wrap}
+        .lang-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px 28px;text-align:center;min-width:150px;transition:var(--transition)}
+        .lang-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+        .lang-card h4{font-weight:700;margin-bottom:3px;font-size:0.95rem}
+        .lang-card p{font-size:0.8rem;color:var(--text-light)}
+
+        /* ===== RESEARCH ===== */
+        .pub-group-title{font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:16px;margin-top:32px;display:flex;align-items:center;gap:8px}
+        .pub-group-title:first-child{margin-top:0}
+        .pub-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:16px;transition:var(--transition)}
+        .section-alt .pub-card{background:var(--bg)}
+        .pub-card:hover{box-shadow:var(--shadow-lg);border-color:var(--accent)}
+        .pub-card .pub-title{font-size:1rem;font-weight:700;margin-bottom:8px;line-height:1.5;color:var(--primary)}
+        .pub-card .pub-authors{font-size:0.88rem;color:var(--text-light);margin-bottom:6px}
+        .pub-card .pub-authors strong{color:var(--text);font-weight:600}
+        .pub-card .pub-venue{font-size:0.88rem;font-style:italic;color:var(--text-light);margin-bottom:12px}
+        .pub-links{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+        .pub-link{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:6px;font-size:0.8rem;font-weight:600;background:var(--accent-light);color:var(--accent);transition:var(--transition)}
+        .pub-link:hover{background:var(--accent);color:#fff}
+        .pub-award{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:var(--gold-light);color:var(--gold);font-size:0.8rem;font-weight:700;margin-top:10px}
+
+        .project-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin-bottom:14px;transition:var(--transition)}
+        .section-alt .project-card{background:var(--bg)}
+        .project-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+        .project-card h4{font-size:0.98rem;font-weight:700;margin-bottom:6px;color:var(--primary)}
+        .project-card p{font-size:0.88rem;color:var(--text-light);margin-bottom:8px}
+        .project-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:0.8rem;color:var(--text-light)}
+        .project-meta span{display:inline-flex;align-items:center;gap:5px}
+        .project-meta i{color:var(--accent)}
+
+        .repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
+        .repo-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:var(--transition);display:flex;flex-direction:column}
+        .section-alt .repo-card{background:var(--bg)}
+        .repo-card:hover{box-shadow:var(--shadow-lg);border-color:var(--accent);transform:translateY(-3px)}
+        .repo-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+        .repo-header i{color:var(--text-light);font-size:1.15rem}
+        .repo-name{font-weight:700;color:var(--accent);font-size:0.9rem}
+        .repo-desc{font-size:0.85rem;color:var(--text-light);line-height:1.6;flex-grow:1;margin-bottom:14px}
+        .repo-footer{display:flex;align-items:center;gap:16px}
+        .repo-lang{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:500}
+        .repo-lang .dot{width:10px;height:10px;border-radius:50%}
+
+        .award-card{display:flex;gap:14px;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px;transition:var(--transition)}
+        .section-alt .award-card{background:var(--bg)}
+        .award-card:hover{box-shadow:var(--shadow);border-color:var(--gold)}
+        .award-icon{width:42px;height:42px;border-radius:10px;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+        .award-card h4{font-size:0.92rem;font-weight:700;margin-bottom:3px}
+        .award-card p{font-size:0.83rem;color:var(--text-light);line-height:1.6}
+
+        /* ===== EXPERIENCE ===== */
+        .exp-timeline{position:relative;padding-left:32px}
+        .exp-timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--border)}
+        .exp-item{position:relative;margin-bottom:24px}
+        .exp-item:last-child{margin-bottom:0}
+        .exp-dot{position:absolute;left:-32px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);box-shadow:var(--shadow-sm)}
+        .section-alt .exp-dot{border-color:var(--bg-alt)}
+        .exp-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:var(--transition)}
+        .section-alt .exp-card{background:var(--bg)}
+        .exp-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+        .exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+        .exp-card h4{font-size:1.02rem;font-weight:700;color:var(--primary)}
+        .exp-company{font-size:0.88rem;color:var(--accent);font-weight:600;margin-bottom:3px}
+        .exp-date{font-size:0.78rem;color:var(--text-light);font-weight:500}
+        .exp-type{font-size:0.72rem;padding:3px 10px;border-radius:50px;background:var(--accent-light);color:var(--accent);font-weight:600}
+        .exp-card ul{margin-top:8px}
+        .exp-card li{font-size:0.88rem;color:var(--text-light);padding:3px 0 3px 18px;position:relative}
+        .exp-card li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+
+        .achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+        .ach-item{display:flex;gap:10px;align-items:flex-start;padding:14px 18px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--border);transition:var(--transition)}
+        .section-alt .ach-item{background:var(--bg)}
+        .ach-item:hover{box-shadow:var(--shadow-sm);border-color:var(--accent)}
+        .ach-item i{color:var(--accent);margin-top:3px;flex-shrink:0;font-size:0.85rem}
+        .ach-item span{font-size:0.88rem}
+
+        .membership-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+        .mem-item{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--border);font-size:0.88rem;transition:var(--transition)}
+        .section-alt .mem-item{background:var(--bg)}
+        .mem-item:hover{box-shadow:var(--shadow-sm);border-color:var(--accent)}
+        .mem-item i{color:var(--accent);flex-shrink:0}
+
+        .leadership-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+        .ldr-card{padding:18px;border-radius:var(--radius);background:var(--bg-alt);border:1px solid var(--border);transition:var(--transition)}
+        .section-alt .ldr-card{background:var(--bg)}
+        .ldr-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+        .ldr-card h4{font-size:0.92rem;font-weight:700;margin-bottom:3px}
+        .ldr-card p{font-size:0.83rem;color:var(--text-light)}
+        .ldr-year{font-size:0.75rem;color:var(--accent);font-weight:600}
+
+        .extra-grid{display:flex;flex-wrap:wrap;gap:10px}
+        .extra-item{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:50px;background:var(--bg-alt);border:1px solid var(--border);font-size:0.86rem;font-weight:500;transition:var(--transition)}
+        .section-alt .extra-item{background:var(--bg)}
+        .extra-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+        .extra-item i{color:var(--accent)}
+
+        /* ===== CONTACT ===== */
+        .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+        .contact-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:30px;text-align:center;transition:var(--transition)}
+        .contact-card:hover{box-shadow:var(--shadow-lg);border-color:var(--accent);transform:translateY(-3px)}
+        .contact-icon{width:52px;height:52px;border-radius:14px;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto 14px}
+        .contact-card h4{font-size:0.82rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin-bottom:6px}
+        .contact-card p{font-weight:600;font-size:0.95rem}
+        .contact-card a{color:var(--accent);transition:var(--transition)}
+        .contact-card a:hover{color:var(--accent-hover)}
+        .social-links{display:flex;gap:14px;justify-content:center;margin-top:44px;flex-wrap:wrap}
+        .social-link{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:var(--radius);background:var(--bg-alt);border:1px solid var(--border);font-size:0.88rem;font-weight:600;color:var(--text);transition:var(--transition)}
+        .social-link:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
+        .social-link i{font-size:1.15rem}
+
+        /* Footer */
+        .footer{background:var(--primary);color:var(--text-white);padding:36px 24px;text-align:center}
+        .footer p{font-size:0.83rem;opacity:0.6}
+
+        /* Scroll to top */
+        .scroll-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:var(--transition);border:none;z-index:999}
+        .scroll-top.show{opacity:1;pointer-events:all}
+        .scroll-top:hover{background:var(--accent-hover);transform:translateY(-3px)}
+
+        /* Fade in animation */
+        .fade-in{opacity:0;transform:translateY(25px);transition:opacity 0.6s ease,transform 0.6s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#home" class="nav-logo">S<span>.</span> Chalavadi</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-avatar">
+            <!-- Replace the initials with <img src="your-photo.jpg" alt="Srujan"> when ready -->
+            SC
+        </div>
+        <h1>Sai Srujan Kumar Chalavadi</h1>
+        <p class="tagline">Researcher in Rock Mechanics and Earthquake Engineering</p>
+        <p class="sub-tagline">Project Research Associate · Indian Institute of Technology, Roorkee</p>
+        <div class="hero-badges">
+            <span class="hero-badge"><i class="fas fa-award"></i>PMRF Fellow</span>
+            <span class="hero-badge"><i class="fas fa-trophy"></i>ISRM Best Paper Awardee</span>
+            <span class="hero-badge"><i class="fas fa-file-alt"></i>4 Publications</span>
+            <span class="hero-badge"><i class="fas fa-code-branch"></i>3 Open-Source Tools</span>
+        </div>
+        <div class="hero-buttons">
+            <a href="#research" class="btn btn-primary"><i class="fas fa-flask"></i>View Research</a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i>Get in Touch</a>
+        </div>
+        <div class="hero-social">
+            <a href="https://scholar.google.com/citations?hl=en&user=x21rKZAAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+            <a href="https://www.linkedin.com/in/srujanchalavadi/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.researchgate.net/profile/Chalavadi-Sai-Srujan-Kumar" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+            <a href="https://github.com/Srujan721" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:srujanchalavadi6@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</section>
+<!-- ===== ABOUT SECTION ===== -->
+<section class="section section-alt" id="about">
+    <div class="container">
+        <div class="fade-in">
+            <div class="section-divider"></div>
+            <h2 class="section-title">About</h2>
+            <p class="section-subtitle">Background, education, and technical expertise</p>
+        </div>
+
+        <!-- Bio -->
+        <div class="subsection fade-in">
+            <p class="bio-text">
+                Sai Srujan Kumar Chalavadi is a researcher specializing in Rock Mechanics and Geotechnical Earthquake Engineering. He is currently serving as a Project Research Associate at the Indian Institute of Technology (IIT) Roorkee, where he recently completed his doctoral research on the seismic fragility analysis of rock tunnels in the Indian Himalayas. His work integrates advanced numerical modelling, probabilistic seismic hazard assessment, and performance-based design to evaluate the vulnerability of underground structures subjected to earthquake loading.
+            </p>
+            <p class="bio-text">
+                A recipient of the prestigious Prime Minister Research Fellowship (PMRF) and the ISRM Best Paper Award at the 13th Asian Rock Mechanics Symposium (ARMS13), he has published in leading international journals including <em>Rock Mechanics and Rock Engineering</em> and has presented at major conferences such as the 15th ISRM Congress in Salzburg, Austria. He is committed to open science and has made all computational tools and workflows developed during his research publicly available through GitHub. Beyond his core research, he contributes as an AI Model Trainer, leveraging his domain expertise to support the development of advanced generative AI models.
+            </p>
+        </div>
+
+        <!-- Research Interests -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-microscope"></i>Research Interests</h3>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <i class="fas fa-mountain"></i>
+                    <span>Rock Mechanics</span>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-wave-square"></i>
+                    <span>Geotechnical Earthquake Engineering</span>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-archway"></i>
+                    <span>Seismic Design of Tunnels</span>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Vulnerability &amp; Risk Assessment</span>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-mountain-sun"></i>
+                    <span>Slope Stability Analysis</span>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-calculator"></i>
+                    <span>Probabilistic Seismic Hazard Assessment</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-graduation-cap"></i>Education</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>Ph.D. in Earthquake Engineering</h4>
+                        <p class="institution">Indian Institute of Technology Roorkee (IITR)</p>
+                        <div class="timeline-meta">
+                            <span class="year"><i class="fas fa-calendar"></i> 2018 – 2025</span>
+                            <span class="score"><i class="fas fa-star"></i> CGPA: 8.86 / 10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>B.Tech in Civil Engineering</h4>
+                        <p class="institution">National Institute of Technology Tiruchirappalli (NITT)</p>
+                        <div class="timeline-meta">
+                            <span class="year"><i class="fas fa-calendar"></i> 2014 – 2018</span>
+                            <span class="score"><i class="fas fa-star"></i> CGPA: 9.49 / 10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>Class XII</h4>
+                        <p class="institution">Sri Chaitanya Junior College, Vijayawada</p>
+                        <div class="timeline-meta">
+                            <span class="year"><i class="fas fa-calendar"></i> 2014</span>
+                            <span class="score"><i class="fas fa-star"></i> 97.9 / 100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>Class X</h4>
+                        <p class="institution">S.T.B.E.M. High School, Vijayawada</p>
+                        <div class="timeline-meta">
+                            <span class="year"><i class="fas fa-calendar"></i> 2012</span>
+                            <span class="score"><i class="fas fa-star"></i> CGPA: 9.70 / 10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-cogs"></i>Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Numerical Modelling</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MIDAS GTS NX 2023</span>
+                        <span class="skill-tag">RocScience Suite</span>
+                        <span class="skill-tag">UDEC 7.0</span>
+                        <span class="skill-tag">Plaxis 2D 2023</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Programming</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MATLAB 2024</span>
+                        <span class="skill-tag">Python (OpenQuake)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Design & Drafting</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Autodesk AutoCAD 2024</span>
+                        <span class="skill-tag">Microsoft Excel (Advanced)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-language"></i>Languages</h3>
+            <div class="lang-grid">
+                <div class="lang-card">
+                    <h4>English</h4>
+                    <p>Professional Proficiency</p>
+                </div>
+                <div class="lang-card">
+                    <h4>Hindi</h4>
+                    <p>Native / Fluent</p>
+                </div>
+                <div class="lang-card">
+                    <h4>Telugu</h4>
+                    <p>Native / Fluent</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== RESEARCH SECTION ===== -->
+<section class="section" id="research">
+    <div class="container">
+        <div class="fade-in">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Research</h2>
+            <p class="section-subtitle">Publications, funded projects, open-source tools, and awards</p>
+        </div>
+
+        <!-- Publications -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-book-open"></i>Publications</h3>
+
+            <p class="pub-group-title"><i class="fas fa-journal-whills"></i> International Journals</p>
+
+            <div class="pub-card">
+                <span class="badge badge-accent">Journal Article</span>
+                <h4 class="pub-title" style="margin-top:10px">Seismic fragility analysis of rock tunnels using multi-stripe analysis</h4>
+                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, Y. and Singh, M. (2026)</p>
+                <p class="pub-venue">Rock Mechanics and Rock Engineering</p>
+                <div class="pub-links">
+                    <a href="https://link.springer.com/article/10.1007/s00603-026-05375-5" target="_blank" class="pub-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <span class="badge badge-accent">Journal Article</span>
+                <h4 class="pub-title" style="margin-top:10px">Effect of topographic amplification on seismic vulnerability of mountain tunnels using multi-stripe analysis</h4>
+                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, Y. and Singh, M. (2026)</p>
+                <p class="pub-venue">Rock Mechanics and Rock Engineering</p>
+                <div class="pub-links">
+                    <a href="https://link.springer.com/article/10.1007/s00603-026-05416-z" target="_blank" class="pub-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                </div>
+            </div>
+
+            <p class="pub-group-title"><i class="fas fa-book"></i> Book Chapter</p>
+
+            <div class="pub-card">
+                <span class="badge badge-green">Book Chapter</span>
+                <h4 class="pub-title" style="margin-top:10px">Seismic behaviour of tunnels in Indian Himalayas</h4>
+                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, Y. and Singh, M. (2026)</p>
+                <p class="pub-venue">In: Deb, D., Murthy, V.M.S.R., Venkatesh, H.S., Rao, K.S., Goel, R.K. and Singh, M., Eds., Advances in Rock Mechanics — Infrastructure Development, Lecture Notes in Civil Engineering, Vol. 5. Springer, Cham. (In press)</p>
+                <div class="pub-links">
+                    <a href="https://link.springer.com/book/9789819542505" target="_blank" class="pub-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                </div>
+                <div class="pub-award"><i class="fas fa-trophy"></i> ISRM Best Paper Award — ARMS13, 2024</div>
+            </div>
+
+            <p class="pub-group-title"><i class="fas fa-users"></i> International Conferences</p>
+
+            <div class="pub-card">
+                <span class="badge badge-gold">Conference Paper</span>
+                <h4 class="pub-title" style="margin-top:10px">Effect of scale and in-situ stress ratio on the deformation modulus of rock mass around tunnels</h4>
+                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, M., Singh, Y. and Choudhari, J. (2023)</p>
+                <p class="pub-venue">Proceedings of the 15th ISRM Congress, Salzburg, Austria, October 9–14, 2023</p>
+            </div>
+        </div>
+
+        <!-- Research Projects -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-project-diagram"></i>Research Projects</h3>
+
+            <div class="project-card">
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
+                    <h4>Seismic Vulnerability of Tunnels in Himalayas</h4>
+                    <span class="badge badge-green" style="font-size:0.72rem;padding:3px 10px">Funded — ₹9 Million</span>
+                </div>
+                <p>A major research project granted by the Ministry of Road Transport and Highways (MoRTH), Government of India, based on his doctoral thesis. The project aims to develop comprehensive seismic vulnerability models for highway tunnels in the Himalayan region.</p>
+                <div class="project-meta">
+                    <span><i class="fas fa-user"></i> Supervisor: Prof. Yogendra Singh</span>
+                    <span><i class="fas fa-university"></i> IIT Roorkee</span>
+                    <span><i class="fas fa-calendar"></i> 2025 – Present</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h4>Effect of High-Speed Train Induced Local Liquefaction around Piles</h4>
+                <p>Investigated the effects of high-speed train induced vibrations on local liquefaction behaviour around pile foundations using PLAXIS 3D numerical modelling.</p>
+                <div class="project-meta">
+                    <span><i class="fas fa-user"></i> Supervisor: Prof. K. Muthukkumaran</span>
+                    <span><i class="fas fa-university"></i> NIT Tiruchirappalli</span>
+                    <span><i class="fas fa-calendar"></i> 2018</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h4>Variation in Unsaturated Shear Strength in Residual Soil Slopes across Singapore</h4>
+                <p>Studied the effect of spatial variation in unsaturated shear strength parameters on the stability of residual soil slopes across Singapore.</p>
+                <div class="project-meta">
+                    <span><i class="fas fa-user"></i> Supervisor: Prof. Harianto Rahardjo</span>
+                    <span><i class="fas fa-university"></i> NTU, Singapore</span>
+                    <span><i class="fas fa-calendar"></i> 2017</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h4>Local Site Effects for a Site Located at Goa City using FLAC 2D</h4>
+                <p>Conducted numerical studies on local site effects using FLAC 2D to understand seismic site response for geotechnical applications.</p>
+                <div class="project-meta">
+                    <span><i class="fas fa-user"></i> Supervisor: Prof. A. Boominathan</span>
+                    <span><i class="fas fa-university"></i> IIT Madras</span>
+                    <span><i class="fas fa-calendar"></i> 2016</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Open Source -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fab fa-github"></i>Open-Source Tools &amp; Repositories</h3>
+            <p style="font-size:0.92rem;color:var(--text-light);margin-bottom:20px;max-width:800px">
+                The computational tools, workflows, and scripts developed during this research are made publicly available to support transparency, reproducibility, and further research in seismic analysis and tunnel engineering.
+            </p>
+            <div class="repo-grid">
+                <a href="https://github.com/Srujan721/Seismic_Hazard_Assessment_OpenQuake_ver-3.19" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="repo-name">Seismic_Hazard_Assessment_OpenQuake</span>
+                    </div>
+                    <p class="repo-desc">Reproducible workflow and input files for performing probabilistic seismic hazard assessment (PSHA). Contains OpenQuake configuration files, logic-tree definitions, source model inputs, and hazard calculation scripts.</p>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="dot" style="background:#3572A5"></span> Python / OpenQuake</span>
+                    </div>
+                </a>
+                <a href="https://github.com/Srujan721/Seismic_Rock_Tunnel_Design" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="repo-name">Seismic_Rock_Tunnel_Design</span>
+                    </div>
+                    <p class="repo-desc">An Excel-based tunnel design tool for assessment and design of rock tunnels subjected to seismic loading. Includes the spreadsheet tool with supporting documentation on methodology and assumptions.</p>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="dot" style="background:#217346"></span> Excel / VBA</span>
+                    </div>
+                </a>
+                <a href="https://github.com/Srujan721/MATLAB-Code-for-GTS_NX" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="repo-name">MATLAB-Code-for-GTS_NX</span>
+                    </div>
+                    <p class="repo-desc">MATLAB code to estimate damage states of tunnel lining frame elements. Processes structural response outputs from nonlinear dynamic time-history analyses in MIDAS GTS NX and evaluates damage based on performance criteria.</p>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="dot" style="background:#e16737"></span> MATLAB</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Awards -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-award"></i>Scholarships &amp; Awards</h3>
+
+            <div class="award-card">
+                <div class="award-icon"><i class="fas fa-trophy"></i></div>
+                <div>
+                    <h4>ISRM Best Paper Award</h4>
+                    <p>Received the Best Paper Award across all categories at the 13th Asian Rock Mechanics Symposium (ARMS13), held as the 2024 ISRM International Symposium, New Delhi.</p>
+                </div>
+            </div>
+
+            <div class="award-card">
+                <div class="award-icon"><i class="fas fa-globe-asia"></i></div>
+                <div>
+                    <h4>ISRM Early Career Forum Fund</h4>
+                    <p>Selected as one of only 8 participants across Asia to receive the International Society of Rock Mechanics Early Career Forum fund to attend ARMS13.</p>
+                </div>
+            </div>
+
+            <div class="award-card">
+                <div class="award-icon"><i class="fas fa-medal"></i></div>
+                <div>
+                    <h4>Prime Minister Research Fellowship (PMRF)</h4>
+                    <p>Awarded a fellowship and research grant of ₹1 million, funded by the Ministry of Human Resource Development, Government of India.</p>
+                </div>
+            </div>
+
+            <div class="award-card">
+                <div class="award-icon"><i class="fas fa-certificate"></i></div>
+                <div>
+                    <h4>Central Sector Scheme of Scholarship (CSSS)</h4>
+                    <p>Awarded by the Ministry of Education, Government of India, for outstanding academic performance in Class XII examinations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===== EXPERIENCE SECTION ===== -->
+<section class="section section-alt" id="experience">
+    <div class="container">
+        <div class="fade-in">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle">Professional roles, academic service, leadership, and activities</p>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-briefcase"></i>Work Experience</h3>
+            <div class="exp-timeline">
+
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>Doctor of Philosophy (Researcher)</h4>
+                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">On-site / Full-time</span>
+                                <p class="exp-date" style="margin-top:4px">July 2018 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Thesis: Seismic Fragility Analysis of Tunnels using Multi-Stripe Analysis</li>
+                            <li>Rock mechanics, underground structures (tunnels), IS code-based seismic tunnel design, slope stability analysis</li>
+                            <li>Hazard assessment, vulnerability modelling, and performance-based design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>Project Research Associate</h4>
+                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">On-site / Full-time</span>
+                                <p class="exp-date" style="margin-top:4px">2025 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Leading the MoRTH-funded project on Seismic Vulnerability of Tunnels in Himalayas (₹9 million grant)</li>
+                            <li>Developing seismic vulnerability models for highway tunnels in the Himalayan region</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>AI Model Trainer</h4>
+                                <p class="exp-company">Outlier AI</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">Remote / Contract</span>
+                                <p class="exp-date" style="margin-top:4px">May 2025 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Served as Contributor, Reviewer, and Senior Reviewer across two projects, consistently receiving high performance ratings (avg. 5.0 and 4.2)</li>
+                            <li>Project Hypno: Designed graduate and post-graduate level prompts, evaluated model outputs, and provided detailed Chain-of-Thought (CoT) analysis to fine-tune advanced generative AI models</li>
+                            <li>Project Valkyrie: Designed PhD-level questions requiring exhaustive literature collection and extensive reasoning; evaluated models using rubric-based assessments</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>AI Model Trainer</h4>
+                                <p class="exp-company">Handshake AI</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">Remote / Contract</span>
+                                <p class="exp-date" style="margin-top:4px">Sept 2025 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Served as Contributor and Reviewer across three projects (Canary, Hippo, and Phoenix)</li>
+                            <li>Specializes in creating graduate and post-graduate level prompts to train advanced AI models</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>Teaching Assistant</h4>
+                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">On-site / Part-time</span>
+                                <p class="exp-date" style="margin-top:4px">May 2020 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Led tutorial sessions for graduate and postgraduate students</li>
+                            <li>Facilitated discussions, resolved academic queries, and delivered supplementary lectures as needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Academic Achievements -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-star"></i>Academic Achievements</h3>
+            <div class="achievements-grid">
+                <div class="ach-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Semi-finalist at the Rock Bowl event, 15th ISRM Congress 2023, Salzburg, Austria — one of 21 teams selected worldwide</span>
+                </div>
+                <div class="ach-item">
+                    <i class="fas fa-cogs"></i>
+                    <span>Presented "Modified Falkirk Wheel" at SANGAM Project Exhibition, Pragyan'16, NIT Trichy</span>
+                </div>
+                <div class="ach-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>Won 1st Prize — Bridge It, Thatva'15, National Technical Fest, NIT Calicut</span>
+                </div>
+                <div class="ach-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>Won 1st Prize — Bridge Modelling, Rickem'15, King's College</span>
+                </div>
+                <div class="ach-item">
+                    <i class="fas fa-award"></i>
+                    <span>Won 3rd Prize — Poster on Self-Cleaning Concrete, Vitruvius'15, M.A.M College</span>
+                </div>
+                <div class="ach-item">
+                    <i class="fas fa-scroll"></i>
+                    <span>Poster Presentation on Seismic Retrofitting in Structures, Rickem'15</span>
+                </div>
+                <div class="ach-item">
+                    <i class="fas fa-medal"></i>
+                    <span>Best Outgoing Student Award at school level</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leadership -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-users"></i>Leadership &amp; Management</h3>
+            <div class="leadership-grid">
+                <div class="ldr-card">
+                    <span class="ldr-year">2023 – 24</span>
+                    <h4>Sports Secretary</h4>
+                    <p>Bhawan Council, Azad Bhawan, IIT Roorkee</p>
+                </div>
+                <div class="ldr-card">
+                    <span class="ldr-year">2017 – 18</span>
+                    <h4>President</h4>
+                    <p>Builders' Hive — Civil Engineering R&amp;D Club, NIT Trichy</p>
+                </div>
+                <div class="ldr-card">
+                    <span class="ldr-year">2015 – 16
