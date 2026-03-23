@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sai Srujan Kumar Chalavadi | Researcher in Rock Mechanics & Earthquake Engineering</title>
-    <meta name="description" content="Personal website of Sai Srujan Kumar Chalavadi — Researcher specializing in Rock Mechanics, Geotechnical Earthquake Engineering, and Seismic Design of Tunnels at IIT Roorkee.">
+    <meta name="description" content="Personal website of Sai Srujan Kumar Chalavadi — Researcher specializing in Rock Mechanics, Geotechnical Earthquake Engineering, and Seismic Design of Tunnels.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* ==========================================================
+           CSS VARIABLES — Change colors/theme here
+           ========================================================== */
         :root {
             --primary: #0B1D35;
             --primary-light: #132D50;
@@ -32,13 +35,15 @@
             --radius: 12px;
             --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
+
+        /* ========== RESET ========== */
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth;scroll-padding-top:80px}
         body{font-family:'Inter',-apple-system,sans-serif;color:var(--text);line-height:1.7;background:var(--bg);overflow-x:hidden}
         a{text-decoration:none;color:inherit}
         ul{list-style:none}
 
-        /* Container & Sections */
+        /* ========== LAYOUT ========== */
         .container{max-width:1100px;margin:0 auto;padding:0 24px}
         .section{padding:90px 0}
         .section-alt{background:var(--bg-alt)}
@@ -46,20 +51,22 @@
         .section-title{font-size:2rem;font-weight:800;color:var(--primary);margin-bottom:6px}
         .section-subtitle{font-size:1.02rem;color:var(--text-light);margin-bottom:48px}
 
-        /* Badges */
+        /* ========== BADGES ========== */
         .badge{display:inline-block;padding:4px 14px;border-radius:50px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
         .badge-accent{background:var(--accent-light);color:var(--accent)}
         .badge-gold{background:var(--gold-light);color:var(--gold)}
         .badge-green{background:var(--green-light);color:var(--green)}
 
-        /* ===== NAVBAR ===== */
+        /* ==========================================================
+           NAVBAR
+           ========================================================== */
         .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,29,53,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);transition:var(--transition)}
         .navbar.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.3)}
         .nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;height:68px}
         .nav-logo{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:-0.3px}
         .nav-logo span{color:var(--accent)}
-        .nav-links{display:flex;gap:6px}
-        .nav-links a{color:var(--text-white);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:var(--transition)}
+        .nav-links{display:flex;gap:4px}
+        .nav-links a{color:var(--text-white);font-size:0.85rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:var(--transition)}
         .nav-links a:hover,.nav-links a.active{background:rgba(59,130,246,0.15);color:var(--accent)}
         .nav-toggle{display:none;background:none;border:none;cursor:pointer;color:#fff;font-size:1.4rem;padding:8px}
         @media(max-width:768px){
@@ -68,12 +75,15 @@
             .nav-links.open{display:flex}
         }
 
-        /* ===== HERO ===== */
+        /* ==========================================================
+           HERO
+           ========================================================== */
         .hero{min-height:100vh;background:linear-gradient(135deg,#0B1D35 0%,#132D50 40%,#1a3a5c 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 24px 80px}
         .hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);border-radius:50%}
         .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(217,119,6,0.06) 0%,transparent 70%);border-radius:50%}
         .hero-content{text-align:center;position:relative;z-index:1;max-width:800px}
-        .hero-avatar{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366F1);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:3rem;color:#fff;border:4px solid rgba(255,255,255,0.1)}
+        .hero-avatar{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366F1);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:3rem;color:#fff;border:4px solid rgba(255,255,255,0.15);overflow:hidden}
+        .hero-avatar img{width:100%;height:100%;object-fit:cover}
         .hero h1{font-size:2.8rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-1px}
         .hero .tagline{font-size:1.15rem;color:var(--accent);font-weight:500;margin-bottom:6px}
         .hero .sub-tagline{font-size:0.95rem;color:var(--text-white);opacity:0.7;margin-bottom:28px}
@@ -91,33 +101,39 @@
         .hero-social a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
         @media(max-width:600px){.hero h1{font-size:2rem}.hero .tagline{font-size:0.95rem}}
 
-        /* ===== ABOUT ===== */
-        .bio-text{font-size:1.02rem;line-height:1.9;color:var(--text);max-width:900px;margin-bottom:48px}
+        /* ==========================================================
+           ABOUT — Bio, Interests, Education, Skills, Languages, Memberships
+           ========================================================== */
+        .bio-text{font-size:1.02rem;line-height:1.9;color:var(--text);max-width:900px;margin-bottom:24px}
         .subsection{margin-bottom:56px}
         .subsection:last-child{margin-bottom:0}
         .subsection-title{font-size:1.25rem;font-weight:700;margin-bottom:24px;color:var(--primary);display:flex;align-items:center;gap:10px}
         .subsection-title i{color:var(--accent);font-size:1rem}
 
+        /* Research Interests */
         .interests-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
         .interest-card{padding:18px 22px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);transition:var(--transition);display:flex;align-items:center;gap:12px}
         .interest-card:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
         .interest-card i{color:var(--accent);font-size:1.1rem;flex-shrink:0}
         .interest-card span{font-weight:500;font-size:0.92rem}
 
-        .timeline{position:relative;padding-left:32px}
-        .timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--border)}
-        .timeline-item{position:relative;margin-bottom:28px}
-        .timeline-item:last-child{margin-bottom:0}
-        .timeline-dot{position:absolute;left:-32px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-alt);box-shadow:var(--shadow-sm)}
-        .timeline-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;transition:var(--transition)}
-        .timeline-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
-        .timeline-card h4{font-size:1.02rem;font-weight:700;margin-bottom:3px}
-        .timeline-card .institution{font-size:0.88rem;color:var(--text-light);margin-bottom:8px}
-        .timeline-meta{display:flex;gap:16px;flex-wrap:wrap}
-        .timeline-meta span{font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:4px}
-        .timeline-meta .year{color:var(--accent)}
-        .timeline-meta .score{color:var(--gold)}
+        /* Education with Logos */
+        .edu-card{display:flex;gap:20px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin-bottom:16px;transition:var(--transition)}
+        .edu-card:last-child{margin-bottom:0}
+        .edu-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
+        .edu-logo{width:68px;height:68px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--bg-alt);border:1px solid var(--border)}
+        .edu-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+        .edu-info{flex:1}
+        .edu-info h4{font-size:1.02rem;font-weight:700;margin-bottom:2px;color:var(--primary)}
+        .edu-info .institution{font-size:0.9rem;color:var(--accent);font-weight:600;margin-bottom:2px}
+        .edu-info .thesis{font-size:0.85rem;color:var(--text-light);font-style:italic;margin-bottom:8px}
+        .edu-meta{display:flex;gap:16px;flex-wrap:wrap}
+        .edu-meta span{font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+        .edu-meta .year{color:var(--accent)}
+        .edu-meta .score{color:var(--gold)}
+        @media(max-width:500px){.edu-card{flex-direction:column;align-items:center;text-align:center}.edu-meta{justify-content:center}}
 
+        /* Skills */
         .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
         .skill-category{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:var(--transition)}
         .skill-category:hover{box-shadow:var(--shadow);border-color:var(--accent)}
@@ -126,27 +142,40 @@
         .skill-tag{padding:6px 14px;border-radius:6px;background:var(--bg-alt);border:1px solid var(--border);font-size:0.83rem;font-weight:500;color:var(--text);transition:var(--transition)}
         .skill-tag:hover{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
 
+        /* Languages */
         .lang-grid{display:flex;gap:18px;flex-wrap:wrap}
         .lang-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px 28px;text-align:center;min-width:150px;transition:var(--transition)}
         .lang-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
         .lang-card h4{font-weight:700;margin-bottom:3px;font-size:0.95rem}
         .lang-card p{font-size:0.8rem;color:var(--text-light)}
 
-        /* ===== RESEARCH ===== */
-        .pub-group-title{font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:16px;margin-top:32px;display:flex;align-items:center;gap:8px}
-        .pub-group-title:first-child{margin-top:0}
-        .pub-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:16px;transition:var(--transition)}
-        .section-alt .pub-card{background:var(--bg)}
-        .pub-card:hover{box-shadow:var(--shadow-lg);border-color:var(--accent)}
-        .pub-card .pub-title{font-size:1rem;font-weight:700;margin-bottom:8px;line-height:1.5;color:var(--primary)}
-        .pub-card .pub-authors{font-size:0.88rem;color:var(--text-light);margin-bottom:6px}
-        .pub-card .pub-authors strong{color:var(--text);font-weight:600}
-        .pub-card .pub-venue{font-size:0.88rem;font-style:italic;color:var(--text-light);margin-bottom:12px}
-        .pub-links{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-        .pub-link{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:6px;font-size:0.8rem;font-weight:600;background:var(--accent-light);color:var(--accent);transition:var(--transition)}
-        .pub-link:hover{background:var(--accent);color:#fff}
-        .pub-award{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:var(--gold-light);color:var(--gold);font-size:0.8rem;font-weight:700;margin-top:10px}
+        /* Memberships */
+        .membership-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+        .mem-item{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;background:var(--bg);border:1px solid var(--border);font-size:0.88rem;transition:var(--transition)}
+        .mem-item:hover{box-shadow:var(--shadow-sm);border-color:var(--accent)}
+        .mem-item i{color:var(--accent);flex-shrink:0}
 
+        /* ==========================================================
+           RESEARCH — Publications, Projects, Open-Source
+           ========================================================== */
+        /* Compact Publications */
+        .pub-list{padding-left:0}
+        .pub-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+        .pub-item:last-child{border-bottom:none}
+        .pub-number{font-size:0.82rem;font-weight:700;color:var(--accent);min-width:24px;padding-top:2px}
+        .pub-content{flex:1}
+        .pub-content .pub-text{font-size:0.9rem;line-height:1.7;color:var(--text)}
+        .pub-content .pub-text .author-highlight{font-weight:700;color:var(--primary)}
+        .pub-content .pub-text .journal-name{font-style:italic;color:var(--text-light)}
+        .pub-content .pub-text .pub-year{font-weight:600}
+        .pub-inline-link{display:inline-flex;align-items:center;gap:4px;font-size:0.78rem;font-weight:600;color:var(--accent);padding:2px 10px;border-radius:4px;background:var(--accent-light);margin-left:6px;transition:var(--transition);vertical-align:middle}
+        .pub-inline-link:hover{background:var(--accent);color:#fff}
+        .pub-inline-award{display:inline-flex;align-items:center;gap:4px;font-size:0.76rem;font-weight:700;color:var(--gold);padding:2px 10px;border-radius:4px;background:var(--gold-light);margin-left:6px;vertical-align:middle}
+        .pub-group-label{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-top:32px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--accent-light);display:flex;align-items:center;gap:8px}
+        .pub-group-label:first-child{margin-top:0}
+        .pub-group-label i{font-size:0.85rem}
+
+        /* Projects */
         .project-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin-bottom:14px;transition:var(--transition)}
         .section-alt .project-card{background:var(--bg)}
         .project-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
@@ -156,9 +185,9 @@
         .project-meta span{display:inline-flex;align-items:center;gap:5px}
         .project-meta i{color:var(--accent)}
 
+        /* GitHub Repos */
         .repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
         .repo-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:var(--transition);display:flex;flex-direction:column}
-        .section-alt .repo-card{background:var(--bg)}
         .repo-card:hover{box-shadow:var(--shadow-lg);border-color:var(--accent);transform:translateY(-3px)}
         .repo-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
         .repo-header i{color:var(--text-light);font-size:1.15rem}
@@ -168,14 +197,9 @@
         .repo-lang{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:500}
         .repo-lang .dot{width:10px;height:10px;border-radius:50%}
 
-        .award-card{display:flex;gap:14px;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px;transition:var(--transition)}
-        .section-alt .award-card{background:var(--bg)}
-        .award-card:hover{box-shadow:var(--shadow);border-color:var(--gold)}
-        .award-icon{width:42px;height:42px;border-radius:10px;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-        .award-card h4{font-size:0.92rem;font-weight:700;margin-bottom:3px}
-        .award-card p{font-size:0.83rem;color:var(--text-light);line-height:1.6}
-
-        /* ===== EXPERIENCE ===== */
+        /* ==========================================================
+           EXPERIENCE — Work Timeline
+           ========================================================== */
         .exp-timeline{position:relative;padding-left:32px}
         .exp-timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--border)}
         .exp-item{position:relative;margin-bottom:24px}
@@ -194,34 +218,37 @@
         .exp-card li{font-size:0.88rem;color:var(--text-light);padding:3px 0 3px 18px;position:relative}
         .exp-card li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
 
+        /* ==========================================================
+           ACHIEVEMENTS — Awards, Academic, Leadership, Extra
+           ========================================================== */
+        .award-card{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px;transition:var(--transition)}
+        .section-alt .award-card{background:var(--bg)}
+        .award-card:hover{box-shadow:var(--shadow);border-color:var(--gold)}
+        .award-icon{width:42px;height:42px;border-radius:10px;background:var(--gold-light);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+        .award-card h4{font-size:0.92rem;font-weight:700;margin-bottom:3px}
+        .award-card p{font-size:0.83rem;color:var(--text-light);line-height:1.6}
+
         .achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
-        .ach-item{display:flex;gap:10px;align-items:flex-start;padding:14px 18px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--border);transition:var(--transition)}
-        .section-alt .ach-item{background:var(--bg)}
+        .ach-item{display:flex;gap:10px;align-items:flex-start;padding:14px 18px;border-radius:10px;background:var(--bg);border:1px solid var(--border);transition:var(--transition)}
         .ach-item:hover{box-shadow:var(--shadow-sm);border-color:var(--accent)}
         .ach-item i{color:var(--accent);margin-top:3px;flex-shrink:0;font-size:0.85rem}
         .ach-item span{font-size:0.88rem}
 
-        .membership-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
-        .mem-item{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--border);font-size:0.88rem;transition:var(--transition)}
-        .section-alt .mem-item{background:var(--bg)}
-        .mem-item:hover{box-shadow:var(--shadow-sm);border-color:var(--accent)}
-        .mem-item i{color:var(--accent);flex-shrink:0}
-
         .leadership-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-        .ldr-card{padding:18px;border-radius:var(--radius);background:var(--bg-alt);border:1px solid var(--border);transition:var(--transition)}
-        .section-alt .ldr-card{background:var(--bg)}
+        .ldr-card{padding:18px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);transition:var(--transition)}
         .ldr-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
         .ldr-card h4{font-size:0.92rem;font-weight:700;margin-bottom:3px}
         .ldr-card p{font-size:0.83rem;color:var(--text-light)}
         .ldr-year{font-size:0.75rem;color:var(--accent);font-weight:600}
 
         .extra-grid{display:flex;flex-wrap:wrap;gap:10px}
-        .extra-item{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:50px;background:var(--bg-alt);border:1px solid var(--border);font-size:0.86rem;font-weight:500;transition:var(--transition)}
-        .section-alt .extra-item{background:var(--bg)}
+        .extra-item{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:50px;background:var(--bg);border:1px solid var(--border);font-size:0.86rem;font-weight:500;transition:var(--transition)}
         .extra-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
         .extra-item i{color:var(--accent)}
 
-        /* ===== CONTACT ===== */
+        /* ==========================================================
+           CONTACT
+           ========================================================== */
         .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
         .contact-card{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:30px;text-align:center;transition:var(--transition)}
         .contact-card:hover{box-shadow:var(--shadow-lg);border-color:var(--accent);transform:translateY(-3px)}
@@ -235,23 +262,25 @@
         .social-link:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow);transform:translateY(-2px)}
         .social-link i{font-size:1.15rem}
 
-        /* Footer */
+        /* ========== FOOTER ========== */
         .footer{background:var(--primary);color:var(--text-white);padding:36px 24px;text-align:center}
         .footer p{font-size:0.83rem;opacity:0.6}
 
-        /* Scroll to top */
+        /* ========== SCROLL TO TOP ========== */
         .scroll-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:var(--transition);border:none;z-index:999}
         .scroll-top.show{opacity:1;pointer-events:all}
         .scroll-top:hover{background:var(--accent-hover);transform:translateY(-3px)}
 
-        /* Fade in animation */
+        /* ========== ANIMATIONS ========== */
         .fade-in{opacity:0;transform:translateY(25px);transition:opacity 0.6s ease,transform 0.6s ease}
         .fade-in.visible{opacity:1;transform:translateY(0)}
     </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
+<!-- ==============================================================
+     NAVBAR — To add/rename tabs, edit the <a> tags below
+     ============================================================== -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <a href="#home" class="nav-logo">S<span>.</span> Chalavadi</a>
@@ -263,31 +292,40 @@
             <a href="#about">About</a>
             <a href="#research">Research</a>
             <a href="#experience">Experience</a>
+            <a href="#achievements">Achievements</a>
             <a href="#contact">Contact</a>
         </div>
     </div>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- ==============================================================
+     HERO SECTION
+     - To change photo: replace "photo.jpg" with your image file
+     - To update badges: edit the hero-badge spans below
+     ============================================================== -->
 <section class="hero" id="home">
     <div class="hero-content">
         <div class="hero-avatar">
-            <img src="photo.jpg" alt="Sai Srujan Kumar Chalavadi" 
-         	style="width:100%;height:100%;object-fit:cover;">
+            <img src="photo.jpg" alt="Sai Srujan Kumar Chalavadi">
         </div>
         <h1>Sai Srujan Kumar Chalavadi</h1>
         <p class="tagline">Researcher in Rock Mechanics and Earthquake Engineering</p>
         <p class="sub-tagline">Project Research Associate · Indian Institute of Technology, Roorkee</p>
+
+        <!-- HERO BADGES — Edit/add/remove as needed -->
         <div class="hero-badges">
             <span class="hero-badge"><i class="fas fa-award"></i>PMRF Fellow</span>
             <span class="hero-badge"><i class="fas fa-trophy"></i>ISRM Best Paper Awardee</span>
             <span class="hero-badge"><i class="fas fa-file-alt"></i>4 Publications</span>
             <span class="hero-badge"><i class="fas fa-code-branch"></i>3 Open-Source Tools</span>
         </div>
+
         <div class="hero-buttons">
             <a href="#research" class="btn btn-primary"><i class="fas fa-flask"></i>View Research</a>
             <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i>Get in Touch</a>
         </div>
+
+        <!-- SOCIAL LINKS — Edit URLs as needed -->
         <div class="hero-social">
             <a href="https://scholar.google.com/citations?hl=en&user=x21rKZAAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
             <a href="https://www.linkedin.com/in/srujanchalavadi/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -297,7 +335,13 @@
         </div>
     </div>
 </section>
-<!-- ===== ABOUT SECTION ===== -->
+
+<!------------------------------------------------------------------------------------------- END OF PART 1 ------------------------------------------------------------------------------------->
+
+<!-- ==============================================================
+     ABOUT SECTION
+     Contains: Bio, Research Interests, Education, Skills, Languages, Memberships
+     ============================================================== -->
 <section class="section section-alt" id="about">
     <div class="container">
         <div class="fade-in">
@@ -306,7 +350,7 @@
             <p class="section-subtitle">Background, education, and technical expertise</p>
         </div>
 
-        <!-- Bio -->
+        <!-- ======== BIO — Edit the paragraphs below ======== -->
         <div class="subsection fade-in">
             <p class="bio-text">
                 Sai Srujan Kumar Chalavadi is a researcher specializing in Rock Mechanics and Geotechnical Earthquake Engineering. He is currently serving as a Project Research Associate at the Indian Institute of Technology (IIT) Roorkee, where he recently completed his doctoral research on the seismic fragility analysis of rock tunnels in the Indian Himalayas. His work integrates advanced numerical modelling, probabilistic seismic hazard assessment, and performance-based design to evaluate the vulnerability of underground structures subjected to earthquake loading.
@@ -316,89 +360,110 @@
             </p>
         </div>
 
-        <!-- Research Interests -->
+        <!-- ======== RESEARCH INTERESTS — Add/remove cards below ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-microscope"></i>Research Interests</h3>
             <div class="interests-grid">
-                <div class="interest-card">
-                    <i class="fas fa-mountain"></i>
-                    <span>Rock Mechanics</span>
-                </div>
-                <div class="interest-card">
-                    <i class="fas fa-wave-square"></i>
-                    <span>Geotechnical Earthquake Engineering</span>
-                </div>
-                <div class="interest-card">
-                    <i class="fas fa-archway"></i>
-                    <span>Seismic Design of Tunnels</span>
-                </div>
-                <div class="interest-card">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Vulnerability &amp; Risk Assessment</span>
-                </div>
-                <div class="interest-card">
-                    <i class="fas fa-mountain-sun"></i>
-                    <span>Slope Stability Analysis</span>
-                </div>
-                <div class="interest-card">
-                    <i class="fas fa-calculator"></i>
-                    <span>Probabilistic Seismic Hazard Assessment</span>
-                </div>
+                <div class="interest-card"><i class="fas fa-mountain"></i><span>Rock Mechanics</span></div>
+                <div class="interest-card"><i class="fas fa-wave-square"></i><span>Geotechnical Earthquake Engineering</span></div>
+                <div class="interest-card"><i class="fas fa-archway"></i><span>Seismic Design of Tunnels</span></div>
+                <div class="interest-card"><i class="fas fa-chart-line"></i><span>Vulnerability &amp; Risk Assessment</span></div>
+                <div class="interest-card"><i class="fas fa-mountain-sun"></i><span>Slope Stability Analysis</span></div>
+                <div class="interest-card"><i class="fas fa-calculator"></i><span>Probabilistic Seismic Hazard Assessment</span></div>
+                <!-- To add more:
+                <div class="interest-card"><i class="fas fa-icon-name"></i><span>New Interest</span></div>
+                -->
             </div>
         </div>
 
-        <!-- Education -->
+        <!-- ======== EDUCATION — Edit cards below ========
+             Logo files: Place logo images in the same folder as index.html
+             - IIT Roorkee & NIT Trichy: loaded from Wikipedia
+             - chaitanya.jpg and stbem.jpg: from your local folder
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-graduation-cap"></i>Education</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <h4>Ph.D. in Earthquake Engineering</h4>
-                        <p class="institution">Indian Institute of Technology Roorkee (IITR)</p>
-                        <div class="timeline-meta">
-                            <span class="year"><i class="fas fa-calendar"></i> 2018 – 2025</span>
-                            <span class="score"><i class="fas fa-star"></i> CGPA: 8.86 / 10</span>
-                        </div>
-                    </div>
+
+            <!-- PhD -->
+            <div class="edu-card">
+                <div class="edu-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/97/IIT_Roorkee_logo.png" alt="IIT Roorkee Logo">
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <h4>B.Tech in Civil Engineering</h4>
-                        <p class="institution">National Institute of Technology Tiruchirappalli (NITT)</p>
-                        <div class="timeline-meta">
-                            <span class="year"><i class="fas fa-calendar"></i> 2014 – 2018</span>
-                            <span class="score"><i class="fas fa-star"></i> CGPA: 9.49 / 10</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <h4>Class XII</h4>
-                        <p class="institution">Sri Chaitanya Junior College, Vijayawada</p>
-                        <div class="timeline-meta">
-                            <span class="year"><i class="fas fa-calendar"></i> 2014</span>
-                            <span class="score"><i class="fas fa-star"></i> 97.9 / 100</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <h4>Class X</h4>
-                        <p class="institution">S.T.B.E.M. High School, Vijayawada</p>
-                        <div class="timeline-meta">
-                            <span class="year"><i class="fas fa-calendar"></i> 2012</span>
-                            <span class="score"><i class="fas fa-star"></i> CGPA: 9.70 / 10</span>
-                        </div>
+                <div class="edu-info">
+                    <h4>Ph.D. in Earthquake Engineering</h4>
+                    <p class="institution">Indian Institute of Technology Roorkee (IITR)</p>
+                    <p class="thesis">Thesis: Seismic Fragility Analysis of Tunnels using Multi-Stripe Analysis</p>
+                    <div class="edu-meta">
+                        <span class="year"><i class="fas fa-calendar"></i> 2018 – 2026</span>
+                        <span class="score"><i class="fas fa-star"></i> CGPA: 8.86 / 10</span>
                     </div>
                 </div>
             </div>
+
+            <!-- B.Tech -->
+            <div class="edu-card">
+                <div class="edu-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/7/7f/National_Institute_of_Technology%2C_Tiruchirappalli_Logo.png" alt="NIT Trichy Logo">
+                </div>
+                <div class="edu-info">
+                    <h4>B.Tech in Civil Engineering</h4>
+                    <p class="institution">National Institute of Technology Tiruchirappalli (NITT)</p>
+                    <div class="edu-meta">
+                        <span class="year"><i class="fas fa-calendar"></i> 2014 – 2018</span>
+                        <span class="score"><i class="fas fa-star"></i> CGPA: 9.49 / 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class XII -->
+            <div class="edu-card">
+                <div class="edu-logo">
+                    <img src="chaitanya.jpg" alt="Sri Chaitanya Logo">
+                </div>
+                <div class="edu-info">
+                    <h4>Class XII</h4>
+                    <p class="institution">Sri Chaitanya Junior College, Vijayawada</p>
+                    <div class="edu-meta">
+                        <span class="year"><i class="fas fa-calendar"></i> 2014</span>
+                        <span class="score"><i class="fas fa-star"></i> 97.9 / 100</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class X -->
+            <div class="edu-card">
+                <div class="edu-logo">
+                    <img src="stbem.jpg" alt="S.T.B.E.M. High School Logo">
+                </div>
+                <div class="edu-info">
+                    <h4>Class X</h4>
+                    <p class="institution">S.T.B.E.M. High School, Vijayawada</p>
+                    <div class="edu-meta">
+                        <span class="year"><i class="fas fa-calendar"></i> 2012</span>
+                        <span class="score"><i class="fas fa-star"></i> CGPA: 9.70 / 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- To add new education:
+            <div class="edu-card">
+                <div class="edu-logo">
+                    <img src="logo-file.jpg" alt="Institution Logo">
+                </div>
+                <div class="edu-info">
+                    <h4>Degree Name</h4>
+                    <p class="institution">Institution Name</p>
+                    <p class="thesis">Thesis: Title (optional — delete this line if not needed)</p>
+                    <div class="edu-meta">
+                        <span class="year"><i class="fas fa-calendar"></i> Year – Year</span>
+                        <span class="score"><i class="fas fa-star"></i> Score</span>
+                    </div>
+                </div>
+            </div>
+            -->
         </div>
 
-        <!-- Skills -->
+        <!-- ======== TECHNICAL SKILLS — Edit tags below ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-cogs"></i>Technical Skills</h3>
             <div class="skills-grid">
@@ -409,6 +474,7 @@
                         <span class="skill-tag">RocScience Suite</span>
                         <span class="skill-tag">UDEC 7.0</span>
                         <span class="skill-tag">Plaxis 2D 2023</span>
+                        <!-- <span class="skill-tag">New Software</span> -->
                     </div>
                 </div>
                 <div class="skill-category">
@@ -416,10 +482,11 @@
                     <div class="skill-tags">
                         <span class="skill-tag">MATLAB 2024</span>
                         <span class="skill-tag">Python (OpenQuake)</span>
+                        <!-- <span class="skill-tag">New Language</span> -->
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h4>Design & Drafting</h4>
+                    <h4>Design &amp; Drafting</h4>
                     <div class="skill-tags">
                         <span class="skill-tag">Autodesk AutoCAD 2024</span>
                         <span class="skill-tag">Microsoft Excel (Advanced)</span>
@@ -428,86 +495,140 @@
             </div>
         </div>
 
-        <!-- Languages -->
+        <!-- ======== LANGUAGES — Add/remove cards below ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-language"></i>Languages</h3>
             <div class="lang-grid">
-                <div class="lang-card">
-                    <h4>English</h4>
-                    <p>Professional Proficiency</p>
-                </div>
-                <div class="lang-card">
-                    <h4>Hindi</h4>
-                    <p>Native / Fluent</p>
-                </div>
-                <div class="lang-card">
-                    <h4>Telugu</h4>
-                    <p>Native / Fluent</p>
-                </div>
+                <div class="lang-card"><h4>English</h4><p>Professional Proficiency</p></div>
+                <div class="lang-card"><h4>Hindi</h4><p>Native / Fluent</p></div>
+                <div class="lang-card"><h4>Telugu</h4><p>Native / Fluent</p></div>
+                <div class="lang-card"><h4>Tamil</h4><p>Listening Comprehension</p></div>
+                <!-- <div class="lang-card"><h4>New Language</h4><p>Proficiency Level</p></div> -->
             </div>
         </div>
+
+        <!-- ======== PROFESSIONAL MEMBERSHIPS — Add/remove items below ======== -->
+        <div class="subsection fade-in">
+            <h3 class="subsection-title"><i class="fas fa-id-card"></i>Professional Memberships</h3>
+            <div class="membership-grid">
+                <div class="mem-item"><i class="fas fa-circle-check"></i><span>International Society for Rock Mechanics and Rock Engineering (ISRM)</span></div>
+                <div class="mem-item"><i class="fas fa-circle-check"></i><span>International Society for Soil Mechanics and Geotechnical Engineering (ISSMGE)</span></div>
+                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Geotechnical Society (LM-4577)</span></div>
+                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Society of Earthquake Technology (LM-1852)</span></div>
+                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Society for Rock Mechanics and Tunnelling Technology (LM-2280)</span></div>
+                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Society for Earthquake and Civil Engineering Dynamics (SECED)</span></div>
+                <!-- To add:
+                <div class="mem-item"><i class="fas fa-circle-check"></i><span>New Society Name (Membership ID)</span></div>
+                -->
+            </div>
+        </div>
+
     </div>
 </section>
 
-<!-- ===== RESEARCH SECTION ===== -->
+<!-- ==============================================================
+     RESEARCH SECTION
+     Contains: Publications (compact), Research Projects, Open-Source Tools
+     ============================================================== -->
 <section class="section" id="research">
     <div class="container">
         <div class="fade-in">
             <div class="section-divider"></div>
             <h2 class="section-title">Research</h2>
-            <p class="section-subtitle">Publications, funded projects, open-source tools, and awards</p>
+            <p class="section-subtitle">Publications, funded projects, and open-source tools</p>
         </div>
 
-        <!-- Publications -->
+        <!-- ======== PUBLICATIONS — Compact format ========
+             TO ADD A NEW PAPER:
+             1. Copy any <div class="pub-item">...</div> block
+             2. Paste it below the last pub-item in the correct category
+             3. Update the number, authors, title, journal, and link
+             4. If no link, simply remove the <a class="pub-inline-link"> tag
+             5. For an award badge, add: <span class="pub-inline-award"><i class="fas fa-trophy"></i> Award Name</span>
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-book-open"></i>Publications</h3>
 
-            <p class="pub-group-title"><i class="fas fa-journal-whills"></i> International Journals</p>
+            <!-- --- International Journals --- -->
+            <div class="pub-group-label"><i class="fas fa-journal-whills"></i> International Journals</div>
+            <div class="pub-list">
 
-            <div class="pub-card">
-                <span class="badge badge-accent">Journal Article</span>
-                <h4 class="pub-title" style="margin-top:10px">Seismic fragility analysis of rock tunnels using multi-stripe analysis</h4>
-                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, Y. and Singh, M. (2026)</p>
-                <p class="pub-venue">Rock Mechanics and Rock Engineering</p>
-                <div class="pub-links">
-                    <a href="https://link.springer.com/article/10.1007/s00603-026-05375-5" target="_blank" class="pub-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                <div class="pub-item">
+                    <span class="pub-number">1.</span>
+                    <div class="pub-content">
+                        <p class="pub-text">
+                            <span class="author-highlight">Chalavadi, S.</span>, Singh, Y. and Singh, M. (<span class="pub-year">2026</span>). Seismic fragility analysis of rock tunnels using multi-stripe analysis. <span class="journal-name">Rock Mechanics and Rock Engineering.</span>
+                            <a href="https://link.springer.com/article/10.1007/s00603-026-05375-5" target="_blank" class="pub-inline-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                        </p>
+                    </div>
                 </div>
+
+                <div class="pub-item">
+                    <span class="pub-number">2.</span>
+                    <div class="pub-content">
+                        <p class="pub-text">
+                            <span class="author-highlight">Chalavadi, S.</span>, Singh, Y. and Singh, M. (<span class="pub-year">2026</span>). Effect of topographic amplification on seismic vulnerability of mountain tunnels using multi-stripe analysis. <span class="journal-name">Rock Mechanics and Rock Engineering.</span>
+                            <a href="https://link.springer.com/article/10.1007/s00603-026-05416-z" target="_blank" class="pub-inline-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ADD NEW JOURNAL PAPER HERE:
+                <div class="pub-item">
+                    <span class="pub-number">3.</span>
+                    <div class="pub-content">
+                        <p class="pub-text">
+                            <span class="author-highlight">Chalavadi, S.</span>, Co-Author, A. and Co-Author, B. (<span class="pub-year">2027</span>). Paper title here. <span class="journal-name">Journal Name.</span>
+                            <a href="https://link-to-paper.com" target="_blank" class="pub-inline-link"><i class="fas fa-external-link-alt"></i> Publisher</a>
+                        </p>
+                    </div>
+                </div>
+                -->
             </div>
 
-            <div class="pub-card">
-                <span class="badge badge-accent">Journal Article</span>
-                <h4 class="pub-title" style="margin-top:10px">Effect of topographic amplification on seismic vulnerability of mountain tunnels using multi-stripe analysis</h4>
-                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, Y. and Singh, M. (2026)</p>
-                <p class="pub-venue">Rock Mechanics and Rock Engineering</p>
-                <div class="pub-links">
-                    <a href="https://link.springer.com/article/10.1007/s00603-026-05416-z" target="_blank" class="pub-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+            <!-- --- Book Chapters --- -->
+            <div class="pub-group-label"><i class="fas fa-book"></i> Book Chapters</div>
+            <div class="pub-list">
+
+                <div class="pub-item">
+                    <span class="pub-number">3.</span>
+                    <div class="pub-content">
+                        <p class="pub-text">
+                            <span class="author-highlight">Chalavadi, S.</span>, Singh, Y. and Singh, M. (<span class="pub-year">2026</span>). Seismic behaviour of tunnels in Indian Himalayas. In: Deb, D., Murthy, V.M.S.R., Venkatesh, H.S., Rao, K.S., Goel, R.K. and Singh, M., Eds., <span class="journal-name">Advances in Rock Mechanics — Infrastructure Development, Lecture Notes in Civil Engineering, Vol. 5.</span> Springer, Cham. (In press).
+                            <a href="https://link.springer.com/book/9789819542505" target="_blank" class="pub-inline-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                            <span class="pub-inline-award"><i class="fas fa-trophy"></i> ISRM Best Paper Award — ARMS13</span>
+                        </p>
+                    </div>
                 </div>
+
+                <!-- ADD NEW BOOK CHAPTER HERE -->
             </div>
 
-            <p class="pub-group-title"><i class="fas fa-book"></i> Book Chapter</p>
+            <!-- --- International Conferences --- -->
+            <div class="pub-group-label"><i class="fas fa-users"></i> International Conferences</div>
+            <div class="pub-list">
 
-            <div class="pub-card">
-                <span class="badge badge-green">Book Chapter</span>
-                <h4 class="pub-title" style="margin-top:10px">Seismic behaviour of tunnels in Indian Himalayas</h4>
-                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, Y. and Singh, M. (2026)</p>
-                <p class="pub-venue">In: Deb, D., Murthy, V.M.S.R., Venkatesh, H.S., Rao, K.S., Goel, R.K. and Singh, M., Eds., Advances in Rock Mechanics — Infrastructure Development, Lecture Notes in Civil Engineering, Vol. 5. Springer, Cham. (In press)</p>
-                <div class="pub-links">
-                    <a href="https://link.springer.com/book/9789819542505" target="_blank" class="pub-link"><i class="fas fa-external-link-alt"></i> Springer</a>
+                <div class="pub-item">
+                    <span class="pub-number">4.</span>
+                    <div class="pub-content">
+                        <p class="pub-text">
+                            <span class="author-highlight">Chalavadi, S.</span>, Singh, M., Singh, Y. and Choudhari, J. (<span class="pub-year">2023</span>). Effect of scale and in-situ stress ratio on the deformation modulus of rock mass around tunnels. <span class="journal-name">Proceedings of the 15th ISRM Congress,</span> Salzburg, Austria, October 9–14, 2023.
+                        </p>
+                    </div>
                 </div>
-                <div class="pub-award"><i class="fas fa-trophy"></i> ISRM Best Paper Award — ARMS13, 2024</div>
-            </div>
 
-            <p class="pub-group-title"><i class="fas fa-users"></i> International Conferences</p>
-
-            <div class="pub-card">
-                <span class="badge badge-gold">Conference Paper</span>
-                <h4 class="pub-title" style="margin-top:10px">Effect of scale and in-situ stress ratio on the deformation modulus of rock mass around tunnels</h4>
-                <p class="pub-authors"><strong>Chalavadi, S.</strong>, Singh, M., Singh, Y. and Choudhari, J. (2023)</p>
-                <p class="pub-venue">Proceedings of the 15th ISRM Congress, Salzburg, Austria, October 9–14, 2023</p>
+                <!-- ADD NEW CONFERENCE PAPER HERE -->
             </div>
         </div>
 
-        <!-- Research Projects -->
+        <!-- ======== RESEARCH PROJECTS — Add/remove cards below ========
+             To add a new project:
+             1. Copy any <div class="project-card">...</div> block
+             2. Paste below the last project-card
+             3. Edit the title, description, and meta info
+             4. For funded projects, add badge:
+                <span class="badge badge-green" style="font-size:0.72rem;padding:3px 10px">Funded — ₹Amount</span>
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-project-diagram"></i>Research Projects</h3>
 
@@ -553,15 +674,24 @@
                     <span><i class="fas fa-calendar"></i> 2016</span>
                 </div>
             </div>
+
+            <!-- ADD NEW PROJECT HERE -->
         </div>
 
-        <!-- Open Source -->
+        <!-- ======== OPEN-SOURCE TOOLS — Add/remove repo cards below ========
+             To add a new repo:
+             1. Copy any <a class="repo-card">...</a> block
+             2. Paste inside the repo-grid div
+             3. Update the href, name, description, and language dot color
+             Language dot colors: Python=#3572A5, MATLAB=#e16737, Excel=#217346, R=#198CE7
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fab fa-github"></i>Open-Source Tools &amp; Repositories</h3>
             <p style="font-size:0.92rem;color:var(--text-light);margin-bottom:20px;max-width:800px">
                 The computational tools, workflows, and scripts developed during this research are made publicly available to support transparency, reproducibility, and further research in seismic analysis and tunnel engineering.
             </p>
             <div class="repo-grid">
+
                 <a href="https://github.com/Srujan721/Seismic_Hazard_Assessment_OpenQuake_ver-3.19" target="_blank" class="repo-card">
                     <div class="repo-header">
                         <i class="fas fa-book-bookmark"></i>
@@ -572,6 +702,7 @@
                         <span class="repo-lang"><span class="dot" style="background:#3572A5"></span> Python / OpenQuake</span>
                     </div>
                 </a>
+
                 <a href="https://github.com/Srujan721/Seismic_Rock_Tunnel_Design" target="_blank" class="repo-card">
                     <div class="repo-header">
                         <i class="fas fa-book-bookmark"></i>
@@ -582,6 +713,7 @@
                         <span class="repo-lang"><span class="dot" style="background:#217346"></span> Excel / VBA</span>
                     </div>
                 </a>
+
                 <a href="https://github.com/Srujan721/MATLAB-Code-for-GTS_NX" target="_blank" class="repo-card">
                     <div class="repo-header">
                         <i class="fas fa-book-bookmark"></i>
@@ -592,10 +724,204 @@
                         <span class="repo-lang"><span class="dot" style="background:#e16737"></span> MATLAB</span>
                     </div>
                 </a>
+
+                <!-- ADD NEW REPO HERE:
+                <a href="https://github.com/Srujan721/new-repo" target="_blank" class="repo-card">
+                    <div class="repo-header">
+                        <i class="fas fa-book-bookmark"></i>
+                        <span class="repo-name">Repo_Name</span>
+                    </div>
+                    <p class="repo-desc">Description of the repository.</p>
+                    <div class="repo-footer">
+                        <span class="repo-lang"><span class="dot" style="background:#3572A5"></span> Language</span>
+                    </div>
+                </a>
+                -->
             </div>
         </div>
 
-        <!-- Awards -->
+    </div>
+</section>
+
+<!------------------------------------------------------------------------------------------- END OF PART 2 ------------------------------------------------------------------------------------->
+
+<!-- ==============================================================
+     EXPERIENCE SECTION
+     Contains: Work Experience only (clean timeline)
+     ============================================================== -->
+<section class="section section-alt" id="experience">
+    <div class="container">
+        <div class="fade-in">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle">Professional and academic roles</p>
+        </div>
+
+        <!-- ======== WORK EXPERIENCE TIMELINE ========
+             To add a new role:
+             1. Copy any <div class="exp-item">...</div> block
+             2. Paste it in chronological position inside exp-timeline
+             3. Edit title, company, type, date, and bullet points
+             4. For type badge options: "On-site / Full-time", "Remote / Contract", "On-site / Part-time"
+        ======== -->
+        <div class="subsection fade-in">
+            <div class="exp-timeline">
+
+                <!-- Role 1: Project Research Associate -->
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>Project Research Associate</h4>
+                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">On-site / Full-time</span>
+                                <p class="exp-date" style="margin-top:4px">2025 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Leading the MoRTH-funded project on Seismic Vulnerability of Tunnels in Himalayas (₹9 million grant)</li>
+                            <li>Developing seismic vulnerability models for highway tunnels in the Himalayan region</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 2: PhD Researcher -->
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>Doctor of Philosophy (Researcher)</h4>
+                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">On-site / Full-time</span>
+                                <p class="exp-date" style="margin-top:4px">July 2018 – 2026</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Thesis: Seismic Fragility Analysis of Tunnels using Multi-Stripe Analysis</li>
+                            <li>Rock mechanics, underground structures (tunnels), IS code-based seismic tunnel design, slope stability analysis</li>
+                            <li>Hazard assessment, vulnerability modelling, and performance-based design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 3: Outlier AI -->
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>AI Model Trainer</h4>
+                                <p class="exp-company">Outlier AI</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">Remote / Contract</span>
+                                <p class="exp-date" style="margin-top:4px">May 2025 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Served as Contributor, Reviewer, and Senior Reviewer across two projects, consistently receiving high performance ratings (avg. 5.0 and 4.2)</li>
+                            <li>Project Hypno: Designed graduate and post-graduate level prompts, evaluated model outputs, and provided detailed Chain-of-Thought (CoT) analysis to fine-tune advanced generative AI models</li>
+                            <li>Project Valkyrie: Designed PhD-level questions requiring exhaustive literature collection and extensive reasoning; evaluated models using rubric-based assessments</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 4: Handshake AI -->
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>AI Model Trainer</h4>
+                                <p class="exp-company">Handshake AI</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">Remote / Contract</span>
+                                <p class="exp-date" style="margin-top:4px">Sept 2025 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Served as Contributor and Reviewer across three projects (Canary, Hippo, and Phoenix)</li>
+                            <li>Specializes in creating graduate and post-graduate level prompts to train advanced AI models</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 5: Teaching Assistant -->
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>Teaching Assistant</h4>
+                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">On-site / Part-time</span>
+                                <p class="exp-date" style="margin-top:4px">May 2020 – Present</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Led tutorial sessions for graduate and postgraduate students</li>
+                            <li>Facilitated discussions, resolved academic queries, and delivered supplementary lectures as needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ADD NEW ROLE HERE:
+                <div class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <h4>Job Title</h4>
+                                <p class="exp-company">Company / Institution</p>
+                            </div>
+                            <div style="text-align:right">
+                                <span class="exp-type">Type</span>
+                                <p class="exp-date" style="margin-top:4px">Date Range</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Responsibility 1</li>
+                            <li>Responsibility 2</li>
+                        </ul>
+                    </div>
+                </div>
+                -->
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==============================================================
+     ACHIEVEMENTS SECTION
+     Contains: Scholarships & Awards, Academic Achievements, 
+               Leadership & Management, Extracurricular Activities
+     ============================================================== -->
+<section class="section" id="achievements">
+    <div class="container">
+        <div class="fade-in">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Achievements</h2>
+            <p class="section-subtitle">Awards, recognitions, leadership, and activities</p>
+        </div>
+
+        <!-- ======== SCHOLARSHIPS & AWARDS ========
+             To add a new award:
+             1. Copy any <div class="award-card">...</div> block
+             2. Paste below the last award-card
+             3. Edit the icon, title, and description
+             Icon options: fa-trophy, fa-medal, fa-certificate, fa-globe-asia, fa-star, fa-award
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-award"></i>Scholarships &amp; Awards</h3>
 
@@ -630,249 +956,147 @@
                     <p>Awarded by the Ministry of Education, Government of India, for outstanding academic performance in Class XII examinations.</p>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- ===== EXPERIENCE SECTION ===== -->
-<section class="section section-alt" id="experience">
-    <div class="container">
-        <div class="fade-in">
-            <div class="section-divider"></div>
-            <h2 class="section-title">Experience</h2>
-            <p class="section-subtitle">Professional roles, academic service, leadership, and activities</p>
-        </div>
 
-        <!-- Work Experience -->
-        <div class="subsection fade-in">
-            <h3 class="subsection-title"><i class="fas fa-briefcase"></i>Work Experience</h3>
-            <div class="exp-timeline">
-
-                <div class="exp-item">
-                    <div class="exp-dot"></div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div>
-                                <h4>Project Research Associate</h4>
-                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
-                            </div>
-                            <div style="text-align:right">
-                                <span class="exp-type">On-site / Full-time</span>
-                                <p class="exp-date" style="margin-top:4px">2025 – Present</p>
-                            </div>
-                        </div>
-                        <ul>
-                            <li>Leading the MoRTH-funded project on Seismic Vulnerability of Tunnels in Himalayas (₹9 million grant)</li>
-                            <li>Developing seismic vulnerability models for highway tunnels in the Himalayan region</li>
-                        </ul>
-                    </div>
+            <!-- ADD NEW AWARD HERE:
+            <div class="award-card">
+                <div class="award-icon"><i class="fas fa-trophy"></i></div>
+                <div>
+                    <h4>Award Title</h4>
+                    <p>Description of the award.</p>
                 </div>
-
-                <div class="exp-item">
-                    <div class="exp-dot"></div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div>
-                                <h4>Doctor of Philosophy (Researcher)</h4>
-                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
-                            </div>
-                            <div style="text-align:right">
-                                <span class="exp-type">On-site / Full-time</span>
-                                <p class="exp-date" style="margin-top:4px">July 2018 – 2025</p>
-                            </div>
-                        </div>
-                        <ul>
-                            <li>Thesis: Seismic Fragility Analysis of Tunnels using Multi-Stripe Analysis</li>
-                            <li>Rock mechanics, underground structures (tunnels), IS code-based seismic tunnel design, slope stability analysis</li>
-                            <li>Hazard assessment, vulnerability modelling, and performance-based design</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div class="exp-dot"></div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div>
-                                <h4>AI Model Trainer</h4>
-                                <p class="exp-company">Outlier AI</p>
-                            </div>
-                            <div style="text-align:right">
-                                <span class="exp-type">Remote / Contract</span>
-                                <p class="exp-date" style="margin-top:4px">May 2025 – Present</p>
-                            </div>
-                        </div>
-                        <ul>
-                            <li>Served as Contributor, Reviewer, and Senior Reviewer across two projects, consistently receiving high performance ratings (avg. 5.0 and 4.2)</li>
-                            <li>Project Hypno: Designed graduate and post-graduate level prompts, evaluated model outputs, and provided detailed Chain-of-Thought (CoT) analysis to fine-tune advanced generative AI models</li>
-                            <li>Project Valkyrie: Designed PhD-level questions requiring exhaustive literature collection and extensive reasoning; evaluated models using rubric-based assessments</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div class="exp-dot"></div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div>
-                                <h4>AI Model Trainer</h4>
-                                <p class="exp-company">Handshake AI</p>
-                            </div>
-                            <div style="text-align:right">
-                                <span class="exp-type">Remote / Contract</span>
-                                <p class="exp-date" style="margin-top:4px">Sept 2025 – Present</p>
-                            </div>
-                        </div>
-                        <ul>
-                            <li>Served as Contributor and Reviewer across three projects (Canary, Hippo, and Phoenix)</li>
-                            <li>Specializes in creating graduate and post-graduate level prompts to train advanced AI models</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div class="exp-dot"></div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div>
-                                <h4>Teaching Assistant</h4>
-                                <p class="exp-company">Indian Institute of Technology, Roorkee</p>
-                            </div>
-                            <div style="text-align:right">
-                                <span class="exp-type">On-site / Part-time</span>
-                                <p class="exp-date" style="margin-top:4px">May 2020 – Present</p>
-                            </div>
-                        </div>
-                        <ul>
-                            <li>Led tutorial sessions for graduate and postgraduate students</li>
-                            <li>Facilitated discussions, resolved academic queries, and delivered supplementary lectures as needed</li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
+            -->
         </div>
 
-        <!-- Academic Achievements -->
+        <!-- ======== ACADEMIC ACHIEVEMENTS ========
+             To add a new achievement:
+             1. Copy any <div class="ach-item">...</div> block
+             2. Paste inside the achievements-grid div
+             3. Edit the icon and text
+             Icon options: fa-trophy, fa-globe, fa-medal, fa-cogs, fa-scroll, fa-award, fa-star
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-star"></i>Academic Achievements</h3>
             <div class="achievements-grid">
+
                 <div class="ach-item">
                     <i class="fas fa-globe"></i>
                     <span>Semi-finalist at the Rock Bowl event, 15th ISRM Congress 2023, Salzburg, Austria — one of 21 teams selected worldwide</span>
                 </div>
+
                 <div class="ach-item">
                     <i class="fas fa-cogs"></i>
                     <span>Presented "Modified Falkirk Wheel" at SANGAM Project Exhibition, Pragyan'16, NIT Trichy</span>
                 </div>
+
                 <div class="ach-item">
                     <i class="fas fa-trophy"></i>
                     <span>Won 1st Prize — Bridge It, Thatva'15, National Technical Fest, NIT Calicut</span>
                 </div>
+
                 <div class="ach-item">
                     <i class="fas fa-trophy"></i>
                     <span>Won 1st Prize — Bridge Modelling, Rickem'15, King's College</span>
                 </div>
+
                 <div class="ach-item">
                     <i class="fas fa-award"></i>
                     <span>Won 3rd Prize — Poster on Self-Cleaning Concrete, Vitruvius'15, M.A.M College</span>
                 </div>
+
                 <div class="ach-item">
                     <i class="fas fa-scroll"></i>
                     <span>Poster Presentation on Seismic Retrofitting in Structures, Rickem'15</span>
                 </div>
+
                 <div class="ach-item">
                     <i class="fas fa-medal"></i>
                     <span>Best Outgoing Student Award at school level</span>
                 </div>
+
+                <!-- ADD NEW ACHIEVEMENT HERE:
+                <div class="ach-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>Description of the achievement</span>
+                </div>
+                -->
             </div>
         </div>
 
-        <!-- Leadership -->
+        <!-- ======== LEADERSHIP & MANAGEMENT ========
+             To add a new position:
+             1. Copy any <div class="ldr-card">...</div> block
+             2. Paste inside the leadership-grid div
+             3. Edit the year, title, and organization
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-users-cog"></i>Leadership &amp; Management</h3>
             <div class="leadership-grid">
+
                 <div class="ldr-card">
                     <span class="ldr-year">2023 – 24</span>
                     <h4>Sports Secretary</h4>
                     <p>Bhawan Council, Azad Bhawan, IIT Roorkee</p>
                 </div>
+
                 <div class="ldr-card">
                     <span class="ldr-year">2017 – 18</span>
                     <h4>President</h4>
                     <p>Builders' Hive — Civil Engineering R&amp;D Club, NIT Trichy</p>
                 </div>
+
                 <div class="ldr-card">
                     <span class="ldr-year">2015 – 16</span>
                     <h4>Event Coordinator</h4>
                     <p>Pragyan — International Techno-Management Festival, NIT Trichy</p>
                 </div>
+
                 <div class="ldr-card">
                     <span class="ldr-year">2015 – 18</span>
                     <h4>Events Coordinator</h4>
                     <p>Moments — National Technical Symposium, CED, NIT Trichy</p>
                 </div>
+
+                <!-- ADD NEW LEADERSHIP POSITION HERE:
+                <div class="ldr-card">
+                    <span class="ldr-year">Year</span>
+                    <h4>Position Title</h4>
+                    <p>Organization Name</p>
+                </div>
+                -->
             </div>
         </div>
 
-        <!-- Professional Memberships -->
-        <div class="subsection fade-in">
-            <h3 class="subsection-title"><i class="fas fa-id-card"></i>Professional Memberships</h3>
-            <div class="membership-grid">
-                <div class="mem-item">
-                    <i class="fas fa-circle-check"></i>
-                    <span>International Society for Rock Mechanics and Rock Engineering (ISRM)</span>
-                </div>
-                <div class="mem-item">
-                    <i class="fas fa-circle-check"></i>
-                    <span>International Society for Soil Mechanics and Geotechnical Engineering (ISSMGE)</span>
-                </div>
-                <div class="mem-item">
-                    <i class="fas fa-circle-check"></i>
-                    <span>Indian Geotechnical Society (LM-4577)</span>
-                </div>
-                <div class="mem-item">
-                    <i class="fas fa-circle-check"></i>
-                    <span>Indian Society of Earthquake Technology (LM-1852)</span>
-                </div>
-                <div class="mem-item">
-                    <i class="fas fa-circle-check"></i>
-                    <span>Indian Society for Rock Mechanics and Tunnelling Technology (LM-2280)</span>
-                </div>
-                <div class="mem-item">
-                    <i class="fas fa-circle-check"></i>
-                    <span>Society for Earthquake and Civil Engineering Dynamics (SECED)</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Extracurricular -->
+        <!-- ======== EXTRACURRICULAR ACTIVITIES ========
+             To add a new activity:
+             1. Copy any <div class="extra-item">...</div> block
+             2. Paste inside the extra-grid div
+             3. Edit the icon and text
+             Icon options: fa-table-tennis-paddle-ball, fa-keyboard, fa-chess, fa-music, 
+                          fa-futbol, fa-running, fa-camera, fa-paint-brush, fa-book-reader
+        ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-heart"></i>Extracurricular Activities</h3>
             <div class="extra-grid">
-                <div class="extra-item">
-                    <i class="fas fa-shuttlecock"></i>
-                    <span>Badminton — Multiple trophies at Bhawan &amp; Institute level, IIT Roorkee</span>
-                </div>
-                <div class="extra-item">
-                    <i class="fas fa-keyboard"></i>
-                    <span>Touch Typing — 110 WPM</span>
-                </div>
-                <div class="extra-item">
-                    <i class="fas fa-chess"></i>
-                    <span>Chess Enthusiast</span>
-                </div>
-                <div class="extra-item">
-                    <i class="fas fa-music"></i>
-                    <span>Flute Player</span>
-                </div>
+
+                <div class="extra-item"><i class="fas fa-table-tennis-paddle-ball"></i><span>Badminton — Multiple trophies at Bhawan &amp; Institute level, IIT Roorkee</span></div>
+                <div class="extra-item"><i class="fas fa-keyboard"></i><span>Touch Typing — 110 WPM</span></div>
+                <div class="extra-item"><i class="fas fa-chess"></i><span>Chess Enthusiast</span></div>
+                <div class="extra-item"><i class="fas fa-music"></i><span>Flute Player</span></div>
+
+                <!-- ADD NEW ACTIVITY HERE:
+                <div class="extra-item"><i class="fas fa-icon-name"></i><span>Activity Description</span></div>
+                -->
             </div>
         </div>
 
     </div>
 </section>
 
-<!-- ===== CONTACT SECTION ===== -->
-<section class="section" id="contact">
+<!-- ==============================================================
+     CONTACT SECTION
+     ============================================================== -->
+<section class="section section-alt" id="contact">
     <div class="container">
         <div class="fade-in">
             <div class="section-divider"></div>
@@ -880,6 +1104,7 @@
             <p class="section-subtitle">Feel free to reach out for collaborations, academic inquiries, or opportunities</p>
         </div>
 
+        <!-- ======== CONTACT CARDS — Edit details below ======== -->
         <div class="contact-grid fade-in">
             <div class="contact-card">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
@@ -898,6 +1123,7 @@
             </div>
         </div>
 
+        <!-- ======== SOCIAL LINKS — Edit URLs below ======== -->
         <div class="social-links fade-in">
             <a href="https://scholar.google.com/citations?hl=en&user=x21rKZAAAAAJ" target="_blank" class="social-link">
                 <i class="fas fa-graduation-cap"></i> Google Scholar
@@ -911,11 +1137,18 @@
             <a href="https://github.com/Srujan721" target="_blank" class="social-link">
                 <i class="fab fa-github"></i> GitHub
             </a>
+            <!-- ADD NEW SOCIAL LINK:
+            <a href="https://your-link.com" target="_blank" class="social-link">
+                <i class="fab fa-icon-name"></i> Platform Name
+            </a>
+            -->
         </div>
     </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- ==============================================================
+     FOOTER — Edit year and name as needed
+     ============================================================== -->
 <footer class="footer">
     <div class="container">
         <p>&copy; 2025 Sai Srujan Kumar Chalavadi. All rights reserved.</p>
@@ -927,7 +1160,10 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
-<!-- ===== JAVASCRIPT ===== -->
+<!-- ==============================================================
+     JAVASCRIPT — Handles navigation, animations, scroll effects
+     No need to edit unless adding new functionality
+     ============================================================== -->
 <script>
     // ===== Mobile Navigation Toggle =====
     const navToggle = document.getElementById('navToggle');
@@ -955,17 +1191,13 @@
         });
     });
 
-    // ===== Navbar Scroll Effect =====
+    // ===== Navbar Scroll Shadow =====
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // ===== Active Navigation Link Highlight =====
+    // ===== Active Navigation Highlight =====
     const sections = document.querySelectorAll('section[id]');
     const navItems = navLinks.querySelectorAll('a');
 
@@ -991,11 +1223,7 @@
     // ===== Scroll to Top Button =====
     const scrollTopBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            scrollTopBtn.classList.add('show');
-        } else {
-            scrollTopBtn.classList.remove('show');
-        }
+        scrollTopBtn.classList.toggle('show', window.scrollY > 500);
     });
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1003,12 +1231,10 @@
 
     // ===== Fade-In Animation on Scroll =====
     const fadeElements = document.querySelectorAll('.fade-in');
-
     function checkFade() {
         const triggerBottom = window.innerHeight * 0.88;
         fadeElements.forEach(el => {
-            const top = el.getBoundingClientRect().top;
-            if (top < triggerBottom) {
+            if (el.getBoundingClientRect().top < triggerBottom) {
                 el.classList.add('visible');
             }
         });
@@ -1017,14 +1243,12 @@
     window.addEventListener('load', checkFade);
     checkFade();
 
-    // ===== Smooth scroll for all anchor links =====
+    // ===== Smooth Scroll for Anchor Links =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
     });
 </script>
