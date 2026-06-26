@@ -329,6 +329,103 @@
         /* ========== ANIMATIONS ========== */
         .fade-in{opacity:0;transform:translateY(25px);transition:opacity 0.6s ease,transform 0.6s ease}
         .fade-in.visible{opacity:1;transform:translateY(0)}
+
+        /* ==========================================================
+           ENHANCED PAGE / SECTION TRANSITIONS
+           Driven by IntersectionObserver (adds .visible). See JS.
+           ========================================================== */
+        .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,.84,.44,1),transform .7s cubic-bezier(.16,.84,.44,1)}
+        .reveal.visible{opacity:1;transform:none}
+        .reveal-left{opacity:0;transform:translateX(-34px);transition:opacity .7s ease,transform .7s ease}
+        .reveal-left.visible{opacity:1;transform:none}
+        .reveal-right{opacity:0;transform:translateX(34px);transition:opacity .7s ease,transform .7s ease}
+        .reveal-right.visible{opacity:1;transform:none}
+        /* Staggered children reveal */
+        .stagger > *{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+        .stagger.visible > *{opacity:1;transform:none}
+        .stagger.visible > *:nth-child(1){transition-delay:.05s}
+        .stagger.visible > *:nth-child(2){transition-delay:.12s}
+        .stagger.visible > *:nth-child(3){transition-delay:.19s}
+        .stagger.visible > *:nth-child(4){transition-delay:.26s}
+        .stagger.visible > *:nth-child(5){transition-delay:.33s}
+        .stagger.visible > *:nth-child(6){transition-delay:.40s}
+        .stagger.visible > *:nth-child(7){transition-delay:.47s}
+        .stagger.visible > *:nth-child(8){transition-delay:.54s}
+        /* Hero entrance on page load */
+        @keyframes heroFadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+        .hero-content > *{animation:heroFadeUp .8s both}
+        .hero-content > .hero-avatar{animation-delay:.05s}
+        .hero-content > h1{animation-delay:.18s}
+        .hero-content > .tagline{animation-delay:.28s}
+        .hero-content > .sub-tagline{animation-delay:.36s}
+        .hero-content > .hero-badges{animation-delay:.46s}
+        .hero-content > .hero-buttons{animation-delay:.56s}
+        .hero-content > .hero-social{animation-delay:.66s}
+        /* Accessibility: honour reduced-motion preference */
+        @media (prefers-reduced-motion: reduce){
+            *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+            .fade-in,.reveal,.reveal-left,.reveal-right,.stagger>*{opacity:1!important;transform:none!important}
+        }
+
+        /* ==========================================================
+           HIGHLIGHTS (Home) — recent achievements
+           To edit cards: see the #highlights section in the body.
+           ========================================================== */
+        .highlight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px}
+        .highlight-card{position:relative;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 24px 24px 28px;transition:var(--transition);overflow:hidden}
+        .highlight-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+        .highlight-card.gold::before{background:var(--gold)}
+        .highlight-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--accent)}
+        .highlight-icon{width:46px;height:46px;border-radius:12px;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:14px}
+        .highlight-card.gold .highlight-icon{background:var(--gold-light);color:var(--gold)}
+        .highlight-date{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:6px}
+        .highlight-card h4{font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:6px;line-height:1.35}
+        .highlight-card p{font-size:0.86rem;color:var(--text-light);line-height:1.6}
+        .highlight-card .hl-link{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:0.8rem;font-weight:600;color:var(--accent)}
+        .highlight-card .hl-link:hover{color:var(--accent-hover)}
+
+        /* ==========================================================
+           DARTS / SOFTWARE — download + feedback
+           ========================================================== */
+        .darts-wrap{display:grid;grid-template-columns:1.05fr 0.95fr;gap:30px;align-items:start}
+        @media(max-width:840px){.darts-wrap{grid-template-columns:1fr}}
+        .darts-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:30px}
+        .darts-head{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+        .darts-logo{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#6366F1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+        .darts-title h3{font-size:1.3rem;font-weight:800;color:var(--primary);line-height:1.2}
+        .darts-version{display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:700;color:var(--green);background:var(--green-light);padding:3px 10px;border-radius:50px;margin-top:6px}
+        .darts-desc{font-size:0.92rem;color:var(--text-light);line-height:1.75;margin-bottom:18px}
+        .darts-features{list-style:none;margin-bottom:20px}
+        .darts-features li{font-size:0.88rem;padding:5px 0 5px 26px;position:relative;color:var(--text)}
+        .darts-features li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;left:0;top:6px;color:var(--accent);font-size:0.78rem}
+        .darts-meta{display:flex;flex-wrap:wrap;gap:18px;font-size:0.78rem;color:var(--text-light);margin-bottom:22px;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+        .darts-meta span{display:inline-flex;align-items:center;gap:6px}
+        .darts-meta i{color:var(--accent)}
+        .darts-actions{display:flex;gap:12px;flex-wrap:wrap}
+        .btn-download{background:var(--accent);color:#fff;font-size:0.95rem;padding:14px 28px}
+        .btn-download:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.3)}
+        .btn-ghost{background:var(--bg-alt);color:var(--text);border:1px solid var(--border)}
+        .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+        .darts-note{display:flex;gap:10px;margin-top:18px;padding:14px 16px;background:var(--gold-light);border-radius:10px;font-size:0.8rem;color:#7c4a03;line-height:1.6}
+        .darts-note i{color:var(--gold);margin-top:2px;flex-shrink:0}
+
+        /* Feedback form */
+        .feedback-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:30px}
+        .feedback-card h3{font-size:1.15rem;font-weight:700;color:var(--primary);margin-bottom:6px}
+        .feedback-card .fb-sub{font-size:0.85rem;color:var(--text-light);margin-bottom:20px}
+        .form-group{margin-bottom:15px}
+        .form-group label{display:block;font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:6px}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.88rem;color:var(--text);background:var(--bg);transition:var(--transition)}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
+        .form-group textarea{resize:vertical;min-height:110px}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+        @media(max-width:520px){.form-row{grid-template-columns:1fr}}
+        .btn-submit{width:100%;justify-content:center;background:var(--accent);color:#fff;padding:13px;font-size:0.92rem}
+        .btn-submit:hover{background:var(--accent-hover)}
+        .btn-submit:disabled{opacity:.6;cursor:not-allowed}
+        .form-status{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:0.85rem;display:none}
+        .form-status.success{display:block;background:var(--green-light);color:var(--green)}
+        .form-status.error{display:block;background:#FEE2E2;color:#B91C1C}
     </style>
 </head>
 <body>
@@ -346,6 +443,7 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#research">Research</a>
+            <a href="#software">Software</a>
             <a href="#experience">Experience</a>
             <a href="#achievements">Achievements</a>
             <a href="#contact">Contact</a>
@@ -741,6 +839,153 @@
             <!-- ADD NEW PROJECT HERE -->
         </div>
 
+    </div>
+</section>
+
+<!------------------------------------------------------------------------------------------- END OF PART 2 ------------------------------------------------------------------------------------->
+
+<!-- ==============================================================
+     SOFTWARE SECTION
+     Contains: DARTS (downloadable app + feedback form) and the
+               Open-Source Tools & Repositories (moved from Research).
+     ┌──────────────────────────────────────────────────────────┐
+     │  ⚠  BEFORE PUBLISHING, REPLACE THE 3 PLACEHOLDERS BELOW:  │
+     │  1. Software name + description + feature list           │
+     │  2. Download link  → your GitHub Release asset URL       │
+     │     (search for: REPLACE-DOWNLOAD-URL)                   │
+     │  3. Feedback form  → your Formspree endpoint             │
+     │     (search for: YOUR_FORM_ID)                           │
+     └──────────────────────────────────────────────────────────┘
+     ============================================================== -->
+<section class="section section-alt" id="software">
+    <div class="container">
+        <div class="reveal">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Software</h2>
+            <p class="section-subtitle">Downloadable application and open-source research tools</p>
+        </div>
+
+        <!-- ======== DARTS — downloadable application + feedback ======== -->
+        <div class="subsection fade-in">
+        <h3 class="subsection-title"><i class="fas fa-cube"></i>DARTS — Downloadable Application</h3>
+        <div class="darts-wrap">
+
+            <!-- ===== LEFT: Software info + download ===== -->
+            <div class="darts-card reveal-left">
+                <div class="darts-head">
+                    <div class="darts-logo"><i class="fas fa-cube"></i></div>
+                    <div class="darts-title">
+                        <h3>DARTS</h3>
+                        <!-- ⚠ REPLACE with the full form of DARTS, e.g. "Dynamic Analysis of Rock Tunnels under Seismicity" -->
+                        <span class="darts-version"><i class="fas fa-circle-check"></i> Version 1.0 &nbsp;·&nbsp; Windows</span>
+                    </div>
+                </div>
+
+                <!-- ⚠ REPLACE this description with what DARTS actually does (2–3 sentences) -->
+                <p class="darts-desc">
+                    DARTS is a standalone Windows application developed as part of ongoing research in
+                    rock mechanics and seismic tunnel engineering. <strong>[Replace this text with a short
+                    description of what DARTS does, the analysis it performs, and who it is for.]</strong>
+                </p>
+
+                <!-- ⚠ REPLACE these feature bullets (or delete the list) -->
+                <ul class="darts-features">
+                    <li>[Key capability or feature #1]</li>
+                    <li>[Key capability or feature #2]</li>
+                    <li>[Key capability or feature #3]</li>
+                </ul>
+
+                <div class="darts-meta">
+                    <span><i class="fas fa-microchip"></i> Windows 10 / 11 (64-bit)</span>
+                    <span><i class="fas fa-file-arrow-down"></i> Installer (.exe)</span>
+                    <span><i class="fas fa-calendar"></i> Released 2026</span>
+                </div>
+
+                <div class="darts-actions">
+                    <!-- ⚠ REPLACE-DOWNLOAD-URL: point this to your GitHub Release asset.
+                         Linking to /releases/latest always resolves to your newest release.
+                         For a direct download, use the asset URL, e.g.:
+                         https://github.com/Srujan721/DARTS/releases/download/v1.0/DARTS-Setup-v1.0.exe -->
+                    <a href="https://github.com/Srujan721/DARTS/releases/latest" target="_blank" rel="noopener" class="btn btn-download">
+                        <i class="fas fa-download"></i> Download DARTS v1.0
+                    </a>
+                    <a href="https://github.com/Srujan721/DARTS" target="_blank" rel="noopener" class="btn btn-ghost">
+                        <i class="fab fa-github"></i> Source / Repo
+                    </a>
+                </div>
+
+                <div class="darts-note">
+                    <i class="fas fa-shield-halved"></i>
+                    <span><strong>Installation note:</strong> As the installer is not yet code-signed, Windows
+                    SmartScreen may show an "unrecognized app" prompt. Click <em>More info → Run anyway</em> to
+                    proceed. The download is hosted on the author's official GitHub Releases page.</span>
+                </div>
+            </div>
+
+            <!-- ===== RIGHT: Feedback form (Formspree) ===== -->
+            <div class="feedback-card reveal-right">
+                <h3>Feedback on DARTS</h3>
+                <p class="fb-sub">Report a bug, request a feature, or share your experience. Your input guides the next version.</p>
+
+                <!-- ⚠ REPLACE YOUR_FORM_ID below with your Formspree endpoint.
+                     1. Create a free form at https://formspree.io (use srujanchalavadi6@gmail.com)
+                     2. Copy the form's endpoint, e.g. https://formspree.io/f/abcdwxyz
+                     3. Paste it into the action="" attribute below -->
+                <form id="feedbackForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <input type="hidden" name="_subject" value="DARTS v1.0 — Website Feedback">
+                    <input type="hidden" name="software" value="DARTS v1.0">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fb-name">Name</label>
+                            <input type="text" id="fb-name" name="name" placeholder="Your name" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="fb-email">Email</label>
+                            <input type="email" id="fb-email" name="email" placeholder="you@example.com" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fb-type">Feedback type</label>
+                            <select id="fb-type" name="feedback_type">
+                                <option value="General feedback">General feedback</option>
+                                <option value="Bug report">Bug report</option>
+                                <option value="Feature request">Feature request</option>
+                                <option value="Question">Question</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb-rating">Rating</label>
+                            <select id="fb-rating" name="rating">
+                                <option value="">— optional —</option>
+                                <option value="5 - Excellent">5 — Excellent</option>
+                                <option value="4 - Good">4 — Good</option>
+                                <option value="3 - Average">3 — Average</option>
+                                <option value="2 - Below average">2 — Below average</option>
+                                <option value="1 - Poor">1 — Poor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fb-message">Message <span style="color:var(--accent)">*</span></label>
+                        <textarea id="fb-message" name="message" required placeholder="Describe your feedback, the issue, or the feature you'd like..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit"><i class="fas fa-paper-plane"></i> Send Feedback</button>
+                    <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+                </form>
+
+                <p style="font-size:0.78rem;color:var(--text-light);margin-top:16px;text-align:center">
+                    Prefer GitHub? <a href="https://github.com/Srujan721/DARTS/issues" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Report a bug as an issue</a>
+                </p>
+            </div>
+
+        </div>
+        </div>
+
         <!-- ======== OPEN-SOURCE TOOLS — Add/remove repo cards below ========
              To add a new repo:
              1. Copy any <a class="repo-card">...</a> block
@@ -806,13 +1051,11 @@
     </div>
 </section>
 
-<!------------------------------------------------------------------------------------------- END OF PART 2 ------------------------------------------------------------------------------------->
-
 <!-- ==============================================================
      EXPERIENCE SECTION
      Contains: Work Experience only (clean timeline)
      ============================================================== -->
-<section class="section section-alt" id="experience">
+<section class="section" id="experience">
     <div class="container">
         <div class="fade-in">
             <div class="section-divider"></div>
@@ -970,7 +1213,7 @@
      Contains: Scholarships & Awards, Academic Achievements, 
                Leadership & Management, Extracurricular Activities
      ============================================================== -->
-<section class="section" id="achievements">
+<section class="section section-alt" id="achievements">
     <div class="container">
         <div class="fade-in">
             <div class="section-divider"></div>
@@ -1159,7 +1402,7 @@
 <!-- ==============================================================
      CONTACT SECTION
      ============================================================== -->
-<section class="section section-alt" id="contact">
+<section class="section" id="contact">
     <div class="container">
         <div class="fade-in">
             <div class="section-divider"></div>
@@ -1295,19 +1538,23 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== Fade-In Animation on Scroll =====
-    const fadeElements = document.querySelectorAll('.fade-in');
-    function checkFade() {
-        const triggerBottom = window.innerHeight * 0.88;
-        fadeElements.forEach(el => {
-            if (el.getBoundingClientRect().top < triggerBottom) {
-                el.classList.add('visible');
-            }
-        });
+    // ===== Reveal Animations (IntersectionObserver) =====
+    // Handles legacy .fade-in plus new .reveal / .reveal-left / .reveal-right / .stagger
+    const revealEls = document.querySelectorAll('.fade-in, .reveal, .reveal-left, .reveal-right, .stagger');
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        revealEls.forEach(el => io.observe(el));
+    } else {
+        // Fallback: reveal everything if IntersectionObserver is unsupported
+        revealEls.forEach(el => el.classList.add('visible'));
     }
-    window.addEventListener('scroll', checkFade);
-    window.addEventListener('load', checkFade);
-    checkFade();
 
     // ===== Smooth Scroll for Anchor Links =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1317,6 +1564,48 @@
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
     });
+
+    // ===== DARTS Feedback Form (Formspree AJAX submission) =====
+    const fbForm = document.getElementById('feedbackForm');
+    if (fbForm) {
+        fbForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.getElementById('formStatus');
+            const btn = fbForm.querySelector('.btn-submit');
+            const action = fbForm.getAttribute('action');
+
+            // Guard: form not yet configured
+            if (action.indexOf('YOUR_FORM_ID') !== -1) {
+                status.className = 'form-status error';
+                status.textContent = 'Feedback form is not configured yet. Replace YOUR_FORM_ID in the form action with your Formspree endpoint.';
+                return;
+            }
+
+            const original = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            try {
+                const res = await fetch(action, {
+                    method: 'POST',
+                    body: new FormData(fbForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    status.className = 'form-status success';
+                    status.textContent = 'Thank you — your feedback on DARTS has been received.';
+                    fbForm.reset();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (err) {
+                status.className = 'form-status error';
+                status.innerHTML = 'Something went wrong. Please email <a href="mailto:srujanchalavadi6@gmail.com" style="color:inherit;text-decoration:underline">srujanchalavadi6@gmail.com</a> instead.';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = original;
+            }
+        });
+    }
 </script>
 
 </body>
