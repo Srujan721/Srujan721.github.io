@@ -7,12 +7,12 @@
     <meta name="description" content="Personal website of Dr. Sai Srujan Kumar Chalavadi — Researcher specializing in Rock Mechanics, Geotechnical Earthquake Engineering, and Seismic Design of Tunnels.">
 	<meta name="keywords" content="Dr. Sai Srujan Kumar Chalavadi, Rock Mechanics, Earthquake Engineering, IIT Roorkee, Seismic Tunnels, PMRF Fellow, ISRM">
 	<meta name="author" content="Dr. Sai Srujan Kumar Chalavadi">
-	<meta property="og:title" content="Dr. Sai Srujan Kumar Chalavadi h| Researcher in Rock Mechanics & Earthquake Engineering">
+	<meta property="og:title" content="Dr. Sai Srujan Kumar Chalavadi | Researcher in Rock Mechanics & Earthquake Engineering">
 	<meta property="og:description" content="Personal website of Dr. Sai Srujan Kumar Chalavadi — Researcher specializing in Rock Mechanics, Earthquake Engineering, and Seismic Design of Tunnels.">
 	<meta property="og:image" content="https://srujan721.github.io/photo.jpg">
 	<meta property="og:url" content="https://srujan721.github.io/">
 	<meta property="og:type" content="profile">
-	<meta name="twitter:card" content="summary">h
+	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Dr. Sai Srujan Kumar Chalavadi | Researcher">
 	<meta name="twitter:description" content="Researcher in Rock Mechanics and Earthquake Engineering at IIT Roorkee">
 	<meta name="twitter:image" content="https://srujan721.github.io/photo.jpg">
@@ -873,32 +873,40 @@
             <!-- ===== LEFT: Software info + download ===== -->
             <div class="darts-card reveal-left">
                 <div class="darts-head">
-                    <div class="darts-logo"><i class="fas fa-cube"></i></div>
+                    <!-- DARTS icon. To change it, replace DARTS_1.png in the site folder (keep the name) or update the src below. -->
+                    <div class="darts-logo" style="background:none;overflow:hidden">
+                        <img src="DARTS_1.png" alt="DARTS icon" style="width:100%;height:100%;object-fit:cover">
+                    </div>
                     <div class="darts-title">
                         <h3>DARTS</h3>
-                        <!-- ⚠ REPLACE with the full form of DARTS, e.g. "Dynamic Analysis of Rock Tunnels under Seismicity" -->
-                        <span class="darts-version"><i class="fas fa-circle-check"></i> Version 1.0 &nbsp;·&nbsp; Windows</span>
+                        <p style="font-size:0.82rem;color:var(--text-light);margin-top:3px;line-height:1.4">Design and Analysis of Rock Tunnels under Seismic conditions</p>
+                        <span class="darts-version" style="margin-top:8px"><i class="fas fa-circle-check"></i> Version 1.0 &nbsp;·&nbsp; Windows</span>
                     </div>
                 </div>
 
-                <!-- ⚠ REPLACE this description with what DARTS actually does (2–3 sentences) -->
                 <p class="darts-desc">
-                    DARTS is a standalone Windows application developed as part of ongoing research in
-                    rock mechanics and seismic tunnel engineering. <strong>[Replace this text with a short
-                    description of what DARTS does, the analysis it performs, and who it is for.]</strong>
+                    DARTS v1.0 is a standalone Windows application for the seismic support design of rock
+                    tunnels, implementing the Indian Standards <strong>IS 13365 (Part 2): 2019</strong> for
+                    Q-system support pressures and <strong>IS 15026 (Part 1): 2022</strong> for support-element
+                    capacities. It computes seismic support pressures for user-defined rock-mass quality (Q)
+                    bins, allows the design of roof and wall support, and facilitates cross-checking the results
+                    against the JSCE (2016) tunnel support tables.
                 </p>
-
-                <!-- ⚠ REPLACE these feature bullets (or delete the list) -->
-                <ul class="darts-features">
-                    <li>[Key capability or feature #1]</li>
-                    <li>[Key capability or feature #2]</li>
-                    <li>[Key capability or feature #3]</li>
-                </ul>
 
                 <div class="darts-meta">
                     <span><i class="fas fa-microchip"></i> Windows 10 / 11 (64-bit)</span>
                     <span><i class="fas fa-file-arrow-down"></i> Installer (.exe)</span>
-                    <span><i class="fas fa-calendar"></i> Released 2026</span>
+                    <span><i class="fas fa-box-open"></i> Standalone build</span>
+                </div>
+
+                <!-- ======== CREDITS — edit names here ======== -->
+                <div class="darts-credits" style="margin-bottom:20px;font-size:0.84rem;line-height:1.6">
+                    <p style="color:var(--text);font-weight:600">
+                        <i class="fas fa-user-pen" style="color:var(--accent);margin-right:7px"></i>Developed by Dr. Srujan Chalavadi
+                    </p>
+                    <p style="color:var(--text-light);margin-left:22px">
+                        Supervised by Prof. Yogendra Singh and Prof. Mahendra Singh
+                    </p>
                 </div>
 
                 <div class="darts-actions">
@@ -909,8 +917,10 @@
                     <a href="https://github.com/Srujan721/DARTS/releases/latest" target="_blank" rel="noopener" class="btn btn-download">
                         <i class="fas fa-download"></i> Download DARTS v1.0
                     </a>
-                    <a href="https://github.com/Srujan721/DARTS" target="_blank" rel="noopener" class="btn btn-ghost">
-                        <i class="fab fa-github"></i> Source / Repo
+                    <!-- User Manual: point this to a hosted PDF manual or your repo wiki/README.
+                         Replace the href below with your manual's URL when ready. -->
+                    <a href="https://github.com/Srujan721/DARTS/blob/main/README.md" target="_blank" rel="noopener" class="btn btn-ghost">
+                        <i class="fas fa-book"></i> User Manual
                     </a>
                 </div>
 
