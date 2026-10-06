@@ -134,25 +134,25 @@
         /* ==========================================================
            HERO
            ========================================================== */
-        .hero{background:linear-gradient(135deg,#0D1620 0%,#101C28 45%,#122131 100%);position:relative;overflow:hidden;padding:calc(68px + 40px) 0 0}
+        .hero{background:linear-gradient(135deg,#0D1620 0%,#101C28 45%,#122131 100%);position:relative;overflow:hidden;padding:120px 0 0}
         .hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);border-radius:50%}
         .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(217,119,6,0.06) 0%,transparent 70%);border-radius:50%}
-        .hero-content{text-align:left;position:relative;z-index:1;min-width:0}
-        .hero-avatar{width:150px;height:150px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366F1);display:flex;align-items:center;justify-content:center;margin:0;font-size:3rem;color:#fff;border:4px solid rgba(255,255,255,0.15);overflow:hidden}
+        .hero-content{text-align:center;position:relative;z-index:1;max-width:800px}
+        .hero-avatar{width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366F1);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:3rem;color:#fff;border:4px solid rgba(255,255,255,0.15);overflow:hidden}
         .hero-avatar img{width:100%;height:100%;object-fit:cover}
-        .hero h1{font-size:clamp(2rem,1.2rem + 1.9vw,2.6rem);line-height:1.12;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-1px}
+        .hero h1{font-size:2.8rem;line-height:1.15;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-1px}
         .hero .tagline{font-size:1.15rem;color:#F0C44C;font-weight:500;margin-bottom:6px}
-        .hero .sub-tagline{font-size:0.95rem;color:var(--text-white);opacity:0.7;margin-bottom:0}
-        .hero-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start;margin-bottom:24px}
+        .hero .sub-tagline{font-size:0.95rem;color:var(--text-white);opacity:0.7;margin-bottom:28px}
+        .hero-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px}
         .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:8px 18px;border-radius:50px;font-size:0.83rem;color:#fff;font-weight:500}
         .hero-badge i{color:var(--gold);font-size:0.85rem}
-        .hero-buttons{display:flex;gap:14px;justify-content:flex-start;margin-bottom:22px;flex-wrap:wrap}
+        .hero-buttons{display:flex;gap:14px;justify-content:center;margin-bottom:36px;flex-wrap:wrap}
         .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-size:0.92rem;font-weight:600;transition:var(--transition);cursor:pointer;border:none;font-family:inherit}
         .btn-primary{background:var(--accent);color:#fff}
         .btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.3)}
         .btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.2)}
         .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-        .hero-social{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start}
+        .hero-social{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
         .hero-social a{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.07);color:var(--text-white);font-size:1.05rem;transition:var(--transition);border:1px solid rgba(255,255,255,0.08)}
         .hero-social a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
         @media(max-width:600px){.hero h1{font-size:2rem}.hero .tagline{font-size:0.95rem}}
@@ -350,10 +350,10 @@
         @keyframes heroPop{from{opacity:0;transform:scale(.85)}}
         @keyframes heroFade{from{opacity:0}}
         .hero-avatar{animation:heroPop .9s cubic-bezier(.16,1,.3,1) .05s backwards}
-        .hero-heading > *,.hero-badge,.hero-buttons,.hero-social a,.hero-figure{animation:heroRise .85s cubic-bezier(.16,1,.3,1) backwards}
-        .hero-heading > :nth-child(1){animation-delay:.15s}
-        .hero-heading > :nth-child(2){animation-delay:.27s}
-        .hero-heading > :nth-child(3){animation-delay:.35s}
+        .hero h1,.hero .tagline,.hero .sub-tagline,.hero-badge,.hero-buttons,.hero-social a{animation:heroRise .85s cubic-bezier(.16,1,.3,1) backwards}
+        .hero h1{animation-delay:.15s}
+        .hero .tagline{animation-delay:.27s}
+        .hero .sub-tagline{animation-delay:.35s}
         .hero-badge:nth-child(1){animation-delay:.45s}
         .hero-badge:nth-child(2){animation-delay:.51s}
         .hero-badge:nth-child(3){animation-delay:.57s}
@@ -367,7 +367,6 @@
         .hero-social a:nth-child(6){animation-delay:.98s}
         .hero-social a:nth-child(7){animation-delay:1.02s}
         .hero-social a:nth-child(8){animation-delay:1.06s}
-        .hero-figure{animation-delay:.3s}
 
         /* Accessibility: with "reduce motion" set, keep fades and line drawing
            but drop travel, scaling and sway (the seismograph starts paused) */
@@ -375,8 +374,7 @@
             html{scroll-behavior:auto}
             .reveals-on .pending,.reveals-on .pending.reveal-left,.reveals-on .pending.reveal-right,
             .reveals-on .pending .cascade-item,.reveals-on .pending .exp-dot{transform:none!important}
-            .hero-avatar,.hero-heading > *,.hero-badge,.hero-buttons,.hero-social a,.hero-figure{animation-name:heroFade!important}
-            .fig-mk{animation-name:figFade!important}
+            .hero-avatar,.hero h1,.hero .tagline,.hero .sub-tagline,.hero-badge,.hero-buttons,.hero-social a{animation-name:heroFade!important}
         }
         @media print{
             .pending,.cascade-item,.exp-dot{opacity:1!important;transform:none!important}
@@ -444,70 +442,28 @@
         .form-status.error{display:block;background:#FEE2E2;color:#B91C1C}
 
         /* ==========================================================
-           HERO LAYOUT — profile (left) and Fig. 1 (right), contour field
-           behind, hill–tunnel seismograph along the bottom edge
+           HERO — profile at the original sizes, contour field behind,
+           hill–tunnel seismograph along the bottom edge
            ========================================================== */
         .hero::before,.hero::after{pointer-events:none}
         .hero-contours{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 1.2s ease-out;will-change:transform}
         .hero-contours.drawn{opacity:1}
-        .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:44px;align-items:center}
-        .hero-id{display:flex;align-items:center;gap:26px;margin-bottom:24px}
-        .hero-heading{min-width:0}
+        .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
         .hero h1{text-wrap:balance}
-        .hero-figure{position:relative;margin:0;padding:14px 16px 12px;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:var(--radius)}
-        .hero-figure svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y;font-family:inherit}
-        .hero-figure figcaption{margin-top:6px;font-size:0.78rem;line-height:1.5;color:var(--text-white);opacity:0.85}
-        .hero-figure figcaption b{color:#fff;margin-right:0.35em}
-        @media(min-width:1100px){.hero-badges{gap:10px}.hero-badge{padding:8px 15px}}
-        @media(max-width:1099px){
-            .hero-inner{grid-template-columns:minmax(0,1fr);gap:36px}
-            .hero-content{text-align:center}
-            .hero-id{flex-direction:column;gap:20px}
-            .hero-avatar{width:180px;height:180px}
+        .hero{padding-top:calc(68px + 40px)}
+        .hero-content{display:grid;grid-template-columns:auto minmax(0,1fr);gap:44px;align-items:center;text-align:left;max-width:1040px}
+        .hero-text{min-width:0}
+        .hero-avatar{margin:0}
+        .hero-badges,.hero-buttons,.hero-social{justify-content:flex-start}
+        @media(max-width:899px){
+            .hero-content{grid-template-columns:minmax(0,1fr);gap:0;text-align:center;justify-items:center}
+            .hero-avatar{margin:0 auto 28px}
             .hero-badges,.hero-buttons,.hero-social{justify-content:center}
-            .hero-figure{width:100%;max-width:560px;margin:0 auto}
         }
-        @media(max-width:600px){
-            .hero{padding-top:calc(68px + 28px)}
-            .hero-avatar{width:150px;height:150px}
-            .hero-figure{padding:10px}
-            .hero-social{gap:8px}
-        }
-
-        /* Fig. 1 on the dark hero */
-        .fig-grid{stroke:rgba(255,255,255,0.07);stroke-width:1}
-        .fig-stripe{stroke:rgba(203,213,225,0.38);stroke-width:1;stroke-dasharray:2 4}
-        .fig-axis{stroke:rgba(203,213,225,0.75);stroke-width:1;fill:none}
-        .fig-label{font-size:14px;fill:#E2E8F0}
-        .fig-tick{font-size:12px;fill:#94A3B8}
-        .fig-curve,.fig-curve-sample{fill:none;stroke-width:2.2;stroke-linecap:round;transition:opacity .25s}
-        .fig-curve.c1,.c1 .fig-curve-sample{stroke:#60A5FA}
-        .fig-curve.c2,.c2 .fig-curve-sample{stroke:#E2E8F0;stroke-dasharray:7 5}
-        .fig-curve.c3,.c3 .fig-curve-sample{stroke:#F0C44C;stroke-dasharray:2 4}
-        .fig-mk,.fig-mk-static{fill:#101B28;stroke-width:1.6;transition:opacity .25s}
-        .fig-mk.c1,.c1 .fig-mk-static{stroke:#60A5FA}
-        .fig-mk.c2,.c2 .fig-mk-static{stroke:#E2E8F0}
-        .fig-mk.c3,.c3 .fig-mk-static{stroke:#F0C44C}
-        .fig-legend-bg{fill:#101B28;opacity:0.94}
-        .fig-legend[data-ds]{cursor:pointer}
-        .fig-cursor{opacity:0;transition:opacity .2s;pointer-events:none}
-        .fig-cursor.on{opacity:1}
-        .fig-cursor line{stroke:rgba(226,232,240,0.6);stroke-width:1;stroke-dasharray:3 3}
-        .fig-cursor circle{stroke:#101B28;stroke-width:1.5}
-        .fig.hl-1 :is(.fig-curve,.fig-mk):not(.c1),.fig.hl-2 :is(.fig-curve,.fig-mk):not(.c2),.fig.hl-3 :is(.fig-curve,.fig-mk):not(.c3){opacity:0.18}
-        /* Fig. 1 plays the method once on load: stripes, then fractions, then fitted curves */
-        @keyframes figFade{from{opacity:0}}
-        @keyframes figPop{from{opacity:0;transform:scale(.2)}}
-        @keyframes figSweep{from{clip-path:inset(-12px 100% -12px -12px)}to{clip-path:inset(-12px -12px -12px -12px)}}
-        .fig-stripe{animation:figFade .4s ease-out both;animation-delay:calc(.7s + var(--j) * .12s)}
-        .fig-mk{transform-box:fill-box;transform-origin:50% 50%;animation:figPop .45s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(.8s + var(--j) * .12s + var(--k) * .05s)}
-        .fig-curve{animation:figSweep 1.3s cubic-bezier(.45,0,.25,1) both}
-        .fig-curve.c1{animation-delay:2.05s}.fig-curve.c2{animation-delay:2.25s}.fig-curve.c3{animation-delay:2.45s}
-        .fig-legend{animation:figFade .6s ease-out both;animation-delay:3.3s}
 
         /* Hill–tunnel seismograph */
-        .hero-band-wrap{position:relative;z-index:1;margin-top:26px}
-        .hero-band{display:block;width:100%;height:clamp(130px,13.5vw,240px)}
+        .hero-band-wrap{position:relative;z-index:1;margin-top:26px;background:linear-gradient(to bottom,transparent 88%,var(--bg-alt) 88%)}
+        .hero-band{display:block;width:100%;height:clamp(140px,15vw,260px)}
         .band-ground{fill:var(--bg-alt)}
         .band-ridge{fill:none;stroke:rgba(96,165,250,0.85);stroke-width:1.6}
         .band-wave{fill:none;stroke:rgba(59,130,246,0.55);stroke-width:1.4;opacity:0}
@@ -579,150 +535,71 @@
     <canvas class="hero-contours" aria-hidden="true"></canvas>
     <div class="hero-inner">
     <div class="hero-content">
-        <div class="hero-id">
-            <div class="hero-avatar">
-                <img src="photo.jpg" alt="Dr. Sai Srujan Kumar Chalavadi" width="1024" height="1024" fetchpriority="high">
+        <div class="hero-avatar">
+            <img src="photo.jpg" alt="Dr. Sai Srujan Kumar Chalavadi" width="1024" height="1024" fetchpriority="high">
+        </div>
+        <div class="hero-text">
+            <h1>Dr. Sai Srujan Kumar Chalavadi</h1>
+            <p class="tagline">Researcher in Rock Mechanics and Earthquake Engineering</p>
+            <p class="sub-tagline">Project Research Associate · Indian Institute of Technology, Roorkee</p>
+
+            <!-- HERO BADGES — Edit/add/remove as needed -->
+            <div class="hero-badges">
+                <span class="hero-badge"><i class="fas fa-award"></i>PMRF Fellow</span>
+                <span class="hero-badge"><i class="fas fa-trophy"></i>ISRM Best Paper Awardee</span>
+                <span class="hero-badge"><i class="fas fa-file-alt"></i>4 Publications</span>
+                <span class="hero-badge"><i class="fas fa-code-branch"></i>3 Open-Source Tools</span>
             </div>
-            <div class="hero-heading">
-                <h1>Dr. Sai Srujan Kumar Chalavadi</h1>
-                <p class="tagline">Researcher in Rock Mechanics and Earthquake Engineering</p>
-                <p class="sub-tagline">Project Research Associate · Indian Institute of Technology, Roorkee</p>
+
+            <div class="hero-buttons">
+                <a href="#research" class="btn btn-primary"><i class="fas fa-flask"></i>View Research</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i>Get in Touch</a>
             </div>
-        </div>
 
-        <!-- HERO BADGES — Edit/add/remove as needed -->
-        <div class="hero-badges">
-            <span class="hero-badge"><i class="fas fa-award"></i>PMRF Fellow</span>
-            <span class="hero-badge"><i class="fas fa-trophy"></i>ISRM Best Paper Awardee</span>
-            <span class="hero-badge"><i class="fas fa-file-alt"></i>4 Publications</span>
-            <span class="hero-badge"><i class="fas fa-code-branch"></i>3 Open-Source Tools</span>
-        </div>
-
-        <div class="hero-buttons">
-            <a href="#research" class="btn btn-primary"><i class="fas fa-flask"></i>View Research</a>
-            <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i>Get in Touch</a>
-        </div>
-
-        <!-- SOCIAL LINKS — Edit URLs as needed -->
-        <div class="hero-social">
-            <a href="https://scholar.google.com/citations?hl=en&user=x21rKZAAAAAJ" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                        <a href="https://www.linkedin.com/in/srujanchalavadi/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.researchgate.net/profile/Chalavadi-Sai-Srujan-Kumar" target="_blank" rel="noopener" title="ResearchGate" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
-                        <a href="https://github.com/Srujan721" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://orcid.org/0000-0002-6985-5651" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
-                        <a href="https://x.com/721Srujan" target="_blank" rel="noopener" title="Twitter / X" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://www.instagram.com/srujan_721/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://mail.google.com/mail/?view=cm&to=srujanchalavadi6@gmail.com" target="_blank" rel="noopener" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <!-- SOCIAL LINKS — Edit URLs as needed -->
+            <div class="hero-social">
+                <a href="https://scholar.google.com/citations?hl=en&user=x21rKZAAAAAJ" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                            <a href="https://www.linkedin.com/in/srujanchalavadi/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.researchgate.net/profile/Chalavadi-Sai-Srujan-Kumar" target="_blank" rel="noopener" title="ResearchGate" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                            <a href="https://github.com/Srujan721" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://orcid.org/0000-0002-6985-5651" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+                            <a href="https://x.com/721Srujan" target="_blank" rel="noopener" title="Twitter / X" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.instagram.com/srujan_721/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://mail.google.com/mail/?view=cm&to=srujanchalavadi6@gmail.com" target="_blank" rel="noopener" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
     </div>
-
-    <!-- HERO FIGURE — Fig. 1, schematic fragility functions (decorative; geometry generated
-         from the lognormal fragility function). Delete this <figure> block to remove it. -->
-    <figure class="hero-figure">
-        <svg class="fig" viewBox="0 0 440 300" role="img" aria-labelledby="fig1-cap" data-box="54,424,14,232" data-imax="1.6" data-theta="0.4,0.74,1.12" data-beta="0.45">
-        <line class="fig-grid" x1="54" y1="177.5" x2="424" y2="177.5"/>
-        <line class="fig-grid" x1="54" y1="123" x2="424" y2="123"/>
-        <line class="fig-grid" x1="54" y1="68.5" x2="424" y2="68.5"/>
-        <line class="fig-stripe" style="--j:0" x1="88.7" y1="14" x2="88.7" y2="232"/>
-        <line class="fig-stripe" style="--j:1" x1="123.4" y1="14" x2="123.4" y2="232"/>
-        <line class="fig-stripe" style="--j:2" x1="158.1" y1="14" x2="158.1" y2="232"/>
-        <line class="fig-stripe" style="--j:3" x1="192.8" y1="14" x2="192.8" y2="232"/>
-        <line class="fig-stripe" style="--j:4" x1="227.4" y1="14" x2="227.4" y2="232"/>
-        <line class="fig-stripe" style="--j:5" x1="262.1" y1="14" x2="262.1" y2="232"/>
-        <line class="fig-stripe" style="--j:6" x1="296.8" y1="14" x2="296.8" y2="232"/>
-        <line class="fig-stripe" style="--j:7" x1="331.5" y1="14" x2="331.5" y2="232"/>
-        <line class="fig-stripe" style="--j:8" x1="366.2" y1="14" x2="366.2" y2="232"/>
-        <line class="fig-stripe" style="--j:9" x1="400.9" y1="14" x2="400.9" y2="232"/>
-        <path class="fig-axis" d="M54 14V232H424"/>
-        <line class="fig-axis" x1="49" y1="232" x2="54" y2="232"/>
-        <text class="fig-tick" x="45" y="236" text-anchor="end">0</text>
-        <line class="fig-axis" x1="49" y1="123" x2="54" y2="123"/>
-        <text class="fig-tick" x="45" y="127" text-anchor="end">0.5</text>
-        <line class="fig-axis" x1="49" y1="14" x2="54" y2="14"/>
-        <text class="fig-tick" x="45" y="18" text-anchor="end">1.0</text>
-        <line class="fig-axis" x1="88.7" y1="232" x2="88.7" y2="237"/>
-        <line class="fig-axis" x1="123.4" y1="232" x2="123.4" y2="237"/>
-        <line class="fig-axis" x1="158.1" y1="232" x2="158.1" y2="237"/>
-        <line class="fig-axis" x1="192.8" y1="232" x2="192.8" y2="237"/>
-        <line class="fig-axis" x1="227.4" y1="232" x2="227.4" y2="237"/>
-        <line class="fig-axis" x1="262.1" y1="232" x2="262.1" y2="237"/>
-        <line class="fig-axis" x1="296.8" y1="232" x2="296.8" y2="237"/>
-        <line class="fig-axis" x1="331.5" y1="232" x2="331.5" y2="237"/>
-        <line class="fig-axis" x1="366.2" y1="232" x2="366.2" y2="237"/>
-        <line class="fig-axis" x1="400.9" y1="232" x2="400.9" y2="237"/>
-        <text class="fig-label" x="239" y="268" text-anchor="middle">Intensity measure, IM</text>
-        <text class="fig-label" transform="translate(15 123) rotate(-90)" text-anchor="middle"><tspan font-style="italic">P</tspan>(DS ≥ ds<tspan baseline-shift="sub" font-size="10" font-style="italic">i</tspan> | IM)</text>
-        <path class="fig-curve c1" d="M56.3 232L58.9 232L61.6 232L64.2 232L66.8 232L69.4 232L72.1 232L74.7 231.9L77.3 231.8L79.9 231.5L82.6 231L85.2 230.3L87.8 229.2L90.5 227.8L93.1 225.9L95.7 223.6L98.3 220.9L101 217.6L103.6 213.9L106.2 209.8L108.8 205.3L111.5 200.4L114.1 195.2L116.7 189.7L119.3 184L122 178.2L124.6 172.2L127.2 166.2L129.8 160.1L132.5 154.1L135.1 148.1L137.7 142.1L140.4 136.2L143 130.5L145.6 124.9L148.2 119.4L150.9 114.1L153.5 109L156.1 104L158.7 99.3L161.4 94.7L164 90.3L166.6 86.1L169.2 82.1L171.9 78.3L174.5 74.7L177.1 71.2L179.8 68L182.4 64.8L185 61.9L187.6 59.1L190.3 56.4L192.9 53.9L195.5 51.6L198.1 49.3L200.8 47.2L203.4 45.3L206 43.4L208.6 41.6L211.3 40L213.9 38.4L216.5 36.9L219.1 35.6L221.8 34.3L224.4 33L227 31.9L229.7 30.8L232.3 29.8L234.9 28.8L237.5 27.9L240.2 27.1L242.8 26.3L245.4 25.6L248 24.9L250.7 24.2L253.3 23.6L255.9 23L258.5 22.5L261.2 22L263.8 21.5L266.4 21.1L269 20.6L271.7 20.2L274.3 19.9L276.9 19.5L279.6 19.2L282.2 18.9L284.8 18.6L287.4 18.3L290.1 18.1L292.7 17.8L295.3 17.6L297.9 17.4L300.6 17.2L303.2 17L305.8 16.8L308.4 16.7L311.1 16.5L313.7 16.4L316.3 16.2L318.9 16.1L321.6 16L324.2 15.9L326.8 15.8L329.5 15.7L332.1 15.6L334.7 15.5L337.3 15.4L340 15.3L342.6 15.2L345.2 15.2L347.8 15.1L350.5 15.1L353.1 15L355.7 14.9L358.3 14.9L361 14.8L363.6 14.8L366.2 14.7L368.8 14.7L371.5 14.7L374.1 14.6L376.7 14.6L379.4 14.6L382 14.5L384.6 14.5L387.2 14.5L389.9 14.5L392.5 14.4L395.1 14.4L397.7 14.4L400.4 14.4L403 14.3L405.6 14.3L408.2 14.3L410.9 14.3L413.5 14.3L416.1 14.3L418.7 14.3L421.4 14.2L424 14.2"/>
-        <path class="fig-curve c2" d="M56.3 232L58.9 232L61.6 232L64.2 232L66.8 232L69.4 232L72.1 232L74.7 232L77.3 232L79.9 232L82.6 232L85.2 232L87.8 232L90.5 231.9L93.1 231.9L95.7 231.8L98.3 231.7L101 231.6L103.6 231.4L106.2 231.1L108.8 230.8L111.5 230.3L114.1 229.8L116.7 229.2L119.3 228.5L122 227.6L124.6 226.6L127.2 225.5L129.8 224.3L132.5 222.9L135.1 221.4L137.7 219.8L140.4 218L143 216.1L145.6 214L148.2 211.8L150.9 209.5L153.5 207.1L156.1 204.6L158.7 202L161.4 199.3L164 196.5L166.6 193.6L169.2 190.6L171.9 187.6L174.5 184.5L177.1 181.4L179.8 178.2L182.4 175L185 171.8L187.6 168.5L190.3 165.2L192.9 161.9L195.5 158.7L198.1 155.4L200.8 152.1L203.4 148.9L206 145.6L208.6 142.4L211.3 139.2L213.9 136.1L216.5 133L219.1 129.9L221.8 126.8L224.4 123.8L227 120.9L229.7 118L232.3 115.1L234.9 112.3L237.5 109.5L240.2 106.8L242.8 104.2L245.4 101.6L248 99L250.7 96.5L253.3 94.1L255.9 91.7L258.5 89.4L261.2 87.1L263.8 84.9L266.4 82.8L269 80.7L271.7 78.6L274.3 76.6L276.9 74.7L279.6 72.8L282.2 71L284.8 69.2L287.4 67.4L290.1 65.7L292.7 64.1L295.3 62.5L297.9 61L300.6 59.5L303.2 58L305.8 56.6L308.4 55.2L311.1 53.9L313.7 52.6L316.3 51.3L318.9 50.1L321.6 48.9L324.2 47.8L326.8 46.7L329.5 45.6L332.1 44.6L334.7 43.6L337.3 42.6L340 41.7L342.6 40.8L345.2 39.9L347.8 39L350.5 38.2L353.1 37.4L355.7 36.6L358.3 35.9L361 35.2L363.6 34.5L366.2 33.8L368.8 33.1L371.5 32.5L374.1 31.9L376.7 31.3L379.4 30.7L382 30.2L384.6 29.6L387.2 29.1L389.9 28.6L392.5 28.1L395.1 27.7L397.7 27.2L400.4 26.8L403 26.3L405.6 25.9L408.2 25.5L410.9 25.2L413.5 24.8L416.1 24.4L418.7 24.1L421.4 23.8L424 23.4"/>
-        <path class="fig-curve c3" d="M56.3 232L58.9 232L61.6 232L64.2 232L66.8 232L69.4 232L72.1 232L74.7 232L77.3 232L79.9 232L82.6 232L85.2 232L87.8 232L90.5 232L93.1 232L95.7 232L98.3 232L101 232L103.6 232L106.2 232L108.8 231.9L111.5 231.9L114.1 231.9L116.7 231.8L119.3 231.8L122 231.7L124.6 231.6L127.2 231.5L129.8 231.3L132.5 231.1L135.1 230.9L137.7 230.7L140.4 230.4L143 230.1L145.6 229.7L148.2 229.3L150.9 228.9L153.5 228.4L156.1 227.8L158.7 227.2L161.4 226.5L164 225.8L166.6 225L169.2 224.2L171.9 223.3L174.5 222.3L177.1 221.3L179.8 220.2L182.4 219L185 217.8L187.6 216.6L190.3 215.3L192.9 213.9L195.5 212.5L198.1 211L200.8 209.5L203.4 207.9L206 206.2L208.6 204.6L211.3 202.8L213.9 201.1L216.5 199.3L219.1 197.4L221.8 195.5L224.4 193.6L227 191.7L229.7 189.7L232.3 187.7L234.9 185.7L237.5 183.6L240.2 181.5L242.8 179.4L245.4 177.3L248 175.2L250.7 173.1L253.3 170.9L255.9 168.8L258.5 166.6L261.2 164.4L263.8 162.3L266.4 160.1L269 157.9L271.7 155.8L274.3 153.6L276.9 151.5L279.6 149.3L282.2 147.2L284.8 145L287.4 142.9L290.1 140.8L292.7 138.7L295.3 136.6L297.9 134.5L300.6 132.5L303.2 130.5L305.8 128.4L308.4 126.4L311.1 124.4L313.7 122.5L316.3 120.5L318.9 118.6L321.6 116.7L324.2 114.8L326.8 113L329.5 111.1L332.1 109.3L334.7 107.5L337.3 105.8L340 104L342.6 102.3L345.2 100.6L347.8 98.9L350.5 97.3L353.1 95.7L355.7 94.1L358.3 92.5L361 90.9L363.6 89.4L366.2 87.9L368.8 86.4L371.5 85L374.1 83.5L376.7 82.1L379.4 80.7L382 79.4L384.6 78L387.2 76.7L389.9 75.4L392.5 74.2L395.1 72.9L397.7 71.7L400.4 70.5L403 69.3L405.6 68.2L408.2 67L410.9 65.9L413.5 64.8L416.1 63.7L418.7 62.7L421.4 61.7L424 60.7"/>
-        <g class="fig-mk c1" style="--j:0;--k:0"><circle cx="88.7" cy="232" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:0;--k:1"><rect x="85.3" y="228.6" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:0;--k:2"><path d="M88.7 227.6L92.9 234.7L84.5 234.7Z"/></g>
-        <g class="fig-mk c1" style="--j:1;--k:0"><circle cx="123.4" cy="166.6" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:1;--k:1"><rect x="120" y="228.6" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:1;--k:2"><path d="M123.4 227.6L127.6 234.7L119.2 234.7Z"/></g>
-        <g class="fig-mk c1" style="--j:2;--k:0"><circle cx="158.1" cy="101.2" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:2;--k:1"><rect x="154.7" y="206.8" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:2;--k:2"><path d="M158.1 227.6L162.2 234.7L153.9 234.7Z"/></g>
-        <g class="fig-mk c1" style="--j:3;--k:0"><circle cx="192.8" cy="35.8" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:3;--k:1"><rect x="189.3" y="185" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:3;--k:2"><path d="M192.8 227.6L196.9 234.7L188.6 234.7Z"/></g>
-        <g class="fig-mk c1" style="--j:4;--k:0"><circle cx="227.4" cy="14" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:4;--k:1"><rect x="224" y="119.6" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:4;--k:2"><path d="M227.4 184L231.6 191.1L223.3 191.1Z"/></g>
-        <g class="fig-mk c1" style="--j:5;--k:0"><circle cx="262.1" cy="14" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:5;--k:1"><rect x="258.7" y="76" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:5;--k:2"><path d="M262.1 140.4L266.3 147.5L257.9 147.5Z"/></g>
-        <g class="fig-mk c1" style="--j:6;--k:0"><circle cx="296.8" cy="14" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:6;--k:1"><rect x="293.4" y="32.4" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:6;--k:2"><path d="M296.8 118.6L301 125.7L292.6 125.7Z"/></g>
-        <g class="fig-mk c1" style="--j:7;--k:0"><circle cx="331.5" cy="14" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:7;--k:1"><rect x="328.1" y="32.4" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:7;--k:2"><path d="M331.5 96.8L335.7 103.9L327.3 103.9Z"/></g>
-        <g class="fig-mk c1" style="--j:8;--k:0"><circle cx="366.2" cy="14" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:8;--k:1"><rect x="362.8" y="32.4" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:8;--k:2"><path d="M366.2 53.2L370.4 60.3L362 60.3Z"/></g>
-        <g class="fig-mk c1" style="--j:9;--k:0"><circle cx="400.9" cy="14" r="3.6"/></g>
-        <g class="fig-mk c2" style="--j:9;--k:1"><rect x="397.5" y="32.4" width="6.8" height="6.8"/></g>
-        <g class="fig-mk c3" style="--j:9;--k:2"><path d="M400.9 75L405.1 82.1L396.7 82.1Z"/></g>
-        <g class="fig-legend"><rect class="fig-legend-bg" x="60" y="17" width="66" height="60" rx="3"/></g>
-        <g class="fig-legend c1" data-ds="1"><line class="fig-curve-sample" x1="68" y1="28" x2="94" y2="28"/><g class="fig-mk-static"><circle cx="81" cy="28" r="3.6"/></g><text class="fig-tick" x="102" y="32">ds<tspan baseline-shift="sub" font-size="9">1</tspan></text></g>
-        <g class="fig-legend c2" data-ds="2"><line class="fig-curve-sample" x1="68" y1="47" x2="94" y2="47"/><g class="fig-mk-static"><rect x="77.6" y="43.6" width="6.8" height="6.8"/></g><text class="fig-tick" x="102" y="51">ds<tspan baseline-shift="sub" font-size="9">2</tspan></text></g>
-        <g class="fig-legend c3" data-ds="3"><line class="fig-curve-sample" x1="68" y1="66" x2="94" y2="66"/><g class="fig-mk-static"><path d="M81 61.6L85.2 68.7L76.8 68.7Z"/></g><text class="fig-tick" x="102" y="70">ds<tspan baseline-shift="sub" font-size="9">3</tspan></text></g>
-        </svg>
-        <figcaption id="fig1-cap"><b>Fig. 1</b> Schematic fragility functions for three damage states fitted to multi-stripe analysis results, <i>P</i>(DS&nbsp;≥&nbsp;ds<sub><i>i</i></sub>&nbsp;|&nbsp;IM) = Φ[ln(IM/<i>θ</i><sub><i>i</i></sub>)/<i>β</i>]</figcaption>
-    </figure>
     </div>
 
     <!-- HERO SEISMOGRAPH — hill cross-section with a rock-bolted horseshoe tunnel; the
          ground-motion record is drawn and animated by the script at the end of the page.
          Delete this <div> block to remove it. -->
     <div class="hero-band-wrap">
-        <svg class="hero-band" viewBox="0 0 1440 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"
-             data-pen="870" data-base="170" data-amp="12" data-ground="190">
+        <svg class="hero-band" viewBox="0 0 1440 190" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false"
+             data-pen="1170" data-base="170" data-amp="12" data-ground="190">
             <defs>
-                <clipPath id="bandHistory"><rect x="0" y="0" width="870" height="190"/></clipPath>
-                <clipPath id="bandGround"><path d="M-20 150C10 149.8 101.7 149.7 160 149C218.3 148.3 278.3 147.8 330 146C381.7 144.2 426.7 142 470 138C513.3 134 553.3 129 590 122C626.7 115 660 105.7 690 96C720 86.3 746.7 73.2 770 64C793.3 54.8 813.3 46.3 830 41C846.7 35.7 856.3 32.8 870 32C883.7 31.2 894.5 32.3 912 36C929.5 39.7 950.3 46 975 54C999.7 62 1029.2 74.5 1060 84C1090.8 93.5 1125 103.2 1160 111C1195 118.8 1220 125.3 1270 131C1320 136.7 1428.3 142.7 1460 145L1460 194L-20 194Z"/></clipPath>
+                <clipPath id="bandHistory"><rect x="0" y="0" width="1170" height="190"/></clipPath>
+                <clipPath id="bandGround"><path d="M-20 152C23.3 151.8 156.7 151.7 240 151C323.3 150.3 410 149.7 480 148C550 146.3 606.7 144.3 660 141C713.3 137.7 758.3 133.8 800 128C841.7 122.2 878.3 114 910 106C941.7 98 965 88.7 990 80C1015 71.3 1039.2 61 1060 54C1080.8 47 1100 41.7 1115 38C1130 34.3 1140.8 33.2 1150 32C1159.2 30.8 1162.5 30.8 1170 31C1177.5 31.2 1183.3 30.8 1195 33C1206.7 35.2 1222.5 38.8 1240 44C1257.5 49.2 1278.3 57 1300 64C1321.7 71 1343.3 79.3 1370 86C1396.7 92.7 1445 101 1460 104L1460 194L-20 194Z"/></clipPath>
             </defs>
             <g class="band-hill">
-                <path class="band-ground" d="M-20 150C10 149.8 101.7 149.7 160 149C218.3 148.3 278.3 147.8 330 146C381.7 144.2 426.7 142 470 138C513.3 134 553.3 129 590 122C626.7 115 660 105.7 690 96C720 86.3 746.7 73.2 770 64C793.3 54.8 813.3 46.3 830 41C846.7 35.7 856.3 32.8 870 32C883.7 31.2 894.5 32.3 912 36C929.5 39.7 950.3 46 975 54C999.7 62 1029.2 74.5 1060 84C1090.8 93.5 1125 103.2 1160 111C1195 118.8 1220 125.3 1270 131C1320 136.7 1428.3 142.7 1460 145L1460 194L-20 194Z"/>
+                <path class="band-ground" d="M-20 152C23.3 151.8 156.7 151.7 240 151C323.3 150.3 410 149.7 480 148C550 146.3 606.7 144.3 660 141C713.3 137.7 758.3 133.8 800 128C841.7 122.2 878.3 114 910 106C941.7 98 965 88.7 990 80C1015 71.3 1039.2 61 1060 54C1080.8 47 1100 41.7 1115 38C1130 34.3 1140.8 33.2 1150 32C1159.2 30.8 1162.5 30.8 1170 31C1177.5 31.2 1183.3 30.8 1195 33C1206.7 35.2 1222.5 38.8 1240 44C1257.5 49.2 1278.3 57 1300 64C1321.7 71 1343.3 79.3 1370 86C1396.7 92.7 1445 101 1460 104L1460 194L-20 194Z"/>
                 <g class="band-waves" clip-path="url(#bandGround)">
-                    <circle class="band-wave" cx="870" cy="220" r="0"/>
-                    <circle class="band-wave" cx="870" cy="220" r="0"/>
-                    <circle class="band-wave" cx="870" cy="220" r="0"/>
+                    <circle class="band-wave" cx="1170" cy="220" r="0"/>
+                    <circle class="band-wave" cx="1170" cy="220" r="0"/>
+                    <circle class="band-wave" cx="1170" cy="220" r="0"/>
                 </g>
-                <path class="band-ridge" pathLength="1" d="M-20 150C10 149.8 101.7 149.7 160 149C218.3 148.3 278.3 147.8 330 146C381.7 144.2 426.7 142 470 138C513.3 134 553.3 129 590 122C626.7 115 660 105.7 690 96C720 86.3 746.7 73.2 770 64C793.3 54.8 813.3 46.3 830 41C846.7 35.7 856.3 32.8 870 32C883.7 31.2 894.5 32.3 912 36C929.5 39.7 950.3 46 975 54C999.7 62 1029.2 74.5 1060 84C1090.8 93.5 1125 103.2 1160 111C1195 118.8 1220 125.3 1270 131C1320 136.7 1428.3 142.7 1460 145"/>
+                <path class="band-ridge" pathLength="1" d="M-20 152C23.3 151.8 156.7 151.7 240 151C323.3 150.3 410 149.7 480 148C550 146.3 606.7 144.3 660 141C713.3 137.7 758.3 133.8 800 128C841.7 122.2 878.3 114 910 106C941.7 98 965 88.7 990 80C1015 71.3 1039.2 61 1060 54C1080.8 47 1100 41.7 1115 38C1130 34.3 1140.8 33.2 1150 32C1159.2 30.8 1162.5 30.8 1170 31C1177.5 31.2 1183.3 30.8 1195 33C1206.7 35.2 1222.5 38.8 1240 44C1257.5 49.2 1278.3 57 1300 64C1321.7 71 1343.3 79.3 1370 86C1396.7 92.7 1445 101 1460 104"/>
                 <g class="band-tunnel">
-                    <path class="tunnel-void" d="M854 121.9L854 112A16 16 0 0 1 886 112L886 121.9Q870 129.1 854 121.9Z"/>
-                    <path class="tunnel-bolts" d="M887.4 103.9L895.6 100.1M887 101.5L888.9 105.7M880.5 95.9L885.4 88.3M878.9 94.1L882.7 96.6M870 92.8L870 83.8M867.7 92.2L872.3 92.2M859.5 95.9L854.6 88.3M857.3 96.6L861.1 94.1M852.6 103.9L844.4 100.1M851.1 105.7L853 101.5M850.8 117.6L841.8 117.6M850.2 115.3L850.2 119.9M889.2 117.6L898.2 117.6M889.8 115.3L889.8 119.9"/>
-                    <path class="tunnel-lining" pathLength="1" d="M850.8 123.8L850.8 112A19.2 19.2 0 0 1 889.2 112L889.2 123.8Q870 132.5 850.8 123.8ZM854 121.9L854 112A16 16 0 0 1 886 112L886 121.9Q870 129.1 854 121.9Z"/>
-                    <path class="tunnel-road" d="M856 123.4L884 123.4"/>
+                    <path class="tunnel-void" d="M1154 121.9L1154 112A16 16 0 0 1 1186 112L1186 121.9Q1170 129.1 1154 121.9Z"/>
+                    <path class="tunnel-bolts" d="M1187.4 103.9L1195.6 100.1M1187 101.5L1188.9 105.7M1180.5 95.9L1185.4 88.3M1178.9 94.1L1182.7 96.6M1170 92.8L1170 83.8M1167.7 92.2L1172.3 92.2M1159.5 95.9L1154.6 88.3M1157.3 96.6L1161.1 94.1M1152.6 103.9L1144.4 100.1M1151.1 105.7L1153 101.5M1150.8 117.6L1141.8 117.6M1150.2 115.3L1150.2 119.9M1189.2 117.6L1198.2 117.6M1189.8 115.3L1189.8 119.9"/>
+                    <path class="tunnel-lining" pathLength="1" d="M1150.8 123.8L1150.8 112A19.2 19.2 0 0 1 1189.2 112L1189.2 123.8Q1170 132.5 1150.8 123.8ZM1154 121.9L1154 112A16 16 0 0 1 1186 112L1186 121.9Q1170 129.1 1154 121.9Z"/>
+                    <path class="tunnel-road" d="M1156 123.4L1184 123.4"/>
                 </g>
             </g>
-            <line class="band-station" x1="870" y1="166" x2="870" y2="135.1"/>
-            <line class="band-future" x1="870" y1="170" x2="1416" y2="170"/>
+            <line class="band-station" x1="1170" y1="166" x2="1170" y2="135.1"/>
+            <line class="band-future" x1="1170" y1="170" x2="1416" y2="170"/>
             <g clip-path="url(#bandHistory)"><path class="band-trace" d=""/></g>
-            <circle class="band-pen" cx="870" cy="170" r="3.4"/>
+            <circle class="band-pen" cx="1170" cy="170" r="3.4"/>
         </svg>
         <button class="seismo-toggle" id="seismoToggle" type="button" aria-label="Pause the seismograph animation" hidden><i class="fas fa-pause"></i><span>Pause</span></button>
     </div>
@@ -1946,7 +1823,7 @@
         }
 
         // ==============================================================
-        // HERO GRAPHICS — contour field, live seismograph, Fig. 1 probe
+        // HERO GRAPHICS — contour field and live seismograph
         // ==============================================================
         const hero = document.getElementById('home');
 
@@ -1974,11 +1851,11 @@
             };
             // Ridges and spurs; the main massif sits over the hill drawn below
             const peaks = [
-                { x: 0.60, y: 0.66, h: 1.00, s: 0.16 },
-                { x: 0.82, y: 0.26, h: 0.85, s: 0.13 },
-                { x: 0.96, y: 0.74, h: 0.70, s: 0.14 },
-                { x: 0.40, y: 0.16, h: 0.42, s: 0.10 },
-                { x: 0.12, y: 0.74, h: 0.35, s: 0.15 }
+                { x: 0.81, y: 0.64, h: 1.00, s: 0.16 },
+                { x: 0.93, y: 0.22, h: 0.85, s: 0.13 },
+                { x: 0.98, y: 0.80, h: 0.70, s: 0.14 },
+                { x: 0.52, y: 0.14, h: 0.42, s: 0.10 },
+                { x: 0.14, y: 0.76, h: 0.35, s: 0.15 }
             ];
             let levels = [], drawnW = 0, drawnH = 0, cw = 0, ch = 0;
 
@@ -2226,56 +2103,6 @@
             label();
             render();
             sync();
-        }
-
-        // ===== Fig. 1: probe the fragility functions with the pointer =====
-        const fig = document.querySelector('.hero-figure .fig');
-        if (fig && fig.getScreenCTM) {
-            const [bx0, bx1, by0, by1] = fig.dataset.box.split(',').map(Number);
-            const imax = +fig.dataset.imax, beta = +fig.dataset.beta;
-            const thetas = fig.dataset.theta.split(',').map(Number);
-            const erf = (x) => {                     // Abramowitz & Stegun 7.1.26
-                const sgn = Math.sign(x); x = Math.abs(x);
-                const t = 1 / (1 + 0.3275911 * x);
-                return sgn * (1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x));
-            };
-            const Phi = (z) => 0.5 * (1 + erf(z / Math.SQRT2));
-            const NS = 'http://www.w3.org/2000/svg';
-            const cursor = document.createElementNS(NS, 'g');
-            cursor.setAttribute('class', 'fig-cursor');
-            const rule = document.createElementNS(NS, 'line');
-            rule.setAttribute('y1', by0); rule.setAttribute('y2', by1);
-            cursor.appendChild(rule);
-            const dotColours = ['#60A5FA', '#E2E8F0', '#F0C44C'];
-            const dots = thetas.map((_, i) => {
-                const c = document.createElementNS(NS, 'circle');
-                c.setAttribute('r', '4.2'); c.setAttribute('fill', dotColours[i] || '#E2E8F0');
-                cursor.appendChild(c);
-                return c;
-            });
-            fig.appendChild(cursor);
-            const toSvg = (e) => {
-                const pt = fig.createSVGPoint();
-                pt.x = e.clientX; pt.y = e.clientY;
-                return pt.matrixTransform(fig.getScreenCTM().inverse());
-            };
-            fig.addEventListener('pointermove', (e) => {
-                const p = toSvg(e);
-                if (p.x < bx0 || p.x > bx1 || p.y < by0 - 12 || p.y > by1 + 12) { cursor.classList.remove('on'); return; }
-                const im = Math.max(0.01, (p.x - bx0) / (bx1 - bx0) * imax);
-                rule.setAttribute('x1', p.x.toFixed(1)); rule.setAttribute('x2', p.x.toFixed(1));
-                thetas.forEach((th, i) => {
-                    dots[i].setAttribute('cx', p.x.toFixed(1));
-                    dots[i].setAttribute('cy', (by1 - (by1 - by0) * Phi(Math.log(im / th) / beta)).toFixed(1));
-                });
-                cursor.classList.add('on');
-            });
-            fig.addEventListener('pointerleave', () => cursor.classList.remove('on'));
-            fig.querySelectorAll('.fig-legend[data-ds]').forEach((item) => {
-                const ds = item.dataset.ds;
-                item.addEventListener('pointerenter', () => fig.classList.add('hl-' + ds));
-                item.addEventListener('pointerleave', () => fig.classList.remove('hl-' + ds));
-            });
         }
 
         // ===== Experience timeline fills in as you scroll =====
