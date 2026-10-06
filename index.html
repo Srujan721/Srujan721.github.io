@@ -450,12 +450,13 @@
         .hero-contours.drawn{opacity:1}
         .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
         .hero h1{text-wrap:balance}
-        .hero{padding-top:calc(68px + 40px)}
-        .hero-content{display:grid;grid-template-columns:auto minmax(0,1fr);gap:44px;align-items:center;text-align:left;max-width:1040px}
+        .hero{padding-top:calc(68px + 64px)}
+        .hero-content{display:grid;grid-template-columns:auto minmax(0,1fr);gap:44px;align-items:start;text-align:left;max-width:1040px}
         .hero-text{min-width:0}
-        .hero-avatar{margin:0}
+        .hero-avatar{margin:0;margin-top:calc(2.8rem * 0.1875)}   /* photo top level with the cap top of the 2.8rem name */
         .hero-badges,.hero-buttons,.hero-social{justify-content:flex-start}
         @media(max-width:899px){
+            .hero{padding-top:calc(68px + 40px)}
             .hero-content{grid-template-columns:minmax(0,1fr);gap:0;text-align:center;justify-items:center}
             .hero-avatar{margin:0 auto 28px}
             .hero-badges,.hero-buttons,.hero-social{justify-content:center}
@@ -467,10 +468,15 @@
         .band-ground{fill:var(--bg-alt)}
         .band-ridge{fill:none;stroke:rgba(96,165,250,0.85);stroke-width:1.6}
         .band-wave{fill:none;stroke:rgba(59,130,246,0.55);stroke-width:1.4;opacity:0}
-        .tunnel-void{fill:#0D1620}
-        .tunnel-lining{fill:rgba(59,130,246,0.16);fill-rule:evenodd;stroke:#0D1620;stroke-width:1.4}
-        .tunnel-bolts{fill:none;stroke:#334155;stroke-width:1}
-        .tunnel-road{stroke:#94A3B8;stroke-width:1}
+        .tunnel-void{fill:#1E293B}
+        .tunnel-deck{fill:#475569}
+        .tunnel-road{fill:none;stroke:#CBD5E1;stroke-width:1.2}
+        .tunnel-kerb{fill:#94A3B8}
+        .tunnel-shell{fill:#CBD5E1;fill-rule:evenodd}
+        .tunnel-shotcrete{fill:#94A3B8;fill-rule:evenodd}
+        .tunnel-lining{fill:none;stroke:#0D1620;stroke-width:1.1;stroke-linejoin:round}
+        .tunnel-bolts{fill:none;stroke:#94A3B8;stroke-width:0.9;stroke-linecap:round}
+        .tunnel-zone{fill:none;stroke:#94A3B8;stroke-width:0.8;stroke-dasharray:2.5 3}
         .band-station{stroke:#94A3B8;stroke-width:1;stroke-dasharray:3 3}
         .band-future{stroke:#CBD5E1;stroke-width:1;stroke-dasharray:2 5}
         .band-trace{fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linejoin:round}
@@ -483,7 +489,8 @@
         @keyframes bandFade{from{opacity:0}}
         .band-ridge{stroke-dasharray:1;animation:bandDraw 1.6s cubic-bezier(.45,0,.25,1) .35s both}
         .tunnel-lining{stroke-dasharray:1;animation:bandDraw 1s ease-out 1.3s both}
-        .tunnel-void,.tunnel-bolts,.tunnel-road{animation:bandFade .6s ease-out 1.8s both}
+        .tunnel-shell,.tunnel-shotcrete{animation:bandFade 1s ease-out 1.3s both}
+        .tunnel-void,.tunnel-deck,.tunnel-road,.tunnel-kerb,.tunnel-bolts,.tunnel-zone{animation:bandFade .6s ease-out 1.8s both}
         .band-trace{animation:bandFade .8s ease-out .9s both}
         .band-station,.band-future,.band-pen,.seismo-toggle{animation:bandFade .6s ease-out 2s both}
 
@@ -590,13 +597,18 @@
                 </g>
                 <path class="band-ridge" pathLength="1" d="M-20 152C23.3 151.8 156.7 151.7 240 151C323.3 150.3 410 149.7 480 148C550 146.3 606.7 144.3 660 141C713.3 137.7 758.3 133.8 800 128C841.7 122.2 878.3 114 910 106C941.7 98 965 88.7 990 80C1015 71.3 1039.2 61 1060 54C1080.8 47 1100 41.7 1115 38C1130 34.3 1140.8 33.2 1150 32C1159.2 30.8 1162.5 30.8 1170 31C1177.5 31.2 1183.3 30.8 1195 33C1206.7 35.2 1222.5 38.8 1240 44C1257.5 49.2 1278.3 57 1300 64C1321.7 71 1343.3 79.3 1370 86C1396.7 92.7 1445 101 1460 104"/>
                 <g class="band-tunnel">
-                    <path class="tunnel-void" d="M1154 121.9L1154 112A16 16 0 0 1 1186 112L1186 121.9Q1170 129.1 1154 121.9Z"/>
-                    <path class="tunnel-bolts" d="M1187.4 103.9L1195.6 100.1M1187 101.5L1188.9 105.7M1180.5 95.9L1185.4 88.3M1178.9 94.1L1182.7 96.6M1170 92.8L1170 83.8M1167.7 92.2L1172.3 92.2M1159.5 95.9L1154.6 88.3M1157.3 96.6L1161.1 94.1M1152.6 103.9L1144.4 100.1M1151.1 105.7L1153 101.5M1150.8 117.6L1141.8 117.6M1150.2 115.3L1150.2 119.9M1189.2 117.6L1198.2 117.6M1189.8 115.3L1189.8 119.9"/>
-                    <path class="tunnel-lining" pathLength="1" d="M1150.8 123.8L1150.8 112A19.2 19.2 0 0 1 1189.2 112L1189.2 123.8Q1170 132.5 1150.8 123.8ZM1154 121.9L1154 112A16 16 0 0 1 1186 112L1186 121.9Q1170 129.1 1154 121.9Z"/>
-                    <path class="tunnel-road" d="M1156 123.4L1184 123.4"/>
+                    <path class="tunnel-zone" d="M1126.4 117.2A72.8 72.8 0 0 1 1125.2 104A44.8 44.8 0 0 1 1214.8 104A72.8 72.8 0 0 1 1213.6 117.2"/>
+                    <path class="tunnel-bolts" d="M1202.2 113.8L1213.8 115.7M1202.9 101.5L1214.6 100.6M1199.7 89.7L1210.3 84.6M1192.4 79.8L1200.4 71.2M1182.1 73.3L1186.3 62.3M1170 71L1170 59.2M1157.9 73.3L1153.7 62.3M1147.6 79.8L1139.6 71.2M1140.3 89.7L1129.7 84.6M1137.1 101.5L1125.4 100.6M1137.8 113.8L1126.2 115.7"/>
+                    <path class="tunnel-void" d="M1142 104A28 28 0 0 1 1198 104A56 56 0 0 1 1193 127A56 56 0 0 1 1147 127A56 56 0 0 1 1142 104Z"/>
+                    <path class="tunnel-deck" d="M1143.8 118L1196.2 118A56 56 0 0 1 1193 127A56 56 0 0 1 1147 127A56 56 0 0 1 1143.8 118Z"/>
+                    <path class="tunnel-road" d="M1143.8 118L1196.2 118"/>
+                    <path class="tunnel-kerb" d="M1196.2 118L1190.1 118L1190.1 115.5L1196.8 115.5ZM1143.8 118L1149.9 118L1149.9 115.5L1143.2 115.5Z"/>
+                    <path class="tunnel-shell" d="M1137 104A33 33 0 0 1 1203 104A61 61 0 0 1 1196.8 130.8A61 61 0 0 1 1143.2 130.8A61 61 0 0 1 1137 104ZM1142 104A28 28 0 0 1 1198 104A56 56 0 0 1 1193 127A56 56 0 0 1 1147 127A56 56 0 0 1 1142 104Z"/>
+                    <path class="tunnel-shotcrete" d="M1137 104A33 33 0 0 1 1203 104A61 61 0 0 1 1196.8 130.8A61 61 0 0 1 1143.2 130.8A61 61 0 0 1 1137 104ZM1138.9 104A31.1 31.1 0 0 1 1201.1 104A59.1 59.1 0 0 1 1195.4 129.4A59.1 59.1 0 0 1 1144.6 129.4A59.1 59.1 0 0 1 1138.9 104Z"/>
+                    <path class="tunnel-lining" pathLength="1" d="M1137 104A33 33 0 0 1 1203 104A61 61 0 0 1 1196.8 130.8A61 61 0 0 1 1143.2 130.8A61 61 0 0 1 1137 104ZM1142 104A28 28 0 0 1 1198 104A56 56 0 0 1 1193 127A56 56 0 0 1 1147 127A56 56 0 0 1 1142 104Z"/>
                 </g>
             </g>
-            <line class="band-station" x1="1170" y1="166" x2="1170" y2="135.1"/>
+            <line class="band-station" x1="1170" y1="166" x2="1170" y2="141"/>
             <line class="band-future" x1="1170" y1="170" x2="1416" y2="170"/>
             <g clip-path="url(#bandHistory)"><path class="band-trace" d=""/></g>
             <circle class="band-pen" cx="1170" cy="170" r="3.4"/>
@@ -2046,7 +2058,7 @@
                 if (offset > LOOP * 100) offset %= LOOP;
             };
 
-            const navy = [13, 22, 32], slate = [51, 65, 85], amber = [217, 119, 6];
+            const navy = [13, 22, 32], slate = [148, 163, 184], amber = [217, 119, 6];
             const mix = (a, b, t) => 'rgb(' + a.map((c, i) => Math.round(c + (b[i] - c) * t)).join(',') + ')';
             const waveBirth = [-99, -99, -99];
             let nextWave = 0, lastWave = -99;
@@ -2061,7 +2073,7 @@
                 hill.setAttribute('transform', 'translate(' + jolt + ' 0) translate(' + PEN + ' ' + GROUND + ') skewX(' + skew.toFixed(3) + ') translate(' + (-PEN) + ' ' + (-GROUND) + ')');
                 const demand = Math.min(1, Math.abs(skew) / 3.5);
                 lining.style.stroke = mix(navy, amber, demand);
-                bolts.style.stroke = mix(slate, amber, demand * 0.8);
+                if (bolts) bolts.style.stroke = mix(slate, amber, demand * 0.8);
                 // Wavefronts rise through the ground while strong motion is being recorded
                 if (Math.abs(base) > 0.35 && clock - lastWave > 0.45) {
                     waveBirth[nextWave] = clock; nextWave = (nextWave + 1) % 3; lastWave = clock;
