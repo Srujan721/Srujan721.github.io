@@ -16,10 +16,86 @@
 	<meta name="twitter:title" content="Dr. Sai Srujan Kumar Chalavadi | Researcher">
 	<meta name="twitter:description" content="Researcher in Rock Mechanics and Earthquake Engineering at IIT Roorkee">
 	<meta name="twitter:image" content="https://srujan721.github.io/photo.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Load the photo and the fonts needed for the first screen early -->
+    <link rel="preload" as="image" type="image/webp" imagesrcset="assets/img/photo-212.webp 212w, assets/img/photo-265.webp 265w, assets/img/photo-318.webp 318w, assets/img/photo-371.webp 371w, assets/img/photo-424.webp 424w, assets/img/photo-530.webp 530w, assets/img/photo-636.webp 636w" imagesizes="212px" fetchpriority="high">
+    <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/fa-solid-900-subset.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/fa-brands-400-subset.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+        /* Inter, served from this site (assets/fonts): the same files and @font-face rules as Google Fonts
+           (Inter, weights 300-800 and italic 400/600). The rupee sign has its own 1-glyph file. Licence: assets/fonts/LICENSE-Inter.txt */
+        @font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-italic.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-italic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/inter-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-italic.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-italic.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-italic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-italic.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/inter-greek-wght-italic.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-italic.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-italic.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-wght-italic.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-normal.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-normal.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-rupee-wght-normal.woff2) format('woff2');unicode-range:U+20B9}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:swap;src:url(assets/fonts/inter-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-normal.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-normal.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-rupee-wght-normal.woff2) format('woff2');unicode-range:U+20B9}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-normal.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-normal.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-rupee-wght-normal.woff2) format('woff2');unicode-range:U+20B9}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-normal.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-normal.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-rupee-wght-normal.woff2) format('woff2');unicode-range:U+20B9}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-normal.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-normal.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-rupee-wght-normal.woff2) format('woff2');unicode-range:U+20B9}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-cyrillic-ext-wght-normal.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-greek-ext-wght-normal.woff2) format('woff2');unicode-range:U+1F00-1FFF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-greek-wght-normal.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-vietnamese-wght-normal.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-rupee-wght-normal.woff2) format('woff2');unicode-range:U+20B9}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/inter-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+        /* Font Awesome Free 6.5.1, trimmed to the icons named in this page (fonts: assets/fonts/fa-*-subset.woff2).
+           Any other icon still works: the script at the end of the page then loads the full Font Awesome. */
+        /*!
+ * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2023 Fonticons, Inc.
+ */
+@font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:block;src:url(assets/fonts/fa-brands-400-subset.woff2) format("woff2")}@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url(assets/fonts/fa-solid-900-subset.woff2) format("woff2")}.fa{font-family:var(--fa-style-family,"Font Awesome 6 Free");font-weight:var(--fa-style,900)}.fa,.fa-brands,.fa-classic,.fa-regular,.fa-sharp,.fa-solid,.fab,.far,.fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:var(--fa-display,inline-block);font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}.fa-classic,.fa-regular,.fa-solid,.far,.fas{font-family:"Font Awesome 6 Free"}.fa-brands,.fab{font-family:"Font Awesome 6 Brands"}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-2xs{font-size:.625em;line-height:.1em;vertical-align:.225em}.fa-xs{font-size:.75em;line-height:.08333em;vertical-align:.125em}.fa-sm{font-size:.875em;line-height:.07143em;vertical-align:.05357em}.fa-lg{font-size:1.25em;line-height:.05em;vertical-align:-.075em}.fa-xl{font-size:1.5em;line-height:.04167em;vertical-align:-.125em}.fa-2xl{font-size:2em;line-height:.03125em;vertical-align:-.1875em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:var(--fa-li-margin,2.5em);padding-left:0}.fa-ul>li{position:relative}.fa-li{left:calc(var(--fa-li-width, 2em)*-1);position:absolute;text-align:center;width:var(--fa-li-width,2em);line-height:inherit}.fa-border{border-radius:var(--fa-border-radius,.1em);border:var(--fa-border-width,.08em) var(--fa-border-style,solid) var(--fa-border-color,#eee);padding:var(--fa-border-padding,.2em .25em .15em)}.fa-pull-left{float:left;margin-right:var(--fa-pull-margin,.3em)}.fa-pull-right{float:right;margin-left:var(--fa-pull-margin,.3em)}.fa-beat{-webkit-animation-name:fa-beat;animation-name:fa-beat;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,ease-in-out);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-bounce{-webkit-animation-name:fa-bounce;animation-name:fa-bounce;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1))}.fa-fade{-webkit-animation-name:fa-fade;animation-name:fa-fade;-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-beat-fade,.fa-fade{-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s)}.fa-beat-fade{-webkit-animation-name:fa-beat-fade;animation-name:fa-beat-fade;-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1));animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-flip{-webkit-animation-name:fa-flip;animation-name:fa-flip;-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,ease-in-out);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-shake{-webkit-animation-name:fa-shake;animation-name:fa-shake;-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,linear);animation-timing-function:var(--fa-animation-timing,linear)}.fa-shake,.fa-spin{-webkit-animation-delay:var(--fa-animation-delay,0s);animation-delay:var(--fa-animation-delay,0s);-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal)}.fa-spin{-webkit-animation-name:fa-spin;animation-name:fa-spin;-webkit-animation-duration:var(--fa-animation-duration,2s);animation-duration:var(--fa-animation-duration,2s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,linear);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin-reverse{--fa-animation-direction:reverse}.fa-pulse,.fa-spin-pulse{-webkit-animation-name:fa-spin;animation-name:fa-spin;-webkit-animation-direction:var(--fa-animation-direction,normal);animation-direction:var(--fa-animation-direction,normal);-webkit-animation-duration:var(--fa-animation-duration,1s);animation-duration:var(--fa-animation-duration,1s);-webkit-animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-iteration-count:var(--fa-animation-iteration-count,infinite);-webkit-animation-timing-function:var(--fa-animation-timing,steps(8));animation-timing-function:var(--fa-animation-timing,steps(8))}@media (prefers-reduced-motion:reduce){.fa-beat,.fa-beat-fade,.fa-bounce,.fa-fade,.fa-flip,.fa-pulse,.fa-shake,.fa-spin,.fa-spin-pulse{-webkit-animation-delay:-1ms;animation-delay:-1ms;-webkit-animation-duration:1ms;animation-duration:1ms;-webkit-animation-iteration-count:1;animation-iteration-count:1;-webkit-transition-delay:0s;transition-delay:0s;-webkit-transition-duration:0s;transition-duration:0s}}@-webkit-keyframes fa-beat{0%,90%{-webkit-transform:scale(1);transform:scale(1)}45%{-webkit-transform:scale(var(--fa-beat-scale,1.25));transform:scale(var(--fa-beat-scale,1.25))}}@keyframes fa-beat{0%,90%{-webkit-transform:scale(1);transform:scale(1)}45%{-webkit-transform:scale(var(--fa-beat-scale,1.25));transform:scale(var(--fa-beat-scale,1.25))}}@-webkit-keyframes fa-bounce{0%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0)}10%{-webkit-transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0);transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{-webkit-transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em));transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{-webkit-transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0);transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{-webkit-transform:scale(1) translateY(var(--fa-bounce-rebound,-.125em));transform:scale(1) translateY(var(--fa-bounce-rebound,-.125em))}64%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0)}to{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0)}}@keyframes fa-bounce{0%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0)}10%{-webkit-transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0);transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{-webkit-transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em));transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{-webkit-transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0);transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{-webkit-transform:scale(1) translateY(var(--fa-bounce-rebound,-.125em));transform:scale(1) translateY(var(--fa-bounce-rebound,-.125em))}64%{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0)}to{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0)}}@-webkit-keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@-webkit-keyframes fa-beat-fade{0%,to{opacity:var(--fa-beat-fade-opacity,.4);-webkit-transform:scale(1);transform:scale(1)}50%{opacity:1;-webkit-transform:scale(var(--fa-beat-fade-scale,1.125));transform:scale(var(--fa-beat-fade-scale,1.125))}}@keyframes fa-beat-fade{0%,to{opacity:var(--fa-beat-fade-opacity,.4);-webkit-transform:scale(1);transform:scale(1)}50%{opacity:1;-webkit-transform:scale(var(--fa-beat-fade-scale,1.125));transform:scale(var(--fa-beat-fade-scale,1.125))}}@-webkit-keyframes fa-flip{50%{-webkit-transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg));transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@keyframes fa-flip{50%{-webkit-transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg));transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@-webkit-keyframes fa-shake{0%{-webkit-transform:rotate(-15deg);transform:rotate(-15deg)}4%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}8%,24%{-webkit-transform:rotate(-18deg);transform:rotate(-18deg)}12%,28%{-webkit-transform:rotate(18deg);transform:rotate(18deg)}16%{-webkit-transform:rotate(-22deg);transform:rotate(-22deg)}20%{-webkit-transform:rotate(22deg);transform:rotate(22deg)}32%{-webkit-transform:rotate(-12deg);transform:rotate(-12deg)}36%{-webkit-transform:rotate(12deg);transform:rotate(12deg)}40%,to{-webkit-transform:rotate(0deg);transform:rotate(0deg)}}@keyframes fa-shake{0%{-webkit-transform:rotate(-15deg);transform:rotate(-15deg)}4%{-webkit-transform:rotate(15deg);transform:rotate(15deg)}8%,24%{-webkit-transform:rotate(-18deg);transform:rotate(-18deg)}12%,28%{-webkit-transform:rotate(18deg);transform:rotate(18deg)}16%{-webkit-transform:rotate(-22deg);transform:rotate(-22deg)}20%{-webkit-transform:rotate(22deg);transform:rotate(22deg)}32%{-webkit-transform:rotate(-12deg);transform:rotate(-12deg)}36%{-webkit-transform:rotate(12deg);transform:rotate(12deg)}40%,to{-webkit-transform:rotate(0deg);transform:rotate(0deg)}}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scaleX(-1);transform:scaleX(-1)}.fa-flip-vertical{-webkit-transform:scaleY(-1);transform:scaleY(-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1);transform:scale(-1)}.fa-rotate-by{-webkit-transform:rotate(var(--fa-rotate-angle,none));transform:rotate(var(--fa-rotate-angle,none))}.fa-stack{display:inline-block;height:2em;line-height:2em;position:relative;vertical-align:middle;width:2.5em}.fa-stack-1x,.fa-stack-2x{left:0;position:absolute;text-align:center;width:100%;z-index:var(--fa-stack-z-index,auto)}.fa-stack-1x{line-height:inherit}.fa-stack-2x{font-size:2em}.fa-inverse{color:var(--fa-inverse,#fff)}.fa-file-alt:before,.fa-file-lines:before,.fa-file-text:before{content:"\f15c"}.fa-wave-square:before{content:"\f83e"}.fa-bars:before,.fa-navicon:before{content:"\f0c9"}.fa-futbol-ball:before,.fa-futbol:before,.fa-soccer-ball:before{content:"\f1e3"}.fa-paint-brush:before,.fa-paintbrush:before{content:"\f1fc"}.fa-microscope:before{content:"\f610"}.fa-users:before{content:"\f0c0"}.fa-user:before{content:"\f007"}.fa-globe:before{content:"\f0ac"}.fa-star:before{content:"\f005"}.fa-person-running:before,.fa-running:before{content:"\f70c"}.fa-microchip:before{content:"\f2db"}.fa-user-edit:before,.fa-user-pen:before{content:"\f4ff"}.fa-check-circle:before,.fa-circle-check:before{content:"\f058"}.fa-certificate:before{content:"\f0a3"}.fa-box-open:before{content:"\f49e"}.fa-scroll:before{content:"\f70e"}.fa-pause:before{content:"\f04c"}.fa-shield-alt:before,.fa-shield-halved:before{content:"\f3ed"}.fa-archway:before{content:"\f557"}.fa-language:before{content:"\f1ab"}.fa-chart-line:before,.fa-line-chart:before{content:"\f201"}.fa-heart:before{content:"\f004"}.fa-cube:before{content:"\f1b2"}.fa-book-bookmark:before{content:"\e0bb"}.fa-code-branch:before{content:"\f126"}.fa-phone:before{content:"\f095"}.fa-external-link-alt:before,.fa-up-right-from-square:before{content:"\f35d"}.fa-envelope:before{content:"\f0e0"}.fa-mountain:before{content:"\f6fc"}.fa-camera-alt:before,.fa-camera:before{content:"\f030"}.fa-chess:before{content:"\f439"}.fa-keyboard:before{content:"\f11c"}.fa-flask:before{content:"\f0c3"}.fa-calculator:before{content:"\f1ec"}.fa-download:before{content:"\f019"}.fa-drivers-license:before,.fa-id-card:before{content:"\f2c2"}.fa-file-arrow-down:before,.fa-file-download:before{content:"\f56d"}.fa-book-open-reader:before,.fa-book-reader:before{content:"\f5da"}.fa-mountain-sun:before{content:"\e52f"}.fa-medal:before{content:"\f5a2"}.fa-location-dot:before,.fa-map-marker-alt:before{content:"\f3c5"}.fa-play:before{content:"\f04b"}.fa-ping-pong-paddle-ball:before,.fa-table-tennis-paddle-ball:before,.fa-table-tennis:before{content:"\f45d"}.fa-arrow-up:before{content:"\f062"}.fa-diagram-project:before,.fa-project-diagram:before{content:"\f542"}.fa-close:before,.fa-multiply:before,.fa-remove:before,.fa-times:before,.fa-xmark:before{content:"\f00d"}.fa-trophy:before{content:"\f091"}.fa-spinner:before{content:"\f110"}.fa-cogs:before,.fa-gears:before{content:"\f085"}.fa-award:before{content:"\f559"}.fa-music:before{content:"\f001"}.fa-calendar:before{content:"\f133"}.fa-book:before{content:"\f02d"}.fa-book-open:before{content:"\f518"}.fa-book-journal-whills:before,.fa-journal-whills:before{content:"\f66a"}.fa-paper-plane:before{content:"\f1d8"}.fa-earth-asia:before,.fa-globe-asia:before{content:"\f57e"}.fa-users-cog:before,.fa-users-gear:before{content:"\f509"}.fa-bank:before,.fa-building-columns:before,.fa-institution:before,.fa-museum:before,.fa-university:before{content:"\f19c"}.fa-graduation-cap:before,.fa-mortar-board:before{content:"\f19d"}.fa-sr-only,.fa-sr-only-focusable:not(:focus),.sr-only,.sr-only-focusable:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}:host,:root{--fa-style-family-brands:"Font Awesome 6 Brands";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands"}.fa-brands,.fab{font-weight:400}.fa-orcid:before{content:"\f8d2"}.fa-linkedin-in:before{content:"\f0e1"}.fa-researchgate:before{content:"\f4f8"}.fa-x-twitter:before{content:"\e61b"}.fa-instagram:before{content:"\f16d"}.fa-github:before{content:"\f09b"}:host,:root{--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Free"}.fa-regular,.far{font-weight:400}:host,:root{--fa-style-family-classic:"Font Awesome 6 Free";--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Free"}.fa-solid,.fas{font-weight:900}
+        .hero-avatar picture,.edu-logo picture,.darts-logo picture{display:block;width:100%;height:100%}
+    </style>
 	<!-- Structured Data for Google Search (SEO) -->
 	<script type="application/ld+json">
 	{
@@ -447,6 +523,8 @@
            ========================================================== */
         .hero::before,.hero::after{pointer-events:none}
         .hero-contours{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 1.2s ease-out;will-change:transform}
+        /* calmer behind the text column, full strength over the hill (applied by the compositor, not redrawn per frame) */
+        .hero-contours{-webkit-mask-image:linear-gradient(to right,rgba(0,0,0,.3),rgba(0,0,0,.75) 45%,#000);mask-image:linear-gradient(to right,rgba(0,0,0,.3),rgba(0,0,0,.75) 45%,#000)}
         .hero-contours.drawn{opacity:1}
         .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
         .hero h1{text-wrap:balance}
@@ -543,7 +621,10 @@
     <div class="hero-inner">
     <div class="hero-content">
         <div class="hero-avatar">
-            <img src="photo.jpg" alt="Dr. Sai Srujan Kumar Chalavadi" width="1024" height="1024" fetchpriority="high">
+            <picture>
+                <source type="image/webp" srcset="assets/img/photo-212.webp 212w, assets/img/photo-265.webp 265w, assets/img/photo-318.webp 318w, assets/img/photo-371.webp 371w, assets/img/photo-424.webp 424w, assets/img/photo-530.webp 530w, assets/img/photo-636.webp 636w" sizes="212px">
+                <img src="assets/img/photo-424.jpg" alt="Dr. Sai Srujan Kumar Chalavadi" width="424" height="424" fetchpriority="high">
+            </picture>
         </div>
         <div class="hero-text">
             <h1>Dr. Sai Srujan Kumar Chalavadi</h1>
@@ -668,7 +749,10 @@
             <!-- PhD -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="iitr.jpg" alt="IIT Roorkee Logo" loading="lazy" decoding="async">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/iitr-58.webp 58w, assets/img/iitr-73.webp 73w, assets/img/iitr-87.webp 87w, assets/img/iitr-102.webp 102w, assets/img/iitr-116.webp 116w, assets/img/iitr-145.webp 145w, assets/img/iitr-174.webp 174w" sizes="58px">
+                        <img src="assets/img/iitr-116.png" alt="IIT Roorkee Logo" loading="lazy" decoding="async">
+                    </picture>
                 </div>
                 <div class="edu-info">
                     <h4>Ph.D. in Earthquake Engineering</h4>
@@ -684,7 +768,10 @@
             <!-- B.Tech -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="nitt.png" alt="NIT Trichy Logo" loading="lazy" decoding="async">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/nitt-58.webp 58w, assets/img/nitt-73.webp 73w, assets/img/nitt-87.webp 87w, assets/img/nitt-102.webp 102w, assets/img/nitt-116.webp 116w, assets/img/nitt-145.webp 145w, assets/img/nitt-174.webp 174w" sizes="58px">
+                        <img src="assets/img/nitt-116.png" alt="NIT Trichy Logo" loading="lazy" decoding="async">
+                    </picture>
                 </div>
                 <div class="edu-info">
                     <h4>B.Tech in Civil Engineering</h4>
@@ -700,7 +787,10 @@
             <!-- Class XII -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="chaitanya.jpg" alt="Sri Chaitanya Logo" loading="lazy" decoding="async">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/chaitanya-58.webp 58w, assets/img/chaitanya-73.webp 73w, assets/img/chaitanya-87.webp 87w, assets/img/chaitanya-102.webp 102w, assets/img/chaitanya-116.webp 116w, assets/img/chaitanya-145.webp 145w, assets/img/chaitanya-174.webp 174w" sizes="58px">
+                        <img src="assets/img/chaitanya-116.png" alt="Sri Chaitanya Logo" loading="lazy" decoding="async">
+                    </picture>
                 </div>
                 <div class="edu-info">
                     <h4>Class XII</h4>
@@ -715,7 +805,10 @@
             <!-- Class X -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="stbem.jpg" alt="S.T.B.E.M. High School Logo" loading="lazy" decoding="async">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/stbem-58.webp 58w, assets/img/stbem-73.webp 73w, assets/img/stbem-87.webp 87w, assets/img/stbem-102.webp 102w, assets/img/stbem-116.webp 116w, assets/img/stbem-145.webp 145w, assets/img/stbem-174.webp 174w" sizes="58px">
+                        <img src="assets/img/stbem-116.png" alt="S.T.B.E.M. High School Logo" loading="lazy" decoding="async">
+                    </picture>
                 </div>
                 <div class="edu-info">
                     <h4>Class X</h4>
@@ -1000,9 +1093,13 @@
             <!-- ===== LEFT: Software info + download ===== -->
             <div class="darts-card reveal-left">
                 <div class="darts-head">
-                    <!-- DARTS icon. To change it, replace DARTS_1.png in the site folder (keep the name) or update the src below. -->
+                    <!-- DARTS icon. To change it, replace DARTS_1.png in the site folder (keep the name) and run
+                         "python tools/optimize_images.py" to remake the web-size copies in assets/img. -->
                     <div class="darts-logo" style="background:none;overflow:hidden">
-                        <img src="DARTS_1.png" alt="DARTS icon" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">
+                        <picture>
+                            <source type="image/webp" srcset="assets/img/darts-64.webp 64w, assets/img/darts-80.webp 80w, assets/img/darts-96.webp 96w, assets/img/darts-112.webp 112w, assets/img/darts-128.webp 128w, assets/img/darts-160.webp 160w, assets/img/darts-192.webp 192w" sizes="64px">
+                            <img src="assets/img/darts-128.png" alt="DARTS icon" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">
+                        </picture>
                     </div>
                     <div class="darts-title">
                         <h3>DARTS</h3>
@@ -1871,14 +1968,21 @@
             ];
             let levels = [], drawnW = 0, drawnH = 0, cw = 0, ch = 0;
 
+            // Levels already fully drawn are kept on an off-screen canvas of the same size, so each
+            // frame of the plot strokes only the level that is fading in (same pixels, far less work)
+            const done = document.createElement('canvas'), dctx = done.getContext('2d');
+            let doneCount = 0;
+
             const build = () => {
                 cw = contour.clientWidth; ch = contour.clientHeight;
                 if (!cw || !ch) return false;
                 drawnW = cw; drawnH = ch;
                 const dpr = Math.min(window.devicePixelRatio || 1, 2);
-                contour.width = Math.round(cw * dpr);
-                contour.height = Math.round(ch * dpr);
+                contour.width = done.width = Math.round(cw * dpr);
+                contour.height = done.height = Math.round(ch * dpr);
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                doneCount = 0;
                 const span = Math.max(cw, 900);
                 const height = (x, y) => {
                     let z = 0;
@@ -1925,24 +2029,26 @@
             };
 
             // Every fifth level is an index contour, as on a topographic map
+            const tint = (L, a) => 'rgba(147,197,253,' + (((L + 1) % 5 === 0 ? 0.22 : 0.095) * a).toFixed(3) + ')';
             const paint = (shown) => {
+                const full = Math.max(0, Math.min(levels.length, Math.floor(shown)));
+                dctx.lineWidth = 1;
+                for (; doneCount < full; doneCount++) {
+                    dctx.strokeStyle = tint(doneCount, 1);
+                    dctx.stroke(levels[doneCount]);
+                }
                 ctx.clearRect(0, 0, cw, ch);
-                ctx.lineWidth = 1;
-                levels.forEach((path, L) => {
-                    const a = Math.max(0, Math.min(1, shown - L));
-                    if (!a) return;
-                    ctx.strokeStyle = 'rgba(147,197,253,' + (((L + 1) % 5 === 0 ? 0.22 : 0.095) * a).toFixed(3) + ')';
-                    ctx.stroke(path);
-                });
-                // Calmer behind the text column, full strength over the hill
-                const g = ctx.createLinearGradient(0, 0, cw, 0);
-                g.addColorStop(0, 'rgba(0,0,0,0.3)');
-                g.addColorStop(0.45, 'rgba(0,0,0,0.75)');
-                g.addColorStop(1, 'rgba(0,0,0,1)');
-                ctx.globalCompositeOperation = 'destination-in';
-                ctx.fillStyle = g;
-                ctx.fillRect(0, 0, cw, ch);
-                ctx.globalCompositeOperation = 'source-over';
+                ctx.save();
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.drawImage(done, 0, 0);
+                ctx.restore();
+                const a = Math.max(0, Math.min(1, shown - full));
+                if (full < levels.length && a) {
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = tint(full, a);
+                    ctx.stroke(levels[full]);
+                }
+                // (the fade from the text column to the hill is a CSS mask on the canvas: see .hero-contours)
             };
 
             const plot = () => {
@@ -1953,6 +2059,7 @@
                     const k = Math.min(1, (now - start) / dur);
                     paint(k * (levels.length + 1));
                     if (k < 1) requestAnimationFrame(tick);
+                    else done.width = done.height = 0;   // release the off-screen copy
                 };
                 requestAnimationFrame(tick);
             };
@@ -2133,6 +2240,25 @@
             }, { passive: true });
             fill();
         }
+    })();
+
+    // ===== Icons: only the Font Awesome icons named in this page are bundled. If an icon outside
+    // that set (or a regular-style icon) is added later, load the full Font Awesome once. =====
+    (function () {
+        const check = () => {
+            for (const el of document.querySelectorAll('.fa, .fas, .fab, .far, .fa-solid, .fa-brands, .fa-regular')) {
+                const glyph = getComputedStyle(el, '::before').content;
+                if (el.matches('.far, .fa-regular') || !glyph || glyph === 'none' || glyph === 'normal') {
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+                    document.head.appendChild(link);
+                    return;
+                }
+            }
+        };
+        if ('requestIdleCallback' in window) requestIdleCallback(check, { timeout: 3000 });
+        else setTimeout(check, 1500);
     })();
 </script>
 
