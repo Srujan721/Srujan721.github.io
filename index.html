@@ -18,7 +18,7 @@
 	<meta name="twitter:image" content="https://srujan721.github.io/photo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 	<!-- Structured Data for Google Search (SEO) -->
 	<script type="application/ld+json">
@@ -69,8 +69,8 @@
            CSS VARIABLES — Change colors/theme here
            ========================================================== */
         :root {
-            --primary: #0B1D35;
-            --primary-light: #132D50;
+            --primary: #0D1620;            /* dark blue (DARTS palette) */
+            --primary-light: #122131;
             --accent: #3B82F6;
             --accent-hover: #2563EB;
             --accent-light: rgba(59,130,246,0.1);
@@ -115,7 +115,7 @@
         /* ==========================================================
            NAVBAR
            ========================================================== */
-        .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,29,53,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);transition:var(--transition)}
+        .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,22,32,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);transition:var(--transition)}
         .navbar.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.3)}
         .nav-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;height:68px}
         .nav-logo{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:-0.3px}
@@ -126,32 +126,33 @@
         .nav-toggle{display:none;background:none;border:none;cursor:pointer;color:#fff;font-size:1.4rem;padding:8px}
         @media(max-width:768px){
             .nav-toggle{display:block}
-            .nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--primary);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,0.1)}
-            .nav-links.open{display:flex}
+            .nav-links{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--primary);padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,0.1);visibility:hidden;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease,visibility 0s linear .25s}
+            .nav-links.open{visibility:visible;opacity:1;transform:none;transition:opacity .25s ease,transform .25s ease,visibility 0s}
+            .nav-indicator{display:none}
         }
 
         /* ==========================================================
            HERO
            ========================================================== */
-        .hero{min-height:100vh;background:linear-gradient(135deg,#0B1D35 0%,#132D50 40%,#1a3a5c 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 24px 80px}
+        .hero{background:linear-gradient(135deg,#0D1620 0%,#101C28 45%,#122131 100%);position:relative;overflow:hidden;padding:calc(68px + 40px) 0 0}
         .hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);border-radius:50%}
         .hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(217,119,6,0.06) 0%,transparent 70%);border-radius:50%}
-        .hero-content{text-align:center;position:relative;z-index:1;max-width:800px}
-        .hero-avatar{width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366F1);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:3rem;color:#fff;border:4px solid rgba(255,255,255,0.15);overflow:hidden}
+        .hero-content{text-align:left;position:relative;z-index:1;min-width:0}
+        .hero-avatar{width:150px;height:150px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366F1);display:flex;align-items:center;justify-content:center;margin:0;font-size:3rem;color:#fff;border:4px solid rgba(255,255,255,0.15);overflow:hidden}
         .hero-avatar img{width:100%;height:100%;object-fit:cover}
-        .hero h1{font-size:2.8rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-1px}
+        .hero h1{font-size:clamp(2rem,1.2rem + 1.9vw,2.6rem);line-height:1.12;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-1px}
         .hero .tagline{font-size:1.15rem;color:#F0C44C;font-weight:500;margin-bottom:6px}
-        .hero .sub-tagline{font-size:0.95rem;color:var(--text-white);opacity:0.7;margin-bottom:28px}
-        .hero-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px}
+        .hero .sub-tagline{font-size:0.95rem;color:var(--text-white);opacity:0.7;margin-bottom:0}
+        .hero-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start;margin-bottom:24px}
         .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:8px 18px;border-radius:50px;font-size:0.83rem;color:#fff;font-weight:500}
         .hero-badge i{color:var(--gold);font-size:0.85rem}
-        .hero-buttons{display:flex;gap:14px;justify-content:center;margin-bottom:36px;flex-wrap:wrap}
+        .hero-buttons{display:flex;gap:14px;justify-content:flex-start;margin-bottom:22px;flex-wrap:wrap}
         .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-size:0.92rem;font-weight:600;transition:var(--transition);cursor:pointer;border:none;font-family:inherit}
         .btn-primary{background:var(--accent);color:#fff}
         .btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,0.3)}
         .btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.2)}
         .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-        .hero-social{display:flex;gap:14px;justify-content:center}
+        .hero-social{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start}
         .hero-social a{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.07);color:var(--text-white);font-size:1.05rem;transition:var(--transition);border:1px solid rgba(255,255,255,0.08)}
         .hero-social a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
         @media(max-width:600px){.hero h1{font-size:2rem}.hero .tagline{font-size:0.95rem}}
@@ -326,45 +327,60 @@
         .scroll-top.show{opacity:1;pointer-events:all}
         .scroll-top:hover{background:var(--accent-hover);transform:translateY(-3px)}
 
-        /* ========== ANIMATIONS ========== */
-        .fade-in{opacity:0;transform:translateY(25px);transition:opacity 0.6s ease,transform 0.6s ease}
-        .fade-in.visible{opacity:1;transform:translateY(0)}
-
         /* ==========================================================
-           ENHANCED PAGE / SECTION TRANSITIONS
-           Driven by IntersectionObserver (adds .visible). See JS.
+           ANIMATIONS — scroll reveals are added by the script; content
+           stays visible if the script does not run
            ========================================================== */
-        .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,.84,.44,1),transform .7s cubic-bezier(.16,.84,.44,1)}
-        .reveal.visible{opacity:1;transform:none}
-        .reveal-left{opacity:0;transform:translateX(-34px);transition:opacity .7s ease,transform .7s ease}
-        .reveal-left.visible{opacity:1;transform:none}
-        .reveal-right{opacity:0;transform:translateX(34px);transition:opacity .7s ease,transform .7s ease}
-        .reveal-right.visible{opacity:1;transform:none}
-        /* Staggered children reveal */
-        .stagger > *{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-        .stagger.visible > *{opacity:1;transform:none}
-        .stagger.visible > *:nth-child(1){transition-delay:.05s}
-        .stagger.visible > *:nth-child(2){transition-delay:.12s}
-        .stagger.visible > *:nth-child(3){transition-delay:.19s}
-        .stagger.visible > *:nth-child(4){transition-delay:.26s}
-        .stagger.visible > *:nth-child(5){transition-delay:.33s}
-        .stagger.visible > *:nth-child(6){transition-delay:.40s}
-        .stagger.visible > *:nth-child(7){transition-delay:.47s}
-        .stagger.visible > *:nth-child(8){transition-delay:.54s}
+        .reveals-on .pending{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+        .reveals-on .pending.reveal-left{transform:translateX(-56px)}
+        .reveals-on .pending.reveal-right{transform:translateX(56px)}
+        @media(max-width:880px){.reveals-on .pending.reveal-left,.reveals-on .pending.reveal-right{transform:translateY(40px)}}
+        .reveals-on .pending.visible{opacity:1;transform:none}
+        /* Cards and list items inside a block arrive one after another */
+        .reveals-on .pending .cascade-item{opacity:0;transform:translateY(30px) scale(.97);transition:opacity .7s ease-out,transform .85s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i,0) * 80ms + 160ms)}
+        .reveals-on .pending.visible .cascade-item{opacity:1;transform:none}
+        /* Section marker bar grows; timeline dots pop in */
+        .section-divider{transform-origin:0 50%;transition:transform .9s cubic-bezier(.16,1,.3,1) .25s}
+        .reveals-on .pending:not(.visible) .section-divider{transform:scaleX(0)}
+        .reveals-on .pending .exp-dot{transform:scale(0);transition:transform .55s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(var(--i,0) * 80ms + 420ms)}
+        .reveals-on .pending.visible .exp-dot{transform:none}
+
         /* Hero entrance on page load */
-        @keyframes heroFadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
-        .hero-content > *{animation:heroFadeUp .8s both}
-        .hero-content > .hero-avatar{animation-delay:.05s}
-        .hero-content > h1{animation-delay:.18s}
-        .hero-content > .tagline{animation-delay:.28s}
-        .hero-content > .sub-tagline{animation-delay:.36s}
-        .hero-content > .hero-badges{animation-delay:.46s}
-        .hero-content > .hero-buttons{animation-delay:.56s}
-        .hero-content > .hero-social{animation-delay:.66s}
-        /* Accessibility: honour reduced-motion preference */
+        @keyframes heroRise{from{opacity:0;transform:translateY(26px)}}
+        @keyframes heroPop{from{opacity:0;transform:scale(.85)}}
+        @keyframes heroFade{from{opacity:0}}
+        .hero-avatar{animation:heroPop .9s cubic-bezier(.16,1,.3,1) .05s backwards}
+        .hero-heading > *,.hero-badge,.hero-buttons,.hero-social a,.hero-figure{animation:heroRise .85s cubic-bezier(.16,1,.3,1) backwards}
+        .hero-heading > :nth-child(1){animation-delay:.15s}
+        .hero-heading > :nth-child(2){animation-delay:.27s}
+        .hero-heading > :nth-child(3){animation-delay:.35s}
+        .hero-badge:nth-child(1){animation-delay:.45s}
+        .hero-badge:nth-child(2){animation-delay:.51s}
+        .hero-badge:nth-child(3){animation-delay:.57s}
+        .hero-badge:nth-child(4){animation-delay:.63s}
+        .hero-buttons{animation-delay:.7s}
+        .hero-social a:nth-child(1){animation-delay:.78s}
+        .hero-social a:nth-child(2){animation-delay:.82s}
+        .hero-social a:nth-child(3){animation-delay:.86s}
+        .hero-social a:nth-child(4){animation-delay:.9s}
+        .hero-social a:nth-child(5){animation-delay:.94s}
+        .hero-social a:nth-child(6){animation-delay:.98s}
+        .hero-social a:nth-child(7){animation-delay:1.02s}
+        .hero-social a:nth-child(8){animation-delay:1.06s}
+        .hero-figure{animation-delay:.3s}
+
+        /* Accessibility: with "reduce motion" set, keep fades and line drawing
+           but drop travel, scaling and sway (the seismograph starts paused) */
         @media (prefers-reduced-motion: reduce){
-            *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
-            .fade-in,.reveal,.reveal-left,.reveal-right,.stagger>*{opacity:1!important;transform:none!important}
+            html{scroll-behavior:auto}
+            .reveals-on .pending,.reveals-on .pending.reveal-left,.reveals-on .pending.reveal-right,
+            .reveals-on .pending .cascade-item,.reveals-on .pending .exp-dot{transform:none!important}
+            .hero-avatar,.hero-heading > *,.hero-badge,.hero-buttons,.hero-social a,.hero-figure{animation-name:heroFade!important}
+            .fig-mk{animation-name:figFade!important}
+        }
+        @media print{
+            .pending,.cascade-item,.exp-dot{opacity:1!important;transform:none!important}
+            .seismo-toggle,.hero-contours{display:none}
         }
 
         /* ==========================================================
@@ -426,6 +442,107 @@
         .form-status{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:0.85rem;display:none}
         .form-status.success{display:block;background:var(--green-light);color:var(--green)}
         .form-status.error{display:block;background:#FEE2E2;color:#B91C1C}
+
+        /* ==========================================================
+           HERO LAYOUT — profile (left) and Fig. 1 (right), contour field
+           behind, hill–tunnel seismograph along the bottom edge
+           ========================================================== */
+        .hero::before,.hero::after{pointer-events:none}
+        .hero-contours{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 1.2s ease-out;will-change:transform}
+        .hero-contours.drawn{opacity:1}
+        .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:44px;align-items:center}
+        .hero-id{display:flex;align-items:center;gap:26px;margin-bottom:24px}
+        .hero-heading{min-width:0}
+        .hero h1{text-wrap:balance}
+        .hero-figure{position:relative;margin:0;padding:14px 16px 12px;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.09);border-radius:var(--radius)}
+        .hero-figure svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y;font-family:inherit}
+        .hero-figure figcaption{margin-top:6px;font-size:0.78rem;line-height:1.5;color:var(--text-white);opacity:0.85}
+        .hero-figure figcaption b{color:#fff;margin-right:0.35em}
+        @media(min-width:1100px){.hero-badges{gap:10px}.hero-badge{padding:8px 15px}}
+        @media(max-width:1099px){
+            .hero-inner{grid-template-columns:minmax(0,1fr);gap:36px}
+            .hero-content{text-align:center}
+            .hero-id{flex-direction:column;gap:20px}
+            .hero-avatar{width:180px;height:180px}
+            .hero-badges,.hero-buttons,.hero-social{justify-content:center}
+            .hero-figure{width:100%;max-width:560px;margin:0 auto}
+        }
+        @media(max-width:600px){
+            .hero{padding-top:calc(68px + 28px)}
+            .hero-avatar{width:150px;height:150px}
+            .hero-figure{padding:10px}
+            .hero-social{gap:8px}
+        }
+
+        /* Fig. 1 on the dark hero */
+        .fig-grid{stroke:rgba(255,255,255,0.07);stroke-width:1}
+        .fig-stripe{stroke:rgba(203,213,225,0.38);stroke-width:1;stroke-dasharray:2 4}
+        .fig-axis{stroke:rgba(203,213,225,0.75);stroke-width:1;fill:none}
+        .fig-label{font-size:14px;fill:#E2E8F0}
+        .fig-tick{font-size:12px;fill:#94A3B8}
+        .fig-curve,.fig-curve-sample{fill:none;stroke-width:2.2;stroke-linecap:round;transition:opacity .25s}
+        .fig-curve.c1,.c1 .fig-curve-sample{stroke:#60A5FA}
+        .fig-curve.c2,.c2 .fig-curve-sample{stroke:#E2E8F0;stroke-dasharray:7 5}
+        .fig-curve.c3,.c3 .fig-curve-sample{stroke:#F0C44C;stroke-dasharray:2 4}
+        .fig-mk,.fig-mk-static{fill:#101B28;stroke-width:1.6;transition:opacity .25s}
+        .fig-mk.c1,.c1 .fig-mk-static{stroke:#60A5FA}
+        .fig-mk.c2,.c2 .fig-mk-static{stroke:#E2E8F0}
+        .fig-mk.c3,.c3 .fig-mk-static{stroke:#F0C44C}
+        .fig-legend-bg{fill:#101B28;opacity:0.94}
+        .fig-legend[data-ds]{cursor:pointer}
+        .fig-cursor{opacity:0;transition:opacity .2s;pointer-events:none}
+        .fig-cursor.on{opacity:1}
+        .fig-cursor line{stroke:rgba(226,232,240,0.6);stroke-width:1;stroke-dasharray:3 3}
+        .fig-cursor circle{stroke:#101B28;stroke-width:1.5}
+        .fig.hl-1 :is(.fig-curve,.fig-mk):not(.c1),.fig.hl-2 :is(.fig-curve,.fig-mk):not(.c2),.fig.hl-3 :is(.fig-curve,.fig-mk):not(.c3){opacity:0.18}
+        /* Fig. 1 plays the method once on load: stripes, then fractions, then fitted curves */
+        @keyframes figFade{from{opacity:0}}
+        @keyframes figPop{from{opacity:0;transform:scale(.2)}}
+        @keyframes figSweep{from{clip-path:inset(-12px 100% -12px -12px)}to{clip-path:inset(-12px -12px -12px -12px)}}
+        .fig-stripe{animation:figFade .4s ease-out both;animation-delay:calc(.7s + var(--j) * .12s)}
+        .fig-mk{transform-box:fill-box;transform-origin:50% 50%;animation:figPop .45s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(.8s + var(--j) * .12s + var(--k) * .05s)}
+        .fig-curve{animation:figSweep 1.3s cubic-bezier(.45,0,.25,1) both}
+        .fig-curve.c1{animation-delay:2.05s}.fig-curve.c2{animation-delay:2.25s}.fig-curve.c3{animation-delay:2.45s}
+        .fig-legend{animation:figFade .6s ease-out both;animation-delay:3.3s}
+
+        /* Hill–tunnel seismograph */
+        .hero-band-wrap{position:relative;z-index:1;margin-top:26px}
+        .hero-band{display:block;width:100%;height:clamp(130px,13.5vw,240px)}
+        .band-ground{fill:var(--bg-alt)}
+        .band-ridge{fill:none;stroke:rgba(96,165,250,0.85);stroke-width:1.6}
+        .band-wave{fill:none;stroke:rgba(59,130,246,0.55);stroke-width:1.4;opacity:0}
+        .tunnel-void{fill:#0D1620}
+        .tunnel-lining{fill:rgba(59,130,246,0.16);fill-rule:evenodd;stroke:#0D1620;stroke-width:1.4}
+        .tunnel-bolts{fill:none;stroke:#334155;stroke-width:1}
+        .tunnel-road{stroke:#94A3B8;stroke-width:1}
+        .band-station{stroke:#94A3B8;stroke-width:1;stroke-dasharray:3 3}
+        .band-future{stroke:#CBD5E1;stroke-width:1;stroke-dasharray:2 5}
+        .band-trace{fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linejoin:round}
+        .band-pen{fill:var(--gold)}
+        .seismo-toggle{position:absolute;right:16px;bottom:10px;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:50px;border:1px solid var(--border);background:rgba(255,255,255,0.92);color:var(--text-light);font-family:inherit;font-size:0.72rem;font-weight:600;cursor:pointer;transition:var(--transition)}
+        .seismo-toggle:hover{border-color:var(--accent);color:var(--accent)}
+        .seismo-toggle[hidden]{display:none}
+        .seismo-toggle i{font-size:0.68rem}
+        @keyframes bandDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+        @keyframes bandFade{from{opacity:0}}
+        .band-ridge{stroke-dasharray:1;animation:bandDraw 1.6s cubic-bezier(.45,0,.25,1) .35s both}
+        .tunnel-lining{stroke-dasharray:1;animation:bandDraw 1s ease-out 1.3s both}
+        .tunnel-void,.tunnel-bolts,.tunnel-road{animation:bandFade .6s ease-out 1.8s both}
+        .band-trace{animation:bandFade .8s ease-out .9s both}
+        .band-station,.band-future,.band-pen,.seismo-toggle{animation:bandFade .6s ease-out 2s both}
+
+        /* Navigation: sliding highlight behind the active link, reading progress */
+        .nav-links{position:relative}
+        .nav-links a{position:relative;z-index:1}
+        .nav-indicator{position:absolute;left:0;top:0;width:0;height:0;border-radius:8px;background:rgba(59,130,246,0.15);opacity:0;pointer-events:none;z-index:0;transition:transform .5s cubic-bezier(.16,1,.3,1),width .5s cubic-bezier(.16,1,.3,1),height .3s,opacity .3s}
+        .nav-indicator.on{opacity:1}
+        .nav-links.pill-on a.active,.nav-links.pill-on a.active:hover{background:transparent}
+        .scroll-progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--accent),#F0C44C);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+
+        /* Experience timeline fills in as you scroll */
+        .exp-timeline::after{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--accent),#6366F1);transform-origin:50% 0;transform:scaleY(var(--tl,0));opacity:0;transition:opacity .4s}
+        .exp-timeline.tl-on::after{opacity:1}
+        .exp-dot{z-index:1}
     </style>
 </head>
 <body>
@@ -436,7 +553,7 @@
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <a href="#home" class="nav-logo">S<span>.</span> Chalavadi</a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
             <i class="fas fa-bars"></i>
         </button>
         <div class="nav-links" id="navLinks">
@@ -447,8 +564,10 @@
             <a href="#experience">Experience</a>
             <a href="#achievements">Achievements</a>
             <a href="#contact">Contact</a>
+            <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
         </div>
     </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 </nav>
 
 <!-- ==============================================================
@@ -457,13 +576,19 @@
      - To update badges: edit the hero-badge spans below
      ============================================================== -->
 <section class="hero" id="home">
+    <canvas class="hero-contours" aria-hidden="true"></canvas>
+    <div class="hero-inner">
     <div class="hero-content">
-        <div class="hero-avatar">
-            <img src="photo.jpg" alt="Dr. Sai Srujan Kumar Chalavadi">
+        <div class="hero-id">
+            <div class="hero-avatar">
+                <img src="photo.jpg" alt="Dr. Sai Srujan Kumar Chalavadi" width="1024" height="1024" fetchpriority="high">
+            </div>
+            <div class="hero-heading">
+                <h1>Dr. Sai Srujan Kumar Chalavadi</h1>
+                <p class="tagline">Researcher in Rock Mechanics and Earthquake Engineering</p>
+                <p class="sub-tagline">Project Research Associate · Indian Institute of Technology, Roorkee</p>
+            </div>
         </div>
-        <h1>Dr. Sai Srujan Kumar Chalavadi</h1>
-        <p class="tagline">Researcher in Rock Mechanics and Earthquake Engineering</p>
-        <p class="sub-tagline">Project Research Associate · Indian Institute of Technology, Roorkee</p>
 
         <!-- HERO BADGES — Edit/add/remove as needed -->
         <div class="hero-badges">
@@ -480,15 +605,126 @@
 
         <!-- SOCIAL LINKS — Edit URLs as needed -->
         <div class="hero-social">
-            <a href="https://scholar.google.com/citations?hl=en&user=x21rKZAAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-            <a href="https://www.linkedin.com/in/srujanchalavadi/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.researchgate.net/profile/Chalavadi-Sai-Srujan-Kumar" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
-            <a href="https://github.com/Srujan721" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://orcid.org/0000-0002-6985-5651" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
-            <a href="https://x.com/721Srujan" target="_blank" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/srujan_721/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://mail.google.com/mail/?view=cm&to=srujanchalavadi6@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://scholar.google.com/citations?hl=en&user=x21rKZAAAAAJ" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://www.linkedin.com/in/srujanchalavadi/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.researchgate.net/profile/Chalavadi-Sai-Srujan-Kumar" target="_blank" rel="noopener" title="ResearchGate" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                        <a href="https://github.com/Srujan721" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://orcid.org/0000-0002-6985-5651" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+                        <a href="https://x.com/721Srujan" target="_blank" rel="noopener" title="Twitter / X" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/srujan_721/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://mail.google.com/mail/?view=cm&to=srujanchalavadi6@gmail.com" target="_blank" rel="noopener" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
+    </div>
+
+    <!-- HERO FIGURE — Fig. 1, schematic fragility functions (decorative; geometry generated
+         from the lognormal fragility function). Delete this <figure> block to remove it. -->
+    <figure class="hero-figure">
+        <svg class="fig" viewBox="0 0 440 300" role="img" aria-labelledby="fig1-cap" data-box="54,424,14,232" data-imax="1.6" data-theta="0.4,0.74,1.12" data-beta="0.45">
+        <line class="fig-grid" x1="54" y1="177.5" x2="424" y2="177.5"/>
+        <line class="fig-grid" x1="54" y1="123" x2="424" y2="123"/>
+        <line class="fig-grid" x1="54" y1="68.5" x2="424" y2="68.5"/>
+        <line class="fig-stripe" style="--j:0" x1="88.7" y1="14" x2="88.7" y2="232"/>
+        <line class="fig-stripe" style="--j:1" x1="123.4" y1="14" x2="123.4" y2="232"/>
+        <line class="fig-stripe" style="--j:2" x1="158.1" y1="14" x2="158.1" y2="232"/>
+        <line class="fig-stripe" style="--j:3" x1="192.8" y1="14" x2="192.8" y2="232"/>
+        <line class="fig-stripe" style="--j:4" x1="227.4" y1="14" x2="227.4" y2="232"/>
+        <line class="fig-stripe" style="--j:5" x1="262.1" y1="14" x2="262.1" y2="232"/>
+        <line class="fig-stripe" style="--j:6" x1="296.8" y1="14" x2="296.8" y2="232"/>
+        <line class="fig-stripe" style="--j:7" x1="331.5" y1="14" x2="331.5" y2="232"/>
+        <line class="fig-stripe" style="--j:8" x1="366.2" y1="14" x2="366.2" y2="232"/>
+        <line class="fig-stripe" style="--j:9" x1="400.9" y1="14" x2="400.9" y2="232"/>
+        <path class="fig-axis" d="M54 14V232H424"/>
+        <line class="fig-axis" x1="49" y1="232" x2="54" y2="232"/>
+        <text class="fig-tick" x="45" y="236" text-anchor="end">0</text>
+        <line class="fig-axis" x1="49" y1="123" x2="54" y2="123"/>
+        <text class="fig-tick" x="45" y="127" text-anchor="end">0.5</text>
+        <line class="fig-axis" x1="49" y1="14" x2="54" y2="14"/>
+        <text class="fig-tick" x="45" y="18" text-anchor="end">1.0</text>
+        <line class="fig-axis" x1="88.7" y1="232" x2="88.7" y2="237"/>
+        <line class="fig-axis" x1="123.4" y1="232" x2="123.4" y2="237"/>
+        <line class="fig-axis" x1="158.1" y1="232" x2="158.1" y2="237"/>
+        <line class="fig-axis" x1="192.8" y1="232" x2="192.8" y2="237"/>
+        <line class="fig-axis" x1="227.4" y1="232" x2="227.4" y2="237"/>
+        <line class="fig-axis" x1="262.1" y1="232" x2="262.1" y2="237"/>
+        <line class="fig-axis" x1="296.8" y1="232" x2="296.8" y2="237"/>
+        <line class="fig-axis" x1="331.5" y1="232" x2="331.5" y2="237"/>
+        <line class="fig-axis" x1="366.2" y1="232" x2="366.2" y2="237"/>
+        <line class="fig-axis" x1="400.9" y1="232" x2="400.9" y2="237"/>
+        <text class="fig-label" x="239" y="268" text-anchor="middle">Intensity measure, IM</text>
+        <text class="fig-label" transform="translate(15 123) rotate(-90)" text-anchor="middle"><tspan font-style="italic">P</tspan>(DS ≥ ds<tspan baseline-shift="sub" font-size="10" font-style="italic">i</tspan> | IM)</text>
+        <path class="fig-curve c1" d="M56.3 232L58.9 232L61.6 232L64.2 232L66.8 232L69.4 232L72.1 232L74.7 231.9L77.3 231.8L79.9 231.5L82.6 231L85.2 230.3L87.8 229.2L90.5 227.8L93.1 225.9L95.7 223.6L98.3 220.9L101 217.6L103.6 213.9L106.2 209.8L108.8 205.3L111.5 200.4L114.1 195.2L116.7 189.7L119.3 184L122 178.2L124.6 172.2L127.2 166.2L129.8 160.1L132.5 154.1L135.1 148.1L137.7 142.1L140.4 136.2L143 130.5L145.6 124.9L148.2 119.4L150.9 114.1L153.5 109L156.1 104L158.7 99.3L161.4 94.7L164 90.3L166.6 86.1L169.2 82.1L171.9 78.3L174.5 74.7L177.1 71.2L179.8 68L182.4 64.8L185 61.9L187.6 59.1L190.3 56.4L192.9 53.9L195.5 51.6L198.1 49.3L200.8 47.2L203.4 45.3L206 43.4L208.6 41.6L211.3 40L213.9 38.4L216.5 36.9L219.1 35.6L221.8 34.3L224.4 33L227 31.9L229.7 30.8L232.3 29.8L234.9 28.8L237.5 27.9L240.2 27.1L242.8 26.3L245.4 25.6L248 24.9L250.7 24.2L253.3 23.6L255.9 23L258.5 22.5L261.2 22L263.8 21.5L266.4 21.1L269 20.6L271.7 20.2L274.3 19.9L276.9 19.5L279.6 19.2L282.2 18.9L284.8 18.6L287.4 18.3L290.1 18.1L292.7 17.8L295.3 17.6L297.9 17.4L300.6 17.2L303.2 17L305.8 16.8L308.4 16.7L311.1 16.5L313.7 16.4L316.3 16.2L318.9 16.1L321.6 16L324.2 15.9L326.8 15.8L329.5 15.7L332.1 15.6L334.7 15.5L337.3 15.4L340 15.3L342.6 15.2L345.2 15.2L347.8 15.1L350.5 15.1L353.1 15L355.7 14.9L358.3 14.9L361 14.8L363.6 14.8L366.2 14.7L368.8 14.7L371.5 14.7L374.1 14.6L376.7 14.6L379.4 14.6L382 14.5L384.6 14.5L387.2 14.5L389.9 14.5L392.5 14.4L395.1 14.4L397.7 14.4L400.4 14.4L403 14.3L405.6 14.3L408.2 14.3L410.9 14.3L413.5 14.3L416.1 14.3L418.7 14.3L421.4 14.2L424 14.2"/>
+        <path class="fig-curve c2" d="M56.3 232L58.9 232L61.6 232L64.2 232L66.8 232L69.4 232L72.1 232L74.7 232L77.3 232L79.9 232L82.6 232L85.2 232L87.8 232L90.5 231.9L93.1 231.9L95.7 231.8L98.3 231.7L101 231.6L103.6 231.4L106.2 231.1L108.8 230.8L111.5 230.3L114.1 229.8L116.7 229.2L119.3 228.5L122 227.6L124.6 226.6L127.2 225.5L129.8 224.3L132.5 222.9L135.1 221.4L137.7 219.8L140.4 218L143 216.1L145.6 214L148.2 211.8L150.9 209.5L153.5 207.1L156.1 204.6L158.7 202L161.4 199.3L164 196.5L166.6 193.6L169.2 190.6L171.9 187.6L174.5 184.5L177.1 181.4L179.8 178.2L182.4 175L185 171.8L187.6 168.5L190.3 165.2L192.9 161.9L195.5 158.7L198.1 155.4L200.8 152.1L203.4 148.9L206 145.6L208.6 142.4L211.3 139.2L213.9 136.1L216.5 133L219.1 129.9L221.8 126.8L224.4 123.8L227 120.9L229.7 118L232.3 115.1L234.9 112.3L237.5 109.5L240.2 106.8L242.8 104.2L245.4 101.6L248 99L250.7 96.5L253.3 94.1L255.9 91.7L258.5 89.4L261.2 87.1L263.8 84.9L266.4 82.8L269 80.7L271.7 78.6L274.3 76.6L276.9 74.7L279.6 72.8L282.2 71L284.8 69.2L287.4 67.4L290.1 65.7L292.7 64.1L295.3 62.5L297.9 61L300.6 59.5L303.2 58L305.8 56.6L308.4 55.2L311.1 53.9L313.7 52.6L316.3 51.3L318.9 50.1L321.6 48.9L324.2 47.8L326.8 46.7L329.5 45.6L332.1 44.6L334.7 43.6L337.3 42.6L340 41.7L342.6 40.8L345.2 39.9L347.8 39L350.5 38.2L353.1 37.4L355.7 36.6L358.3 35.9L361 35.2L363.6 34.5L366.2 33.8L368.8 33.1L371.5 32.5L374.1 31.9L376.7 31.3L379.4 30.7L382 30.2L384.6 29.6L387.2 29.1L389.9 28.6L392.5 28.1L395.1 27.7L397.7 27.2L400.4 26.8L403 26.3L405.6 25.9L408.2 25.5L410.9 25.2L413.5 24.8L416.1 24.4L418.7 24.1L421.4 23.8L424 23.4"/>
+        <path class="fig-curve c3" d="M56.3 232L58.9 232L61.6 232L64.2 232L66.8 232L69.4 232L72.1 232L74.7 232L77.3 232L79.9 232L82.6 232L85.2 232L87.8 232L90.5 232L93.1 232L95.7 232L98.3 232L101 232L103.6 232L106.2 232L108.8 231.9L111.5 231.9L114.1 231.9L116.7 231.8L119.3 231.8L122 231.7L124.6 231.6L127.2 231.5L129.8 231.3L132.5 231.1L135.1 230.9L137.7 230.7L140.4 230.4L143 230.1L145.6 229.7L148.2 229.3L150.9 228.9L153.5 228.4L156.1 227.8L158.7 227.2L161.4 226.5L164 225.8L166.6 225L169.2 224.2L171.9 223.3L174.5 222.3L177.1 221.3L179.8 220.2L182.4 219L185 217.8L187.6 216.6L190.3 215.3L192.9 213.9L195.5 212.5L198.1 211L200.8 209.5L203.4 207.9L206 206.2L208.6 204.6L211.3 202.8L213.9 201.1L216.5 199.3L219.1 197.4L221.8 195.5L224.4 193.6L227 191.7L229.7 189.7L232.3 187.7L234.9 185.7L237.5 183.6L240.2 181.5L242.8 179.4L245.4 177.3L248 175.2L250.7 173.1L253.3 170.9L255.9 168.8L258.5 166.6L261.2 164.4L263.8 162.3L266.4 160.1L269 157.9L271.7 155.8L274.3 153.6L276.9 151.5L279.6 149.3L282.2 147.2L284.8 145L287.4 142.9L290.1 140.8L292.7 138.7L295.3 136.6L297.9 134.5L300.6 132.5L303.2 130.5L305.8 128.4L308.4 126.4L311.1 124.4L313.7 122.5L316.3 120.5L318.9 118.6L321.6 116.7L324.2 114.8L326.8 113L329.5 111.1L332.1 109.3L334.7 107.5L337.3 105.8L340 104L342.6 102.3L345.2 100.6L347.8 98.9L350.5 97.3L353.1 95.7L355.7 94.1L358.3 92.5L361 90.9L363.6 89.4L366.2 87.9L368.8 86.4L371.5 85L374.1 83.5L376.7 82.1L379.4 80.7L382 79.4L384.6 78L387.2 76.7L389.9 75.4L392.5 74.2L395.1 72.9L397.7 71.7L400.4 70.5L403 69.3L405.6 68.2L408.2 67L410.9 65.9L413.5 64.8L416.1 63.7L418.7 62.7L421.4 61.7L424 60.7"/>
+        <g class="fig-mk c1" style="--j:0;--k:0"><circle cx="88.7" cy="232" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:0;--k:1"><rect x="85.3" y="228.6" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:0;--k:2"><path d="M88.7 227.6L92.9 234.7L84.5 234.7Z"/></g>
+        <g class="fig-mk c1" style="--j:1;--k:0"><circle cx="123.4" cy="166.6" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:1;--k:1"><rect x="120" y="228.6" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:1;--k:2"><path d="M123.4 227.6L127.6 234.7L119.2 234.7Z"/></g>
+        <g class="fig-mk c1" style="--j:2;--k:0"><circle cx="158.1" cy="101.2" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:2;--k:1"><rect x="154.7" y="206.8" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:2;--k:2"><path d="M158.1 227.6L162.2 234.7L153.9 234.7Z"/></g>
+        <g class="fig-mk c1" style="--j:3;--k:0"><circle cx="192.8" cy="35.8" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:3;--k:1"><rect x="189.3" y="185" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:3;--k:2"><path d="M192.8 227.6L196.9 234.7L188.6 234.7Z"/></g>
+        <g class="fig-mk c1" style="--j:4;--k:0"><circle cx="227.4" cy="14" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:4;--k:1"><rect x="224" y="119.6" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:4;--k:2"><path d="M227.4 184L231.6 191.1L223.3 191.1Z"/></g>
+        <g class="fig-mk c1" style="--j:5;--k:0"><circle cx="262.1" cy="14" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:5;--k:1"><rect x="258.7" y="76" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:5;--k:2"><path d="M262.1 140.4L266.3 147.5L257.9 147.5Z"/></g>
+        <g class="fig-mk c1" style="--j:6;--k:0"><circle cx="296.8" cy="14" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:6;--k:1"><rect x="293.4" y="32.4" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:6;--k:2"><path d="M296.8 118.6L301 125.7L292.6 125.7Z"/></g>
+        <g class="fig-mk c1" style="--j:7;--k:0"><circle cx="331.5" cy="14" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:7;--k:1"><rect x="328.1" y="32.4" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:7;--k:2"><path d="M331.5 96.8L335.7 103.9L327.3 103.9Z"/></g>
+        <g class="fig-mk c1" style="--j:8;--k:0"><circle cx="366.2" cy="14" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:8;--k:1"><rect x="362.8" y="32.4" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:8;--k:2"><path d="M366.2 53.2L370.4 60.3L362 60.3Z"/></g>
+        <g class="fig-mk c1" style="--j:9;--k:0"><circle cx="400.9" cy="14" r="3.6"/></g>
+        <g class="fig-mk c2" style="--j:9;--k:1"><rect x="397.5" y="32.4" width="6.8" height="6.8"/></g>
+        <g class="fig-mk c3" style="--j:9;--k:2"><path d="M400.9 75L405.1 82.1L396.7 82.1Z"/></g>
+        <g class="fig-legend"><rect class="fig-legend-bg" x="60" y="17" width="66" height="60" rx="3"/></g>
+        <g class="fig-legend c1" data-ds="1"><line class="fig-curve-sample" x1="68" y1="28" x2="94" y2="28"/><g class="fig-mk-static"><circle cx="81" cy="28" r="3.6"/></g><text class="fig-tick" x="102" y="32">ds<tspan baseline-shift="sub" font-size="9">1</tspan></text></g>
+        <g class="fig-legend c2" data-ds="2"><line class="fig-curve-sample" x1="68" y1="47" x2="94" y2="47"/><g class="fig-mk-static"><rect x="77.6" y="43.6" width="6.8" height="6.8"/></g><text class="fig-tick" x="102" y="51">ds<tspan baseline-shift="sub" font-size="9">2</tspan></text></g>
+        <g class="fig-legend c3" data-ds="3"><line class="fig-curve-sample" x1="68" y1="66" x2="94" y2="66"/><g class="fig-mk-static"><path d="M81 61.6L85.2 68.7L76.8 68.7Z"/></g><text class="fig-tick" x="102" y="70">ds<tspan baseline-shift="sub" font-size="9">3</tspan></text></g>
+        </svg>
+        <figcaption id="fig1-cap"><b>Fig. 1</b> Schematic fragility functions for three damage states fitted to multi-stripe analysis results, <i>P</i>(DS&nbsp;≥&nbsp;ds<sub><i>i</i></sub>&nbsp;|&nbsp;IM) = Φ[ln(IM/<i>θ</i><sub><i>i</i></sub>)/<i>β</i>]</figcaption>
+    </figure>
+    </div>
+
+    <!-- HERO SEISMOGRAPH — hill cross-section with a rock-bolted horseshoe tunnel; the
+         ground-motion record is drawn and animated by the script at the end of the page.
+         Delete this <div> block to remove it. -->
+    <div class="hero-band-wrap">
+        <svg class="hero-band" viewBox="0 0 1440 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"
+             data-pen="870" data-base="170" data-amp="12" data-ground="190">
+            <defs>
+                <clipPath id="bandHistory"><rect x="0" y="0" width="870" height="190"/></clipPath>
+                <clipPath id="bandGround"><path d="M-20 150C10 149.8 101.7 149.7 160 149C218.3 148.3 278.3 147.8 330 146C381.7 144.2 426.7 142 470 138C513.3 134 553.3 129 590 122C626.7 115 660 105.7 690 96C720 86.3 746.7 73.2 770 64C793.3 54.8 813.3 46.3 830 41C846.7 35.7 856.3 32.8 870 32C883.7 31.2 894.5 32.3 912 36C929.5 39.7 950.3 46 975 54C999.7 62 1029.2 74.5 1060 84C1090.8 93.5 1125 103.2 1160 111C1195 118.8 1220 125.3 1270 131C1320 136.7 1428.3 142.7 1460 145L1460 194L-20 194Z"/></clipPath>
+            </defs>
+            <g class="band-hill">
+                <path class="band-ground" d="M-20 150C10 149.8 101.7 149.7 160 149C218.3 148.3 278.3 147.8 330 146C381.7 144.2 426.7 142 470 138C513.3 134 553.3 129 590 122C626.7 115 660 105.7 690 96C720 86.3 746.7 73.2 770 64C793.3 54.8 813.3 46.3 830 41C846.7 35.7 856.3 32.8 870 32C883.7 31.2 894.5 32.3 912 36C929.5 39.7 950.3 46 975 54C999.7 62 1029.2 74.5 1060 84C1090.8 93.5 1125 103.2 1160 111C1195 118.8 1220 125.3 1270 131C1320 136.7 1428.3 142.7 1460 145L1460 194L-20 194Z"/>
+                <g class="band-waves" clip-path="url(#bandGround)">
+                    <circle class="band-wave" cx="870" cy="220" r="0"/>
+                    <circle class="band-wave" cx="870" cy="220" r="0"/>
+                    <circle class="band-wave" cx="870" cy="220" r="0"/>
+                </g>
+                <path class="band-ridge" pathLength="1" d="M-20 150C10 149.8 101.7 149.7 160 149C218.3 148.3 278.3 147.8 330 146C381.7 144.2 426.7 142 470 138C513.3 134 553.3 129 590 122C626.7 115 660 105.7 690 96C720 86.3 746.7 73.2 770 64C793.3 54.8 813.3 46.3 830 41C846.7 35.7 856.3 32.8 870 32C883.7 31.2 894.5 32.3 912 36C929.5 39.7 950.3 46 975 54C999.7 62 1029.2 74.5 1060 84C1090.8 93.5 1125 103.2 1160 111C1195 118.8 1220 125.3 1270 131C1320 136.7 1428.3 142.7 1460 145"/>
+                <g class="band-tunnel">
+                    <path class="tunnel-void" d="M854 121.9L854 112A16 16 0 0 1 886 112L886 121.9Q870 129.1 854 121.9Z"/>
+                    <path class="tunnel-bolts" d="M887.4 103.9L895.6 100.1M887 101.5L888.9 105.7M880.5 95.9L885.4 88.3M878.9 94.1L882.7 96.6M870 92.8L870 83.8M867.7 92.2L872.3 92.2M859.5 95.9L854.6 88.3M857.3 96.6L861.1 94.1M852.6 103.9L844.4 100.1M851.1 105.7L853 101.5M850.8 117.6L841.8 117.6M850.2 115.3L850.2 119.9M889.2 117.6L898.2 117.6M889.8 115.3L889.8 119.9"/>
+                    <path class="tunnel-lining" pathLength="1" d="M850.8 123.8L850.8 112A19.2 19.2 0 0 1 889.2 112L889.2 123.8Q870 132.5 850.8 123.8ZM854 121.9L854 112A16 16 0 0 1 886 112L886 121.9Q870 129.1 854 121.9Z"/>
+                    <path class="tunnel-road" d="M856 123.4L884 123.4"/>
+                </g>
+            </g>
+            <line class="band-station" x1="870" y1="166" x2="870" y2="135.1"/>
+            <line class="band-future" x1="870" y1="170" x2="1416" y2="170"/>
+            <g clip-path="url(#bandHistory)"><path class="band-trace" d=""/></g>
+            <circle class="band-pen" cx="870" cy="170" r="3.4"/>
+        </svg>
+        <button class="seismo-toggle" id="seismoToggle" type="button" aria-label="Pause the seismograph animation" hidden><i class="fas fa-pause"></i><span>Pause</span></button>
     </div>
 </section>
 
@@ -543,7 +779,7 @@
             <!-- PhD -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="iitr.jpg" alt="IIT Roorkee Logo">
+                    <img src="iitr.jpg" alt="IIT Roorkee Logo" loading="lazy" decoding="async">
                 </div>
                 <div class="edu-info">
                     <h4>Ph.D. in Earthquake Engineering</h4>
@@ -559,7 +795,7 @@
             <!-- B.Tech -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="nitt.png" alt="NIT Trichy Logo">
+                    <img src="nitt.png" alt="NIT Trichy Logo" loading="lazy" decoding="async">
                 </div>
                 <div class="edu-info">
                     <h4>B.Tech in Civil Engineering</h4>
@@ -575,7 +811,7 @@
             <!-- Class XII -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="chaitanya.jpg" alt="Sri Chaitanya Logo">
+                    <img src="chaitanya.jpg" alt="Sri Chaitanya Logo" loading="lazy" decoding="async">
                 </div>
                 <div class="edu-info">
                     <h4>Class XII</h4>
@@ -590,7 +826,7 @@
             <!-- Class X -->
             <div class="edu-card">
                 <div class="edu-logo">
-                    <img src="stbem.jpg" alt="S.T.B.E.M. High School Logo">
+                    <img src="stbem.jpg" alt="S.T.B.E.M. High School Logo" loading="lazy" decoding="async">
                 </div>
                 <div class="edu-info">
                     <h4>Class X</h4>
@@ -877,7 +1113,7 @@
                 <div class="darts-head">
                     <!-- DARTS icon. To change it, replace DARTS_1.png in the site folder (keep the name) or update the src below. -->
                     <div class="darts-logo" style="background:none;overflow:hidden">
-                        <img src="DARTS_1.png" alt="DARTS icon" style="width:100%;height:100%;object-fit:cover">
+                        <img src="DARTS_1.png" alt="DARTS icon" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">
                     </div>
                     <div class="darts-title">
                         <h3>DARTS</h3>
@@ -1493,138 +1729,572 @@
      No need to edit unless adding new functionality
      ============================================================== -->
 <script>
-    // ===== Mobile Navigation Toggle =====
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
+    (function () {
+        'use strict';
+        const root = document.documentElement;
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const hasIO = 'IntersectionObserver' in window;
 
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        const icon = navToggle.querySelector('i');
-        if (navLinks.classList.contains('open')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        } else {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+        // ===== Mobile Navigation Toggle =====
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        const toggleIcon = navToggle.querySelector('i');
+
+        function setMenu(open) {
+            navLinks.classList.toggle('open', open);
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggleIcon.classList.toggle('fa-bars', !open);
+            toggleIcon.classList.toggle('fa-xmark', open);
         }
-    });
-
-    // Close mobile nav when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-            const icon = navToggle.querySelector('i');
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+        navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+        // Close the menu with Escape or by clicking outside the navbar
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('open')) { setMenu(false); navToggle.focus(); }
         });
-    });
-
-    // ===== Navbar Scroll Shadow =====
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // ===== Active Navigation Highlight =====
-    const sections = document.querySelectorAll('section[id]');
-    const navItems = navLinks.querySelectorAll('a');
-
-    function highlightNav() {
-        const scrollPos = window.scrollY + 100;
-        sections.forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const id = section.getAttribute('id');
-            if (scrollPos >= top && scrollPos < top + height) {
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href') === '#' + id) {
-                        item.classList.add('active');
-                    }
-                });
-            }
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('open') && !e.target.closest('.navbar')) setMenu(false);
         });
-    }
-    window.addEventListener('scroll', highlightNav);
-    highlightNav();
 
-    // ===== Scroll to Top Button =====
-    const scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-        scrollTopBtn.classList.toggle('show', window.scrollY > 500);
-    });
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+        // ===== Active Navigation Highlight (highlight slides between links) =====
+        const indicator = document.getElementById('navIndicator');
+        const navItems = Array.from(navLinks.querySelectorAll('a[href^="#"]'));
+        const sections = Array.from(document.querySelectorAll('section[id]'));
+        let activeId = '';
+        let bandId = sections.length ? sections[0].id : '';
 
-    // ===== Reveal Animations (IntersectionObserver) =====
-    // Handles legacy .fade-in plus new .reveal / .reveal-left / .reveal-right / .stagger
-    const revealEls = document.querySelectorAll('.fade-in, .reveal, .reveal-left, .reveal-right, .stagger');
-    if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-        revealEls.forEach(el => io.observe(el));
-    } else {
-        // Fallback: reveal everything if IntersectionObserver is unsupported
-        revealEls.forEach(el => el.classList.add('visible'));
-    }
-
-    // ===== Smooth Scroll for Anchor Links =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    // ===== DARTS Feedback Form (Formspree AJAX submission) =====
-    const fbForm = document.getElementById('feedbackForm');
-    if (fbForm) {
-        fbForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const status = document.getElementById('formStatus');
-            const btn = fbForm.querySelector('.btn-submit');
-            const action = fbForm.getAttribute('action');
-
-            // Guard: form not yet configured
-            if (action.indexOf('YOUR_FORM_ID') !== -1) {
-                status.className = 'form-status error';
-                status.textContent = 'Feedback form is not configured yet. Replace YOUR_FORM_ID in the form action with your Formspree endpoint.';
+        function placeIndicator() {
+            if (!indicator) return;
+            const a = navItems.find((x) => x.classList.contains('active'));
+            const collapsed = getComputedStyle(navToggle).display !== 'none';
+            if (!a || collapsed) {
+                indicator.classList.remove('on');
+                navLinks.classList.remove('pill-on');
                 return;
             }
+            indicator.style.width = a.offsetWidth + 'px';
+            indicator.style.height = a.offsetHeight + 'px';
+            indicator.style.transform = 'translate(' + a.offsetLeft + 'px,' + a.offsetTop + 'px)';
+            indicator.classList.add('on');
+            navLinks.classList.add('pill-on');
+        }
 
-            const original = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            try {
-                const res = await fetch(action, {
-                    method: 'POST',
-                    body: new FormData(fbForm),
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (res.ok) {
-                    status.className = 'form-status success';
-                    status.textContent = 'Thank you — your feedback on DARTS has been received.';
-                    fbForm.reset();
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch (err) {
-                status.className = 'form-status error';
-                status.innerHTML = 'Something went wrong. Please email <a href="mailto:srujanchalavadi6@gmail.com" style="color:inherit;text-decoration:underline">srujanchalavadi6@gmail.com</a> instead.';
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = original;
-            }
+        function setActive(id) {
+            if (!id || id === activeId) return;
+            activeId = id;
+            navItems.forEach((a) => {
+                const on = a.getAttribute('href') === '#' + id;
+                a.classList.toggle('active', on);
+                if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+            });
+            placeIndicator();
+        }
+
+        // ===== Scroll-linked UI: navbar shadow, progress bar, back-to-top =====
+        const navbar = document.getElementById('navbar');
+        const progress = document.getElementById('scrollProgress');
+        const scrollTopBtn = document.getElementById('scrollTop');
+        let ticking = false;
+
+        function sectionAtReadingLine() {
+            // Fallback for browsers without IntersectionObserver
+            const line = window.innerHeight * 0.45;
+            let id = bandId;
+            sections.forEach((s) => { if (s.getBoundingClientRect().top <= line) id = s.id; });
+            return id;
+        }
+
+        function onScroll() {
+            ticking = false;
+            const y = window.scrollY || window.pageYOffset;
+            const max = root.scrollHeight - window.innerHeight;
+            navbar.classList.toggle('scrolled', y > 50);
+            if (progress) progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+            scrollTopBtn.classList.toggle('show', y > 500);
+            const atBottom = max > 0 && max - y < 8;
+            setActive(atBottom ? sections[sections.length - 1].id : (hasIO ? bandId : sectionAtReadingLine()));
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); }
+        }, { passive: true });
+        window.addEventListener('resize', () => { placeIndicator(); onScroll(); });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeIndicator);
+
+        if (hasIO) {
+            // A thin band across the middle of the viewport decides the active section
+            const spy = new IntersectionObserver((entries) => {
+                entries.forEach((en) => { if (en.isIntersecting) bandId = en.target.id; });
+                onScroll();
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            sections.forEach((s) => spy.observe(s));
+        }
+        onScroll();
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
-    }
+
+        // ===== Reveal Animations (IntersectionObserver) =====
+        // Content is visible by default. Blocks below the fold are held back and
+        // revealed as they scroll into view; the cards inside them follow one
+        // after another. With "reduce motion" set, blocks fade in without moving.
+        const revealEls = Array.from(document.querySelectorAll('.fade-in, .reveal, .reveal-left, .reveal-right, .stagger'));
+        const cascadeGroups = '.interests-grid, .membership-grid, .achievements-grid, .leadership-grid, .extra-grid, ' +
+            '.skills-grid, .lang-grid, .repo-grid, .contact-grid, .social-links, .pub-list, .exp-timeline';
+
+        if (hasIO) {
+            const mark = (el, i) => { el.classList.add('cascade-item'); el.style.setProperty('--i', Math.min(i, 10)); };
+            document.querySelectorAll(cascadeGroups).forEach((group) => {
+                Array.from(group.children).forEach(mark);
+            });
+            document.querySelectorAll('.subsection').forEach((sub) => {
+                Array.from(sub.children).filter((c) => c.matches('.edu-card, .project-card, .award-card')).forEach(mark);
+            });
+
+            const fold = window.innerHeight * 0.92;
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach((en) => {
+                    if (!en.isIntersecting) return;
+                    const el = en.target;
+                    el.classList.add('visible');
+                    obs.unobserve(el);
+                    // Once settled, hand the cards back to their own hover transitions
+                    setTimeout(() => el.classList.remove('pending'), 2200);
+                });
+            }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+
+            revealEls.forEach((el) => {
+                if (el.getBoundingClientRect().top < fold) {
+                    el.classList.add('visible');
+                } else {
+                    el.classList.add('pending');
+                    io.observe(el);
+                }
+            });
+            root.classList.add('reveals-on');
+        } else {
+            revealEls.forEach((el) => el.classList.add('visible'));
+        }
+
+        // ===== Long repository names wrap at underscores, not mid-word =====
+        document.querySelectorAll('.repo-name').forEach((el) => {
+            const parts = el.textContent.split('_');
+            if (el.children.length || parts.length < 2) return;
+            el.textContent = '';
+            parts.forEach((part, i) => {
+                if (i) { el.appendChild(document.createTextNode('_')); el.appendChild(document.createElement('wbr')); }
+                el.appendChild(document.createTextNode(part));
+            });
+        });
+
+        // ===== Smooth Scroll for Anchor Links =====
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', function (e) {
+                const hash = this.getAttribute('href');
+                if (hash.length < 2) return;
+                const target = document.querySelector(hash);
+                if (!target) return;
+                e.preventDefault();
+                setMenu(false);
+                target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+                // Move keyboard focus to the section without a second jump
+                if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+                target.focus({ preventScroll: true });
+            });
+        });
+
+        // ===== DARTS Feedback Form (Formspree AJAX submission) =====
+        const fbForm = document.getElementById('feedbackForm');
+        if (fbForm) {
+            fbForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const status = document.getElementById('formStatus');
+                const btn = fbForm.querySelector('.btn-submit');
+                const action = fbForm.getAttribute('action');
+
+                // Guard: form not yet configured
+                if (action.indexOf('YOUR_FORM_ID') !== -1) {
+                    status.className = 'form-status error';
+                    status.textContent = 'Feedback form is not configured yet. Replace YOUR_FORM_ID in the form action with your Formspree endpoint.';
+                    return;
+                }
+
+                const original = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                try {
+                    const res = await fetch(action, {
+                        method: 'POST',
+                        body: new FormData(fbForm),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (res.ok) {
+                        status.className = 'form-status success';
+                        status.textContent = 'Thank you — your feedback on DARTS has been received.';
+                        fbForm.reset();
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (err) {
+                    status.className = 'form-status error';
+                    status.innerHTML = 'Something went wrong. Please email <a href="mailto:srujanchalavadi6@gmail.com" style="color:inherit;text-decoration:underline">srujanchalavadi6@gmail.com</a> instead.';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = original;
+                }
+            });
+        }
+
+        // ==============================================================
+        // HERO GRAPHICS — contour field, live seismograph, Fig. 1 probe
+        // ==============================================================
+        const hero = document.getElementById('home');
+
+        // ===== Contour lines: plotted level by level on load, then a slow parallax =====
+        const contour = document.querySelector('.hero-contours');
+        if (contour && contour.getContext && hero) {
+            const ctx = contour.getContext('2d');
+            // Seeded value noise, so the terrain is the same on every visit
+            const perm = new Uint8Array(512);
+            let s0 = 20260602;
+            const order = Array.from({ length: 256 }, (_, i) => i);
+            for (let i = 255; i > 0; i--) {
+                s0 = (Math.imul(s0, 1664525) + 1013904223) >>> 0;
+                const j = s0 % (i + 1);
+                const t = order[i]; order[i] = order[j]; order[j] = t;
+            }
+            for (let i = 0; i < 512; i++) perm[i] = order[i & 255];
+            const smooth = (t) => t * t * (3 - 2 * t);
+            const lattice = (x, y) => perm[(perm[x & 255] + y) & 511] / 255;
+            const noise = (x, y) => {
+                const xi = Math.floor(x), yi = Math.floor(y), u = smooth(x - xi), v = smooth(y - yi);
+                const a = lattice(xi, yi), b = lattice(xi + 1, yi), c = lattice(xi, yi + 1), d = lattice(xi + 1, yi + 1);
+                const top = a + (b - a) * u, bottom = c + (d - c) * u;
+                return top + (bottom - top) * v;
+            };
+            // Ridges and spurs; the main massif sits over the hill drawn below
+            const peaks = [
+                { x: 0.60, y: 0.66, h: 1.00, s: 0.16 },
+                { x: 0.82, y: 0.26, h: 0.85, s: 0.13 },
+                { x: 0.96, y: 0.74, h: 0.70, s: 0.14 },
+                { x: 0.40, y: 0.16, h: 0.42, s: 0.10 },
+                { x: 0.12, y: 0.74, h: 0.35, s: 0.15 }
+            ];
+            let levels = [], drawnW = 0, drawnH = 0, cw = 0, ch = 0;
+
+            const build = () => {
+                cw = contour.clientWidth; ch = contour.clientHeight;
+                if (!cw || !ch) return false;
+                drawnW = cw; drawnH = ch;
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                contour.width = Math.round(cw * dpr);
+                contour.height = Math.round(ch * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                const span = Math.max(cw, 900);
+                const height = (x, y) => {
+                    let z = 0;
+                    for (const p of peaks) {
+                        const dx = x - p.x * cw, dy = y - p.y * ch, sg = p.s * span;
+                        z += p.h * Math.exp(-(dx * dx + dy * dy) / (2 * sg * sg));
+                    }
+                    return z + 0.22 * (noise(x / 140, y / 140) - 0.5);
+                };
+                const step = 9, cols = Math.ceil(cw / step) + 1, rows = Math.ceil(ch / step) + 1;
+                const z = new Float32Array(cols * rows);
+                for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) z[j * cols + i] = height(i * step, j * step);
+                levels = [];
+                // Marching squares, one path per contour level
+                for (let L = 1; L <= 17; L++) {
+                    const iso = L * 0.07 - 0.04, path = new Path2D();
+                    for (let j = 0; j < rows - 1; j++) {
+                        for (let i = 0; i < cols - 1; i++) {
+                            const a = z[j * cols + i], b = z[j * cols + i + 1];
+                            const c = z[(j + 1) * cols + i + 1], d = z[(j + 1) * cols + i];
+                            const k = (a > iso ? 8 : 0) | (b > iso ? 4 : 0) | (c > iso ? 2 : 0) | (d > iso ? 1 : 0);
+                            if (k === 0 || k === 15) continue;
+                            const x = i * step, y = j * step;
+                            const T = [x + step * (iso - a) / (b - a), y];
+                            const R = [x + step, y + step * (iso - b) / (c - b)];
+                            const Bt = [x + step * (iso - d) / (c - d), y + step];
+                            const Lf = [x, y + step * (iso - a) / (d - a)];
+                            const seg = (p, q) => { path.moveTo(p[0], p[1]); path.lineTo(q[0], q[1]); };
+                            switch (k) {
+                                case 1: case 14: seg(Lf, Bt); break;
+                                case 2: case 13: seg(Bt, R); break;
+                                case 3: case 12: seg(Lf, R); break;
+                                case 4: case 11: seg(T, R); break;
+                                case 6: case 9: seg(T, Bt); break;
+                                case 7: case 8: seg(Lf, T); break;
+                                case 5: seg(T, R); seg(Lf, Bt); break;
+                                case 10: seg(T, Lf); seg(Bt, R); break;
+                            }
+                        }
+                    }
+                    levels.push(path);
+                }
+                return true;
+            };
+
+            // Every fifth level is an index contour, as on a topographic map
+            const paint = (shown) => {
+                ctx.clearRect(0, 0, cw, ch);
+                ctx.lineWidth = 1;
+                levels.forEach((path, L) => {
+                    const a = Math.max(0, Math.min(1, shown - L));
+                    if (!a) return;
+                    ctx.strokeStyle = 'rgba(147,197,253,' + (((L + 1) % 5 === 0 ? 0.22 : 0.095) * a).toFixed(3) + ')';
+                    ctx.stroke(path);
+                });
+                // Calmer behind the text column, full strength over the hill
+                const g = ctx.createLinearGradient(0, 0, cw, 0);
+                g.addColorStop(0, 'rgba(0,0,0,0.3)');
+                g.addColorStop(0.45, 'rgba(0,0,0,0.75)');
+                g.addColorStop(1, 'rgba(0,0,0,1)');
+                ctx.globalCompositeOperation = 'destination-in';
+                ctx.fillStyle = g;
+                ctx.fillRect(0, 0, cw, ch);
+                ctx.globalCompositeOperation = 'source-over';
+            };
+
+            const plot = () => {
+                if (!build()) return;
+                contour.classList.add('drawn');
+                const start = performance.now(), dur = 1600;
+                const tick = (now) => {
+                    const k = Math.min(1, (now - start) / dur);
+                    paint(k * (levels.length + 1));
+                    if (k < 1) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(() => requestAnimationFrame(plot));
+
+            let resizeTimer = 0;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    if (contour.clientWidth === drawnW && Math.abs(contour.clientHeight - drawnH) < 60) return;
+                    if (build()) paint(levels.length + 1);
+                }, 200);
+            });
+
+            if (!reduceMotion) {
+                let pTick = false;
+                window.addEventListener('scroll', () => {
+                    if (pTick) return;
+                    pTick = true;
+                    requestAnimationFrame(() => {
+                        pTick = false;
+                        const y = window.scrollY;
+                        if (y < hero.offsetHeight) contour.style.transform = 'translate3d(0,' + (y * 0.3).toFixed(1) + 'px,0)';
+                    });
+                }, { passive: true });
+            }
+        }
+
+        // ===== Seismograph: a live ground-motion record at the tunnel, and the hill's response =====
+        const band = document.querySelector('.hero-band');
+        const seismoToggle = document.getElementById('seismoToggle');
+        if (band && seismoToggle) {
+            const PEN = +band.dataset.pen, BASE = +band.dataset.base, AMP = +band.dataset.amp, GROUND = +band.dataset.ground;
+            const trace = band.querySelector('.band-trace');
+            const pen = band.querySelector('.band-pen');
+            const hill = band.querySelector('.band-hill');
+            const lining = band.querySelector('.tunnel-lining');
+            const bolts = band.querySelector('.tunnel-bolts');
+            const waves = Array.from(band.querySelectorAll('.band-wave'));
+
+            // Synthetic, periodic record (one loop = 1440 units): microtremor plus two
+            // strong-motion packets with a Saragoni–Hart-type envelope
+            const LOOP = 1440, DX = 2, N = LOOP / DX;
+            let seed = 1999;
+            const rnd = () => (seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296;
+            const tones = (count) => Array.from({ length: count }, () => ({
+                k: 36 + Math.floor(rnd() * 200),   // whole cycles per loop keep the record seamless
+                ph: rnd() * Math.PI * 2,
+                a: 0.6 + rnd() * 0.4
+            }));
+            const ambient = tones(14), strong = tones(22);
+            const packets = [{ x0: 170, rise: 46, amp: 1.0 }, { x0: 880, rise: 40, amp: 0.78 }];
+            const sum = (set, x) => set.reduce((acc, c) => acc + c.a * Math.sin(2 * Math.PI * c.k * x / LOOP + c.ph), 0);
+            const sig = new Float32Array(N), shake = new Float32Array(N);
+            let peak = 0;
+            for (let i = 0; i < N; i++) {
+                const x = i * DX;
+                let env = 0;
+                for (const p of packets) {
+                    const u = (x - p.x0) / p.rise;
+                    if (u > 0) env += p.amp * u * u * Math.exp(2 * (1 - u));
+                }
+                shake[i] = env * sum(strong, x) / 6;
+                sig[i] = 0.09 * sum(ambient, x) / 3 + shake[i];
+                peak = Math.max(peak, Math.abs(sig[i]));
+            }
+            for (let i = 0; i < N; i++) { sig[i] /= peak; shake[i] /= peak; }
+
+            let d = '';
+            for (let i = 0; i <= 2 * N; i++) d += (i ? 'L' : 'M') + (i * DX) + ' ' + (BASE - AMP * sig[i % N]).toFixed(1);
+            trace.setAttribute('d', d);
+
+            const sampleOf = (arr, x) => {
+                const f = (((x % LOOP) + LOOP) % LOOP) / DX, i = Math.floor(f), t = f - i;
+                return arr[i % N] * (1 - t) + arr[(i + 1) % N] * t;
+            };
+            const sampleAt = (x) => sampleOf(sig, x);      // what the pen writes
+            const shakeAt = (x) => sampleOf(shake, x);     // strong motion that drives the hill
+
+            // The hill responds as a damped single-degree-of-freedom oscillator to the
+            // strong motion in the record (the microtremor is too weak to move it); its
+            // shear (skew about the base) grows with height, so the crest moves most.
+            const SPEED = 85, W0 = 2 * Math.PI * 1.1, ZETA = 0.12;
+            let umax = 0;
+            {
+                let uu = 0, vv = 0, off = 0;
+                for (let k = 0; k < (2 * LOOP / SPEED) * 240; k++) {
+                    off += SPEED / 240;
+                    vv += (-2 * ZETA * W0 * vv - W0 * W0 * uu - shakeAt(off + PEN)) / 240;
+                    uu += vv / 240;
+                    umax = Math.max(umax, Math.abs(uu));
+                }
+            }
+            const SKEW = 4.5 / umax;              // degrees of shear for the strongest packet
+            let offset = 1252, u = 0, v = 0, clock = 0;
+            const step = (dt) => {
+                const sub = 6, h = dt / sub;
+                for (let s = 0; s < sub; s++) {
+                    offset += SPEED * h;
+                    v += (-2 * ZETA * W0 * v - W0 * W0 * u - shakeAt(offset + PEN)) * h;
+                    u += v * h;
+                }
+                if (offset > LOOP * 100) offset %= LOOP;
+            };
+
+            const navy = [13, 22, 32], slate = [51, 65, 85], amber = [217, 119, 6];
+            const mix = (a, b, t) => 'rgb(' + a.map((c, i) => Math.round(c + (b[i] - c) * t)).join(',') + ')';
+            const waveBirth = [-99, -99, -99];
+            let nextWave = 0, lastWave = -99;
+
+            const render = () => {
+                trace.setAttribute('transform', 'translate(' + (-(offset % LOOP)).toFixed(1) + ' 0)');
+                const now = sampleAt(offset + PEN);
+                pen.setAttribute('cy', (BASE - AMP * now).toFixed(1));
+                const base = shakeAt(offset + PEN);
+                const skew = Math.max(-6, Math.min(6, u * SKEW));
+                const jolt = (1.8 * base).toFixed(2);       // the base itself shakes a little
+                hill.setAttribute('transform', 'translate(' + jolt + ' 0) translate(' + PEN + ' ' + GROUND + ') skewX(' + skew.toFixed(3) + ') translate(' + (-PEN) + ' ' + (-GROUND) + ')');
+                const demand = Math.min(1, Math.abs(skew) / 3.5);
+                lining.style.stroke = mix(navy, amber, demand);
+                bolts.style.stroke = mix(slate, amber, demand * 0.8);
+                // Wavefronts rise through the ground while strong motion is being recorded
+                if (Math.abs(base) > 0.35 && clock - lastWave > 0.45) {
+                    waveBirth[nextWave] = clock; nextWave = (nextWave + 1) % 3; lastWave = clock;
+                }
+                waves.forEach((w, i) => {
+                    const k = (clock - waveBirth[i]) / 1.7;
+                    if (k < 0 || k >= 1) { w.style.opacity = 0; return; }
+                    w.setAttribute('r', (k * 235).toFixed(1));
+                    w.style.opacity = ((1 - k) * 0.85).toFixed(2);
+                });
+            };
+
+            let paused = reduceMotion, onScreen = true, running = false, last = 0;
+            const frame = (ts) => {
+                if (!running) return;
+                const dt = Math.min(0.05, Math.max(0, (ts - last) / 1000));
+                last = ts;
+                clock += dt;
+                step(dt);
+                render();
+                requestAnimationFrame(frame);
+            };
+            const sync = () => {
+                const go = !paused && onScreen && !document.hidden;
+                if (go && !running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+                else if (!go) running = false;
+            };
+            const label = () => {
+                seismoToggle.setAttribute('aria-label', paused ? 'Play the seismograph animation' : 'Pause the seismograph animation');
+                seismoToggle.querySelector('i').className = paused ? 'fas fa-play' : 'fas fa-pause';
+                seismoToggle.querySelector('span').textContent = paused ? 'Play' : 'Pause';
+            };
+            seismoToggle.addEventListener('click', () => { paused = !paused; label(); sync(); });
+            if (hasIO) {
+                new IntersectionObserver((en) => { onScreen = en[0].isIntersecting; sync(); }).observe(band);
+            }
+            document.addEventListener('visibilitychange', sync);
+            seismoToggle.hidden = false;
+            label();
+            render();
+            sync();
+        }
+
+        // ===== Fig. 1: probe the fragility functions with the pointer =====
+        const fig = document.querySelector('.hero-figure .fig');
+        if (fig && fig.getScreenCTM) {
+            const [bx0, bx1, by0, by1] = fig.dataset.box.split(',').map(Number);
+            const imax = +fig.dataset.imax, beta = +fig.dataset.beta;
+            const thetas = fig.dataset.theta.split(',').map(Number);
+            const erf = (x) => {                     // Abramowitz & Stegun 7.1.26
+                const sgn = Math.sign(x); x = Math.abs(x);
+                const t = 1 / (1 + 0.3275911 * x);
+                return sgn * (1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x));
+            };
+            const Phi = (z) => 0.5 * (1 + erf(z / Math.SQRT2));
+            const NS = 'http://www.w3.org/2000/svg';
+            const cursor = document.createElementNS(NS, 'g');
+            cursor.setAttribute('class', 'fig-cursor');
+            const rule = document.createElementNS(NS, 'line');
+            rule.setAttribute('y1', by0); rule.setAttribute('y2', by1);
+            cursor.appendChild(rule);
+            const dotColours = ['#60A5FA', '#E2E8F0', '#F0C44C'];
+            const dots = thetas.map((_, i) => {
+                const c = document.createElementNS(NS, 'circle');
+                c.setAttribute('r', '4.2'); c.setAttribute('fill', dotColours[i] || '#E2E8F0');
+                cursor.appendChild(c);
+                return c;
+            });
+            fig.appendChild(cursor);
+            const toSvg = (e) => {
+                const pt = fig.createSVGPoint();
+                pt.x = e.clientX; pt.y = e.clientY;
+                return pt.matrixTransform(fig.getScreenCTM().inverse());
+            };
+            fig.addEventListener('pointermove', (e) => {
+                const p = toSvg(e);
+                if (p.x < bx0 || p.x > bx1 || p.y < by0 - 12 || p.y > by1 + 12) { cursor.classList.remove('on'); return; }
+                const im = Math.max(0.01, (p.x - bx0) / (bx1 - bx0) * imax);
+                rule.setAttribute('x1', p.x.toFixed(1)); rule.setAttribute('x2', p.x.toFixed(1));
+                thetas.forEach((th, i) => {
+                    dots[i].setAttribute('cx', p.x.toFixed(1));
+                    dots[i].setAttribute('cy', (by1 - (by1 - by0) * Phi(Math.log(im / th) / beta)).toFixed(1));
+                });
+                cursor.classList.add('on');
+            });
+            fig.addEventListener('pointerleave', () => cursor.classList.remove('on'));
+            fig.querySelectorAll('.fig-legend[data-ds]').forEach((item) => {
+                const ds = item.dataset.ds;
+                item.addEventListener('pointerenter', () => fig.classList.add('hl-' + ds));
+                item.addEventListener('pointerleave', () => fig.classList.remove('hl-' + ds));
+            });
+        }
+
+        // ===== Experience timeline fills in as you scroll =====
+        const timeline = document.querySelector('.exp-timeline');
+        if (timeline && !reduceMotion) {
+            timeline.classList.add('tl-on');
+            let tTick = false;
+            const fill = () => {
+                tTick = false;
+                const r = timeline.getBoundingClientRect();
+                const p = Math.max(0, Math.min(1, (window.innerHeight * 0.65 - r.top) / r.height));
+                timeline.style.setProperty('--tl', p.toFixed(3));
+            };
+            window.addEventListener('scroll', () => {
+                if (!tTick) { tTick = true; requestAnimationFrame(fill); }
+            }, { passive: true });
+            fill();
+        }
+    })();
 </script>
 
 </body>
