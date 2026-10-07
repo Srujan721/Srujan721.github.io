@@ -1,0 +1,26 @@
+{%- comment -%}
+  Finds the newest CV in the repository at build time (GitHub Pages runs Jekyll on every push).
+  Accepted file name: CV_YYYY-MM-DD.pdf, e.g. CV_2026-10-07.pdf, in any folder ("cv/" is recommended).
+  The newest date in the file name wins; the upload time is not used.
+  Sets: latest_cv_path (e.g. /cv/CV_2026-10-07.pdf), latest_cv_name, latest_cv_date (YYYY-MM-DD).
+  Used by cv.json (read by the "Download CV" button) and cv/index.html (the stable link /cv/).
+{%- endcomment -%}
+{%- assign latest_cv_path = "" -%}
+{%- assign latest_cv_name = "" -%}
+{%- assign latest_cv_date = "" -%}
+{%- for f in site.static_files -%}
+  {%- assign n = f.name | downcase -%}
+  {%- assign n_prefix = n | slice: 0, 3 -%}
+  {%- assign n_ext = n | slice: 13, 4 -%}
+  {%- assign n_date = f.name | slice: 3, 10 -%}
+  {%- assign n_d1 = n_date | slice: 4, 1 -%}
+  {%- assign n_d2 = n_date | slice: 7, 1 -%}
+  {%- assign n_year = n_date | slice: 0, 4 | plus: 0 -%}
+  {%- if n.size == 17 and n_prefix == "cv_" and n_ext == ".pdf" and n_d1 == "-" and n_d2 == "-" and n_year > 1999 -%}
+    {%- if n_date > latest_cv_date -%}
+      {%- assign latest_cv_date = n_date -%}
+      {%- assign latest_cv_name = f.name -%}
+      {%- assign latest_cv_path = f.path | prepend: "/" | replace: "//", "/" -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}

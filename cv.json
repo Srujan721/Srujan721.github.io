@@ -1,0 +1,5 @@
+---
+# Written by Jekyll at build time; see _includes/latest-cv.html. Do not edit by hand.
+---
+{%- include latest-cv.html -%}
+{"file": {{ latest_cv_path | jsonify }}, "name": {{ latest_cv_name | jsonify }}, "date": {{ latest_cv_date | jsonify }}}

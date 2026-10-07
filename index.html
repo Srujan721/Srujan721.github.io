@@ -533,6 +533,15 @@
         .hero-text{min-width:0}
         .hero-avatar{margin:0;margin-top:calc(2.8rem * 0.1875)}   /* photo top level with the cap top of the 2.8rem name */
         .hero-badges,.hero-buttons,.hero-social{justify-content:flex-start}
+        /* three buttons (View Research, Get in Touch, Download CV): narrower side padding */
+        .hero-buttons{gap:12px}
+        .hero-buttons .btn{padding:13px 20px}
+        @media(max-width:520px){   /* phones: two buttons side by side, Download CV full width below */
+            .hero-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:340px;margin-left:auto;margin-right:auto}
+            .hero-buttons .btn{justify-content:center;padding:13px 12px}
+            .hero-buttons .btn-cv{grid-column:1 / -1}
+        }
+        @media(max-width:359px){.hero-buttons .btn{font-size:0.85rem;gap:6px;padding:13px 6px;white-space:nowrap}}
         @media(max-width:899px){
             .hero{padding-top:calc(68px + 40px)}
             .hero-content{grid-template-columns:minmax(0,1fr);gap:0;text-align:center;justify-items:center}
@@ -642,6 +651,9 @@
             <div class="hero-buttons">
                 <a href="#research" class="btn btn-primary"><i class="fas fa-flask"></i>View Research</a>
                 <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i>Get in Touch</a>
+                <!-- DOWNLOAD CV — upload the PDF to the "cv" folder as CV_YYYY-MM-DD.pdf (e.g. CV_2026-10-07.pdf).
+                     The newest date is picked automatically (see _includes/latest-cv.html); nothing here needs editing. -->
+                <a href="cv/" class="btn btn-outline btn-cv" id="cvButton" aria-label="Download CV (PDF)"><i class="fas fa-file-arrow-down"></i>Download CV</a>
             </div>
 
             <!-- SOCIAL LINKS — Edit URLs as needed -->
@@ -2259,6 +2271,30 @@
         };
         if ('requestIdleCallback' in window) requestIdleCallback(check, { timeout: 3000 });
         else setTimeout(check, 1500);
+    })();
+
+    // ===== Download CV: cv.json is written by GitHub Pages (Jekyll) on every push and names the newest
+    // CV_YYYY-MM-DD.pdf in the repository. The button then downloads that file directly. Without it,
+    // the button's default link "cv/" redirects to the same file. =====
+    (function () {
+        const btn = document.getElementById('cvButton');
+        if (!btn || !window.fetch) return;
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        fetch('cv.json', { cache: 'no-cache' })
+            .then((r) => (r.ok ? r.json() : null))
+            .then((cv) => {
+                if (!cv) return;
+                if (!cv.file) {   // no CV uploaded yet
+                    btn.href = '#contact';
+                    btn.title = 'CV available on request';
+                    return;
+                }
+                btn.href = cv.file;
+                btn.setAttribute('download', cv.name);
+                const d = (cv.date || '').split('-');
+                if (d.length === 3) btn.title = 'CV (PDF), updated ' + Number(d[2]) + ' ' + months[Number(d[1]) - 1] + ' ' + d[0];
+            })
+            .catch(() => {});
     })();
 </script>
 

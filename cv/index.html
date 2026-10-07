@@ -1,0 +1,25 @@
+---
+# Stable link to the newest CV: https://srujan721.github.io/cv/
+# Redirects to the newest CV_YYYY-MM-DD.pdf (see _includes/latest-cv.html). Do not edit by hand.
+---
+{%- include latest-cv.html -%}
+{%- if latest_cv_path != "" -%}{%- assign target = latest_cv_path -%}{%- else -%}{%- assign target = "/#contact" -%}{%- endif -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>CV | Dr. Sai Srujan Kumar Chalavadi</title>
+<meta http-equiv="refresh" content="0; url={{ target }}">
+<script>location.replace({{ target | jsonify }});</script>
+<style>body{margin:0;padding:48px 24px;background:#0D1620;color:#E2E8F0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#60A5FA}</style>
+</head>
+<body>
+{%- if latest_cv_path != "" %}
+<p>Opening the CV of Dr. Sai Srujan Kumar Chalavadi: <a href="{{ target }}">{{ latest_cv_name }}</a></p>
+{%- else %}
+<p>The CV is available on request. <a href="{{ target }}">Contact Dr. Sai Srujan Kumar Chalavadi</a></p>
+{%- endif %}
+</body>
+</html>
