@@ -551,7 +551,9 @@
 
         /* Hill–tunnel seismograph */
         .hero-band-wrap{position:relative;z-index:1;margin-top:26px;background:linear-gradient(to bottom,transparent 88%,var(--bg-alt) 88%)}
-        .hero-band{display:block;width:100%;height:clamp(140px,15vw,260px)}
+        /* never shorter than the drawing's own 1440:190 proportion: beyond ~1970 px the band grows with the
+           width instead of letting preserveAspectRatio "slice" crop the hilltop (narrower screens unchanged) */
+        .hero-band{display:block;width:100%;height:max(clamp(140px,15vw,260px),calc(100vw * 190 / 1440))}
         .band-ground{fill:var(--bg-alt)}
         .band-ridge{fill:none;stroke:rgba(96,165,250,0.85);stroke-width:1.6}
         .band-wave{fill:none;stroke:rgba(59,130,246,0.55);stroke-width:1.4;opacity:0}
