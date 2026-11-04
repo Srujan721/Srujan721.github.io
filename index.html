@@ -494,6 +494,13 @@
         .reveals-on .pending .exp-dot{transform:scale(0);transition:transform .55s cubic-bezier(.34,1.56,.64,1);transition-delay:calc(var(--i,0) * 80ms + 420ms)}
         .reveals-on .pending.visible .exp-dot{transform:none}
 
+        /* Moving between sections from the navbar ("Section transitions" in the script): a long move
+           fades the page out briefly, jumps, and fades it back in as the destination glides into place */
+        body > section,body > footer{transition:opacity .32s ease-out}
+        .nav-fade body > section,.nav-fade body > footer{opacity:0;transition:opacity .16s ease-out}
+        /* lets the script return a section's blocks to their starting state without animating them */
+        .reveal-reset .pending,.reveal-reset .pending *{transition:none!important}
+
         /* Hero entrance on page load */
         @keyframes heroRise{from{opacity:0;transform:translateY(26px)}}
         @keyframes heroPop{from{opacity:0;transform:scale(.85)}}
@@ -2016,6 +2023,7 @@
         const sections = Array.from(document.querySelectorAll('section[id]'));
         let activeId = '';
         let bandId = sections.length ? sections[0].id : '';
+        let navTarget = null;   // id of the section the navbar is moving to (see "Section transitions")
 
         function placeIndicator() {
             if (!indicator) return;
@@ -2066,7 +2074,8 @@
             if (progress) progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
             scrollTopBtn.classList.toggle('show', y > 500);
             const atBottom = max > 0 && max - y < 8;
-            setActive(atBottom ? sections[sections.length - 1].id : (hasIO ? bandId : sectionAtReadingLine()));
+            // while the navbar is taking the page to a section, its tab stays highlighted
+            if (!navTarget) setActive(atBottom ? sections[sections.length - 1].id : (hasIO ? bandId : sectionAtReadingLine()));
         }
 
         window.addEventListener('scroll', () => {
@@ -2084,10 +2093,6 @@
             sections.forEach((s) => spy.observe(s));
         }
         onScroll();
-
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-        });
 
         // ===== Hero counts and footer year =====
         // An element with data-count shows how many elements on the page match its selector
@@ -2261,6 +2266,12 @@
         const revealEls = Array.from(document.querySelectorAll('.fade-in, .reveal, .reveal-left, .reveal-right, .stagger'));
         const cascadeGroups = '.interests-grid, .membership-grid, .leadership-grid, .extra-grid, .honours-grid, .ach-archive, ' +
             '.skills-grid, .lang-grid, .repo-grid, .contact-grid, .social-links, .pub-list, .exp-timeline, .projects-grid';
+        // Used by the section transitions: while holdReveals is true, blocks that pass through the
+        // screen keep their entrance for later; releaseReveals() then shows the blocks now in view, and
+        // rewindReveals(section) returns a section's blocks to their starting state to play them again.
+        let holdReveals = false;
+        let releaseReveals = () => { holdReveals = false; };
+        let rewindReveals = () => {};
 
         if (hasIO) {
             const mark = (el, i) => { el.classList.add('cascade-item'); el.style.setProperty('--i', Math.min(i, 10)); };
@@ -2272,14 +2283,16 @@
             });
 
             const fold = window.innerHeight * 0.92;
+            const settleTimers = new WeakMap();
             const io = new IntersectionObserver((entries, obs) => {
+                if (holdReveals) return;
                 entries.forEach((en) => {
                     if (!en.isIntersecting) return;
                     const el = en.target;
                     el.classList.add('visible');
                     obs.unobserve(el);
                     // Once settled, hand the cards back to their own hover transitions
-                    setTimeout(() => el.classList.remove('pending'), 2200);
+                    settleTimers.set(el, setTimeout(() => el.classList.remove('pending'), 2200));
                 });
             }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
 
@@ -2292,6 +2305,25 @@
                 }
             });
             root.classList.add('reveals-on');
+
+            // Observing a block again makes the observer report at once whether it is in view
+            releaseReveals = () => {
+                holdReveals = false;
+                revealEls.forEach((el) => {
+                    if (el.classList.contains('pending') && !el.classList.contains('visible')) { io.unobserve(el); io.observe(el); }
+                });
+            };
+            rewindReveals = (section) => {
+                root.classList.add('reveal-reset');
+                revealEls.forEach((el) => {
+                    if (!section.contains(el)) return;
+                    clearTimeout(settleTimers.get(el));
+                    el.classList.remove('visible');
+                    el.classList.add('pending');
+                });
+                void root.offsetHeight;   // apply the starting state now, with transitions off
+                root.classList.remove('reveal-reset');
+            };
         } else {
             revealEls.forEach((el) => el.classList.add('visible'));
         }
@@ -2307,20 +2339,117 @@
             });
         });
 
-        // ===== Smooth Scroll for Anchor Links =====
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', function (e) {
-                const hash = this.getAttribute('href');
-                if (hash.length < 2) return;
-                const target = document.querySelector(hash);
-                if (!target) return;
-                e.preventDefault();
-                setMenu(false);
-                target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-                // Move keyboard focus to the section without a second jump
-                if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-                target.focus({ preventScroll: true });
-            });
+        // ===== Section transitions (navbar tabs, hero buttons, back-to-top) =====
+        // The browser's own smooth scroll races through every section in between and uses up their
+        // entrance animations out of sight. Instead:
+        // - a long move fades the page out (0.17 s), jumps to just before the destination, then glides
+        //   the last stretch (0.65 s) while the page fades back in and the destination's entrance plays,
+        //   also when it was seen before;
+        // - a short move is an eased scroll, and the destination animates as it settles;
+        // - sections passed over keep their entrance for when they are scrolled to;
+        // - the clicked tab is highlighted at once instead of each tab in between;
+        // - the reader's own wheel, touch, key or click stops the move where it is;
+        // - with "reduce motion" set, the page goes straight to the section.
+        let move = null;   // { target, frame } while a move is running
+        const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        const navOffset = () => parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+        const yOf = (el) => {
+            const max = Math.max(0, root.scrollHeight - window.innerHeight);
+            return Math.max(0, Math.min(max, Math.round(el.getBoundingClientRect().top + window.scrollY - navOffset())));
+        };
+        const onScreen = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; };
+        const heroParts = Array.from(document.querySelectorAll('.hero-avatar, .hero h1, .hero .tagline, .hero .sub-tagline, .hero-badge, .hero-buttons, .hero-social a'));
+        const replayHero = () => {   // restart the page-load entrance of the photo and name
+            heroParts.forEach((el) => { el.style.animation = 'none'; });
+            void root.offsetHeight;
+            heroParts.forEach((el) => { el.style.animation = ''; });
+        };
+
+        const stopMove = (arrived) => {
+            if (!move) return;
+            const m = move;
+            move = null;
+            cancelAnimationFrame(m.frame);
+            root.classList.remove('nav-fade');
+            root.style.scrollBehavior = '';
+            releaseReveals();
+            navTarget = null;
+            onScroll();
+            if (arrived) {   // keyboard focus moves to the section, without a second jump
+                if (!m.target.hasAttribute('tabindex')) m.target.setAttribute('tabindex', '-1');
+                m.target.focus({ preventScroll: true });
+            }
+        };
+        const glide = (from, to, ms, ease, onStep) => {
+            const t0 = performance.now();
+            const frame = (now) => {
+                if (!move) return;
+                const p = Math.min(1, (now - t0) / ms);
+                window.scrollTo(0, Math.round(from + (to - from) * ease(p)));
+                if (onStep) onStep(p);
+                if (p < 1) move.frame = requestAnimationFrame(frame);
+                else stopMove(true);
+            };
+            move.frame = requestAnimationFrame(frame);
+        };
+        const goToSection = (target) => {
+            stopMove(false);
+            setMenu(false);
+            navTarget = target.id;
+            setActive(target.id);
+            move = { target, frame: 0 };
+            root.style.scrollBehavior = 'auto';   // the steps below are placed exactly, not smoothed again
+            const from = window.scrollY, to = yOf(target), dist = Math.abs(to - from), vh = window.innerHeight;
+            if (reduceMotion || dist < 4) {
+                window.scrollTo(0, to);
+                stopMove(true);
+                return;
+            }
+            holdReveals = true;
+            if (dist > vh * 1.6) {
+                // fade out, and jump only once the page is actually faded (checked each frame, at most 0.32 s)
+                const probe = Array.from(document.querySelectorAll('body > section, body > footer')).find(onScreen);
+                const t0 = performance.now();
+                root.classList.add('nav-fade');
+                const whenFaded = () => {
+                    if (!move) return;
+                    if (probe && +getComputedStyle(probe).opacity > 0.03 && performance.now() - t0 < 320) {
+                        move.frame = requestAnimationFrame(whenFaded);
+                        return;
+                    }
+                    const lead = Math.min(dist, Math.round(vh * 0.22)) * (to > from ? -1 : 1);
+                    window.scrollTo(0, to + lead);
+                    rewindReveals(target);
+                    if (target.id === 'home') replayHero();
+                    root.classList.remove('nav-fade');
+                    releaseReveals();
+                    glide(to + lead, to, 650, easeOut);
+                };
+                move.frame = requestAnimationFrame(whenFaded);
+            } else {
+                if (!onScreen(target)) rewindReveals(target);
+                let released = false;
+                glide(from, to, Math.min(800, 380 + dist * 0.25), easeInOut, (p) => {
+                    if (!released && p > 0.55) { released = true; releaseReveals(); }
+                });
+            }
+        };
+
+        document.addEventListener('click', (e) => {
+            const a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+            if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            let id = '';
+            try { id = decodeURIComponent(a.getAttribute('href').slice(1)); } catch (err) { return; }
+            const target = id && document.getElementById(id);
+            if (!target) return;
+            e.preventDefault();
+            goToSection(target);
+        });
+        scrollTopBtn.addEventListener('click', () => goToSection(document.getElementById('home') || document.body));
+        // the reader's own scrolling or clicking takes over at once
+        ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((type) => {
+            window.addEventListener(type, () => { if (move) stopMove(false); }, { passive: true });
         });
 
         // ===== DARTS Feedback Form (Formspree AJAX submission) =====
