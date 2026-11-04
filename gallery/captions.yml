@@ -1,0 +1,21 @@
+# Gallery captions (optional). One entry per photo; photos without an entry still appear.
+#
+#   file:     the photo's file name in this folder, e.g. IMG_20251203_142233.jpg
+#             (for a photo in a subfolder: Conferences/IMG_20251203_142233.jpg)
+#   caption:  one line shown with the photo
+#   place:    e.g. Salzburg, Austria
+#   date:     YYYY-MM-DD or YYYY-MM; without it the camera's date is used
+#   album:    groups photos under a filter button, e.g. Conferences, Fieldwork, Campus
+#             (a subfolder name is used as the album when this is left out)
+#   alt:      a description for screen readers (the caption is used when this is left out)
+#
+# Put text in double quotes when it contains a colon (:) or a #.
+# Keep the two spaces before caption:, place:, date:, album: and alt:.
+#
+# Example (delete the "# " at the start of each line to use it):
+#
+# - file: IMG_20231012_101500.jpg
+#   caption: "Rock Bowl semi-final, 15th ISRM Congress"
+#   place: Salzburg, Austria
+#   date: 2023-10-12
+#   album: Conferences

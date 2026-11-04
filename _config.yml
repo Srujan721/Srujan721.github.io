@@ -1,0 +1,5 @@
+# GitHub Pages (Jekyll) settings.
+# gallery/ holds the full-size photo uploads. The site shows the web-size copies made from them
+# (assets/gallery/, see gallery/README.md), so the uploads themselves are not published.
+exclude:
+  - gallery
