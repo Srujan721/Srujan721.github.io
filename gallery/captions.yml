@@ -1,14 +1,15 @@
 # Photos & Videos: captions and video links (optional). One entry per photo or video;
 # photos without an entry still appear.
 #
-#   file:     the photo's file name in this folder, e.g. IMG_20251203_142233.jpg
-#             (for a photo in a subfolder: Conferences/IMG_20251203_142233.jpg)
+#   file:     the file name in this folder of a photo or an uploaded video, e.g. IMG_20251203_142233.jpg
+#             (in a subfolder: Conferences/IMG_20251203_142233.jpg; typing.mp4 is the Touch Typing video)
 #   video:    instead of a photo, a video link: YouTube (unlisted works), Vimeo, or a Google Drive
 #             file shared with "Anyone with the link". With a video, "file:" may name a photo in
 #             this folder to use as its cover; otherwise the video site's own cover is used.
 #   caption:  one line shown with the photo or video
 #   place:    e.g. Salzburg, Austria
-#   date:     YYYY-MM-DD or YYYY-MM; photos otherwise use the camera's date, videos need it here
+#   date:     YYYY-MM-DD or YYYY-MM; photos and uploaded videos otherwise use the camera's date;
+#             linked videos need it here
 #   album:    groups items under a filter button, e.g. Conferences, Fieldwork, Campus, Typing
 #             (a photo's subfolder name is used when this is left out)
 #   alt:      a description for screen readers (the caption is used when this is left out)

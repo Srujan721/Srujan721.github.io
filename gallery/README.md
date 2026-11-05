@@ -14,10 +14,13 @@ Photos are shown newest first, using the camera's date. A date written in the fi
 
 ## Add a video
 
-Video files are not uploaded here (GitHub accepts at most 25 MB per file in the browser, and phone videos need converting to play everywhere). Instead:
+**Upload the file here** (MP4, or MOV from a phone, WebM, ...). The Action converts it to a web video that plays in every browser (H.264, at most 1280 px, 30 frames/s; a 50 MB phone clip usually becomes 5 to 10 MB) and takes a cover picture from it.
 
-1. Upload the video to YouTube ("Unlisted" keeps it out of YouTube search), Vimeo, or Google Drive (share it with "Anyone with the link").
-2. Add an entry with its link to `captions.yml`:
+- Name it **`typing.mp4`** (or `typing.mov`, any video format) to show it in the **Touch Typing** block. Any other name puts it under Photos & Videos.
+- GitHub's website accepts at most **25 MB per file**. For a larger video either make it smaller first (for example HandBrake's "Fast 720p30" preset, or your phone's export at 720p), or upload it with **GitHub Desktop**, which accepts files up to 100 MB.
+- Captions, dates and albums work as for photos (`file: typing.mp4` in `captions.yml`). The recording date is read from the phone's video when no date is given.
+
+**Or link a video** that is on YouTube ("Unlisted" keeps it out of YouTube search), Vimeo, or Google Drive (shared with "Anyone with the link"), by adding an entry to `captions.yml`:
 
 ```yaml
 - video: https://youtu.be/VIDEO_ID
@@ -26,9 +29,9 @@ Video files are not uploaded here (GitHub accepts at most 25 MB per file in the 
   album: Typing
 ```
 
-The Action downloads the video's cover image once and lists the video with the photos; it plays on the site only when a visitor presses play. To use your own cover, upload a photo here and add `file: thatphoto.jpg` to the video's entry.
+The Action downloads a linked video's cover image once. To use your own cover, upload a photo here and add `file: thatphoto.jpg` to the video's entry. Videos play on the site only when a visitor presses play.
 
-The touch-typing video in the Touch Typing block is set separately, in `index.html` (search for `data-video`).
+For the Touch Typing block, a YouTube, Vimeo or Drive link can also be pasted into `index.html` (search for `data-video`); it takes precedence over an uploaded `typing` file.
 
 ## Captions, places and dates
 
@@ -44,9 +47,9 @@ Open `captions.yml` in this folder, click the pencil icon to edit, and add one e
 
 All fields except `file:` (or `video:`) are optional. If the file has a mistake, the Action stops without changing the site and the **Actions** tab shows the line to fix.
 
-## Remove or replace a photo
+## Remove or replace a photo or video
 
-Delete the photo from this folder; its web copies are removed automatically. To replace one, upload the new photo under the same file name.
+Delete the file from this folder; its web copies are removed automatically. To replace one, upload the new file under the same name.
 
 ## Location data
 

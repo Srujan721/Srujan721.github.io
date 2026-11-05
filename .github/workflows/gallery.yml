@@ -1,5 +1,5 @@
-# Gallery: after photos (or captions.yml) are uploaded to gallery/, make the web-size copies
-# and assets/gallery/gallery.json with tools/build_gallery.py, commit them to main, and ask
+# Photos & Videos: after photos, videos (or captions.yml) are uploaded to gallery/, make the web-size
+# copies and assets/gallery/gallery.json with tools/build_gallery.py, commit them to main, and ask
 # GitHub Pages to republish the site. Runs are listed under the repository's "Actions" tab.
 name: Gallery photos
 
@@ -34,7 +34,16 @@ jobs:
       - name: Install the image tools
         run: python -m pip install --disable-pip-version-check "pillow>=10" "pyyaml>=6" "pillow-heif>=0.16"
 
-      - name: Make the web-size photos and gallery.json
+      - name: Install ffmpeg (only when video files were uploaded)
+        run: |
+          if find gallery -type f \( -iname '*.mp4' -o -iname '*.mov' -o -iname '*.m4v' -o -iname '*.webm' -o -iname '*.avi' -o -iname '*.mkv' -o -iname '*.3gp' \) -print -quit | grep -q .; then
+            command -v ffmpeg > /dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; }
+            ffmpeg -hide_banner -version | head -1
+          else
+            echo "No video files in gallery/."
+          fi
+
+      - name: Make the web-size photos, videos and gallery.json
         run: python tools/build_gallery.py
 
       - name: Commit the results

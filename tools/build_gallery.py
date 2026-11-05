@@ -15,15 +15,19 @@ date is taken from captions.yml, else from the camera (EXIF), else from a date i
 Unchanged photos are not processed again (the list keeps a fingerprint of each upload), and the
 copies of photos deleted from gallery/ are removed.
 
-Videos are not uploaded here: put them on YouTube (e.g. unlisted), Vimeo or Google Drive and add an
-entry with "video:" and the link to gallery/captions.yml. The script downloads the video's cover
-image once (or uses a photo from gallery/ named in "file:") and lists the video with the photos;
-the page plays it only when a visitor presses play.
+Videos come in two ways:
+  - a video file uploaded to gallery/ (MP4, MOV from a phone, WebM, ...): converted with ffmpeg to a
+    web MP4 that plays in every browser (H.264 + AAC, at most 1280 px, 30 frames/s) as
+    assets/gallery/<id>.mp4, with a cover taken from the video. A file named typing.<ext> becomes the
+    video of the Touch Typing block; other videos are listed with the photos.
+  - a link in gallery/captions.yml ("video:" with a YouTube, Vimeo or Google Drive address): the
+    video's cover image is downloaded once (or a photo from gallery/ named in "file:" is used).
+The page plays a video only when a visitor presses play.
 
 The GitHub Action .github/workflows/gallery.yml runs this after every upload to gallery/.
 To run it yourself from the site folder:
     pip install pillow pyyaml pillow-heif        (pillow-heif is only needed for HEIC)
-    python tools/build_gallery.py
+    python tools/build_gallery.py                (video files also need ffmpeg)
 """
 import datetime as dt
 import hashlib
@@ -31,6 +35,8 @@ import io
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import tempfile
 import unicodedata
@@ -246,6 +252,45 @@ def caption_keys(rel):
     return [k.lower() for k in (rel, base, os.path.splitext(rel)[0], os.path.splitext(base)[0])]
 
 
+def find_videos():
+    """Relative paths of the video files in gallery/ (converted by make_video)."""
+    found = []
+    for folder, dirs, files in os.walk(SRC):
+        dirs[:] = sorted(d for d in dirs if not d.startswith('.'))
+        for name in sorted(files):
+            if not name.startswith('.') and os.path.splitext(name)[1].lower() in VIDEO_EXTS:
+                found.append(os.path.relpath(os.path.join(folder, name), SRC).replace(os.sep, '/'))
+    return found
+
+
+def make_video(path, pid):
+    """Converts one uploaded video to assets/gallery/<pid>.mp4 and makes its cover; returns sizes."""
+    out = os.path.join(OUT, f'{pid}.mp4')
+    tmp = out + '.part.mp4'
+    cmd = ['ffmpeg', '-nostdin', '-hide_banner', '-loglevel', 'error', '-y', '-i', path,
+           '-map', '0:v:0', '-map', '0:a:0?', '-sn', '-dn', '-map_metadata', '-1',
+           '-vf', 'scale=1280:1280:force_original_aspect_ratio=decrease:force_divisible_by=2',
+           '-fpsmax', '30', '-c:v', 'libx264', '-preset', 'medium', '-crf', '26', '-pix_fmt', 'yuv420p',
+           '-profile:v', 'high', '-c:a', 'aac', '-b:a', '128k', '-ac', '2', '-movflags', '+faststart', tmp]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0 or not os.path.exists(tmp):
+        if os.path.exists(tmp):
+            os.remove(tmp)
+        raise RuntimeError((r.stderr.strip().splitlines() or ['ffmpeg failed'])[-1])
+    os.replace(tmp, out)
+    probe = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries',
+                            'stream=width,height:format=duration', '-of', 'json', out], capture_output=True, text=True)
+    info = json.loads(probe.stdout or '{}')
+    dur = float((info.get('format') or {}).get('duration') or 0)
+    with tempfile.TemporaryDirectory() as tmpdir:   # cover: a frame a third of the way in (at most 3 s)
+        cover = os.path.join(tmpdir, 'cover.png')
+        subprocess.run(['ffmpeg', '-nostdin', '-loglevel', 'error', '-y', '-ss', f'{min(3.0, dur / 3):.2f}', '-i', out,
+                        '-frames:v', '1', cover], capture_output=True)
+        copies = make_copies(cover, pid) if os.path.exists(cover) else {'w': 16, 'h': 9, 'widths': []}
+    return {'w': copies['w'], 'h': copies['h'], 'widths': copies['widths'], 'duration': round(dur, 1),
+            'size': os.path.getsize(out)}
+
+
 def find_photos():
     """Relative paths ('IMG_1.jpg', 'Conferences/IMG_2.jpg') of the photos in gallery/."""
     found = []
@@ -253,10 +298,6 @@ def find_photos():
         dirs[:] = sorted(d for d in dirs if not d.startswith('.'))
         for name in sorted(files):
             ext = os.path.splitext(name)[1].lower()
-            if ext in VIDEO_EXTS and not name.startswith('.'):
-                warn(f'{name}: video files are not shown from this folder. Upload the video to YouTube '
-                     '(e.g. unlisted), Vimeo or Google Drive and add its link as "video:" in gallery/captions.yml.')
-                continue
             if name.startswith('.') or ext not in PHOTO_EXTS:
                 continue
             if os.path.splitext(name)[1].lower() in ('.heic', '.heif') and not HEIF:
@@ -333,7 +374,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     captions, videos = load_captions()
     try:
-        old = {('video:' + p['url']) if p.get('type') == 'video' else p['file']: p
+        old = {('video:' + p['url']) if p.get('type') == 'video' and str(p.get('url', '')).startswith('http') else p['file']: p
                for p in json.load(open(LIST, encoding='utf-8')).get('photos', [])}
     except (OSError, ValueError, AttributeError, KeyError, TypeError):
         old = {}
@@ -361,14 +402,15 @@ def main():
             if k in cover_keys:
                 cover_of.setdefault(k, rel)
     photos = [rel for rel in everything if rel not in cover_of.values()]
+    uploads = find_videos()
 
-    # ids: a photo keeps the id it had before, so its web addresses stay the same
+    # ids: a photo or video keeps the id it had before, so its web addresses stay the same
     taken_ids, ids = set(), {}
-    for rel in photos:
+    for rel in photos + uploads:
         if rel in old and old[rel].get('id') and old[rel]['id'] not in taken_ids:
             ids[rel] = old[rel]['id']
             taken_ids.add(ids[rel])
-    for rel in photos:
+    for rel in photos + uploads:
         if rel not in ids:
             base, k = slug(rel), 2
             pid = base
@@ -404,6 +446,48 @@ def main():
         album = rel.split('/')[0] if '/' in rel else ''
         entries.append(describe({'id': pid, 'file': rel, 'sha': fp, 'w': info['w'], 'h': info['h'],
                                  'widths': info['widths'], 'taken': info['taken'], 'date': date, 'album': album}, meta))
+
+    have_ffmpeg = bool(shutil.which('ffmpeg') and shutil.which('ffprobe'))
+    typing_taken = False
+    for rel in uploads:
+        path, pid = os.path.join(SRC, rel), ids[rel]
+        fp = fingerprint(path)
+        prev = old.get(rel) or {}
+        unchanged = (prev.get('sha') == fp and prev.get('id') == pid and os.path.exists(os.path.join(OUT, f'{pid}.mp4'))
+                     and all(os.path.exists(os.path.join(OUT, f'{pid}-{x}.webp')) for x in prev.get('widths', [])))
+        if unchanged:
+            info = {k: prev.get(k) for k in ('w', 'h', 'widths', 'duration', 'taken')}
+            kept += 1
+        elif not have_ffmpeg:
+            warn(f'{rel}: converting videos needs ffmpeg (the GitHub Action installs it); skipped here.')
+            failed += 1
+            continue
+        else:
+            try:
+                tags = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format_tags=creation_time',
+                                       '-of', 'default=nw=1:nk=1', path], capture_output=True, text=True).stdout
+                m = re.match(r'(\d{4})-(\d{2})-(\d{2})', tags.strip())
+                info = make_video(path, pid)
+                info['taken'] = '-'.join(m.groups()) if m and valid_date(*m.groups()) else ''
+                made += 1
+                print(f'  video {rel}: {info["w"]}x{info["h"]} cover, {info["duration"]} s, {info["size"] / 1048576:.1f} MB')
+            except Exception as e:
+                warn(f'{rel} could not be converted as a video ({e}); skipped.')
+                failed += 1
+                continue
+        meta = next((captions[k] for k in caption_keys(rel) if k in captions), {})
+        entry = {'id': pid, 'type': 'video', 'file': rel, 'url': f'assets/gallery/{pid}.mp4', 'sha': fp,
+                 'w': info['w'], 'h': info['h'], 'widths': info['widths'], 'duration': info.get('duration') or 0,
+                 'taken': info.get('taken') or '',
+                 'date': date_of(meta, rel) or info.get('taken') or name_date(os.path.basename(rel)),
+                 'album': rel.split('/')[0] if '/' in rel else ''}
+        if os.path.splitext(os.path.basename(rel))[0].lower() == 'typing':
+            if typing_taken:
+                warn(f'{rel}: another typing video is already used for the Touch Typing block; this one is listed with the photos.')
+            else:
+                entry['role'] = 'typing'   # shown in the Touch Typing block, not in the grid
+                typing_taken = True
+        entries.append(describe(entry, meta))
 
     used = {k for e in entries for k in caption_keys(e['file'])}
     for key in captions:
@@ -452,9 +536,10 @@ def main():
 
     # remove copies that no listed item uses any more
     wanted = {f'{e["id"]}-{x}.webp' for e in entries for x in e['widths']}
+    wanted |= {f'{e["id"]}.mp4' for e in entries if e.get('type') == 'video' and e.get('url', '').startswith('assets/')}
     removed = 0
     for name in os.listdir(OUT):
-        if re.fullmatch(r'[a-z0-9-]+-\d+\.webp', name) and name not in wanted:
+        if re.fullmatch(r'[a-z0-9-]+(-\d+\.webp|\.mp4)', name) and name not in wanted:
             os.remove(os.path.join(OUT, name))
             removed += 1
 
