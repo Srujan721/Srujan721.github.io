@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://srujan721.github.io/sitemap.xml

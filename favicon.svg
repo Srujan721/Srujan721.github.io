@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Site icon: the horseshoe tunnel from the page header, on the site's dark blue -->
+  <rect width="64" height="64" rx="14" fill="#0D1620"/>
+  <path fill="#FFFFFF" fill-rule="evenodd" d="M12 51V31a20 20 0 0 1 40 0v20Zm8.5 0V31.5a11.5 11.5 0 0 1 23 0V51Z"/>
+  <rect x="20.5" y="43" width="23" height="4" fill="#3B82F6"/>
+  <rect x="12" y="51" width="40" height="3.5" rx="1.5" fill="#F0C44C"/>
+</svg>

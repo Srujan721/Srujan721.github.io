@@ -1,21 +1,30 @@
-# Gallery captions (optional). One entry per photo; photos without an entry still appear.
+# Photos & Videos: captions and video links (optional). One entry per photo or video;
+# photos without an entry still appear.
 #
 #   file:     the photo's file name in this folder, e.g. IMG_20251203_142233.jpg
 #             (for a photo in a subfolder: Conferences/IMG_20251203_142233.jpg)
-#   caption:  one line shown with the photo
+#   video:    instead of a photo, a video link: YouTube (unlisted works), Vimeo, or a Google Drive
+#             file shared with "Anyone with the link". With a video, "file:" may name a photo in
+#             this folder to use as its cover; otherwise the video site's own cover is used.
+#   caption:  one line shown with the photo or video
 #   place:    e.g. Salzburg, Austria
-#   date:     YYYY-MM-DD or YYYY-MM; without it the camera's date is used
-#   album:    groups photos under a filter button, e.g. Conferences, Fieldwork, Campus
-#             (a subfolder name is used as the album when this is left out)
+#   date:     YYYY-MM-DD or YYYY-MM; photos otherwise use the camera's date, videos need it here
+#   album:    groups items under a filter button, e.g. Conferences, Fieldwork, Campus, Typing
+#             (a photo's subfolder name is used when this is left out)
 #   alt:      a description for screen readers (the caption is used when this is left out)
 #
 # Put text in double quotes when it contains a colon (:) or a #.
-# Keep the two spaces before caption:, place:, date:, album: and alt:.
+# Keep the two spaces before every line after the first one of an entry.
 #
-# Example (delete the "# " at the start of each line to use it):
+# Examples (delete the "# " at the start of each line to use them):
 #
 # - file: IMG_20231012_101500.jpg
 #   caption: "Rock Bowl semi-final, 15th ISRM Congress"
 #   place: Salzburg, Austria
 #   date: 2023-10-12
 #   album: Conferences
+#
+# - video: https://youtu.be/VIDEO_ID
+#   caption: Touch typing at 110 WPM
+#   date: 2026-11
+#   album: Typing

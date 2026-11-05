@@ -1,6 +1,6 @@
-# Gallery photos
+# Photos & Videos
 
-Photos in this folder appear in the **Gallery** section of <https://srujan721.github.io/#gallery>.
+Photos in this folder, and videos linked in `captions.yml`, appear under **Beyond Research → Photos & Videos** on <https://srujan721.github.io/#gallery>.
 
 ## Add photos
 
@@ -11,6 +11,24 @@ Photos in this folder appear in the **Gallery** section of <https://srujan721.gi
 To make an album, upload the photos into a subfolder, for example `gallery/Conferences/`, or set `album:` in `captions.yml`. Album buttons appear once photos are spread over two or more albums.
 
 Photos are shown newest first, using the camera's date. A date written in the file name (`IMG_20251203_142233.jpg`, `WhatsApp Image 2025-12-03 at ...`) is used when the camera date is missing, and `date:` in `captions.yml` overrides both.
+
+## Add a video
+
+Video files are not uploaded here (GitHub accepts at most 25 MB per file in the browser, and phone videos need converting to play everywhere). Instead:
+
+1. Upload the video to YouTube ("Unlisted" keeps it out of YouTube search), Vimeo, or Google Drive (share it with "Anyone with the link").
+2. Add an entry with its link to `captions.yml`:
+
+```yaml
+- video: https://youtu.be/VIDEO_ID
+  caption: Touch typing at 110 WPM
+  date: 2026-11
+  album: Typing
+```
+
+The Action downloads the video's cover image once and lists the video with the photos; it plays on the site only when a visitor presses play. To use your own cover, upload a photo here and add `file: thatphoto.jpg` to the video's entry.
+
+The touch-typing video in the Touch Typing block is set separately, in `index.html` (search for `data-video`).
 
 ## Captions, places and dates
 
@@ -24,7 +42,7 @@ Open `captions.yml` in this folder, click the pencil icon to edit, and add one e
   album: Conferences
 ```
 
-All fields except `file:` are optional. If the file has a mistake, the Action stops without changing the site and the **Actions** tab shows the line to fix.
+All fields except `file:` (or `video:`) are optional. If the file has a mistake, the Action stops without changing the site and the **Actions** tab shows the line to fix.
 
 ## Remove or replace a photo
 

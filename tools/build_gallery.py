@@ -1,4 +1,4 @@
-"""Make the Gallery's web-size photos and its photo list (assets/gallery/gallery.json).
+"""Make the web-size photos and the list (assets/gallery/gallery.json) for "Photos & Videos".
 
 Photos are uploaded to the gallery/ folder at any size (JPEG, PNG, WebP, TIFF, or HEIC from an
 iPhone). A photo in a subfolder, e.g. gallery/Conferences/IMG_1234.jpg, joins the album
@@ -15,6 +15,11 @@ date is taken from captions.yml, else from the camera (EXIF), else from a date i
 Unchanged photos are not processed again (the list keeps a fingerprint of each upload), and the
 copies of photos deleted from gallery/ are removed.
 
+Videos are not uploaded here: put them on YouTube (e.g. unlisted), Vimeo or Google Drive and add an
+entry with "video:" and the link to gallery/captions.yml. The script downloads the video's cover
+image once (or uses a photo from gallery/ named in "file:") and lists the video with the photos;
+the page plays it only when a visitor presses play.
+
 The GitHub Action .github/workflows/gallery.yml runs this after every upload to gallery/.
 To run it yourself from the site folder:
     pip install pillow pyyaml pillow-heif        (pillow-heif is only needed for HEIC)
@@ -27,9 +32,13 @@ import json
 import os
 import re
 import sys
+import tempfile
 import unicodedata
+import urllib.error
+import urllib.parse
+import urllib.request
 
-from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
+from PIL import Image, ImageCms, ImageOps, ImageStat, UnidentifiedImageError
 
 try:
     import yaml
@@ -53,7 +62,8 @@ WIDTHS = (400, 720, 1200)    # grid tiles on phones and desktops (1x to 3x scree
 LONG_EDGE = 2000             # largest copy, for the full-screen viewer
 QUALITY = 82                 # WebP quality
 PHOTO_EXTS = {'.jpg', '.jpeg', '.png', '.webp', '.tif', '.tiff', '.heic', '.heif'}
-FIELDS = {'file', 'caption', 'place', 'date', 'album', 'alt'}
+VIDEO_EXTS = {'.mp4', '.mov', '.m4v', '.webm', '.avi', '.mkv', '.3gp'}
+FIELDS = {'file', 'video', 'caption', 'place', 'date', 'album', 'alt'}
 Image.MAX_IMAGE_PIXELS = 250_000_000     # phone sensors up to 200 MP
 
 IN_ACTIONS = os.environ.get('GITHUB_ACTIONS') == 'true'
@@ -127,12 +137,12 @@ def slug(rel):
 
 
 def load_captions():
-    """{lower-case file name: entry} from gallery/captions.yml; stops on a format error."""
+    """({lower-case file name: photo entry}, [video entries]) from gallery/captions.yml; stops on a format error."""
     if not os.path.exists(CAPTIONS):
-        return {}
+        return {}, []
     text = open(CAPTIONS, encoding='utf-8-sig').read()
     if not re.search(r'^\s*-', text, re.M):         # only comments so far
-        return {}
+        return {}, []
     if yaml is None:
         fail('gallery/captions.yml has entries but PyYAML is not installed (pip install pyyaml).')
 
@@ -148,18 +158,86 @@ def load_captions():
              'Tip: put a caption in double quotes when it contains a colon (:) or a #.')
     if not isinstance(data, list):
         fail('gallery/captions.yml must be a list: each photo starts with a line "- file: NAME".')
-    out = {}
+    out, videos = {}, []
     for n, item in enumerate(data, 1):
-        if not isinstance(item, dict) or not item.get('file'):
-            fail(f'gallery/captions.yml, entry {n}: every entry needs a "file:" line.')
-        key = str(item['file']).strip().replace('\\', '/').lower()
+        if not isinstance(item, dict) or not (item.get('file') or item.get('video')):
+            fail(f'gallery/captions.yml, entry {n}: every entry needs a "file:" line (a photo) or a "video:" line (a link).')
+        name = item.get('video') or item['file']
         extra = sorted(set(item) - FIELDS)
         if extra:
-            warn(f'gallery/captions.yml, {item["file"]}: unknown field(s) {", ".join(map(str, extra))} ignored.')
+            warn(f'gallery/captions.yml, {name}: unknown field(s) {", ".join(map(str, extra))} ignored.')
+        if item.get('video'):
+            videos.append(item)
+            continue
+        key = str(item['file']).strip().replace('\\', '/').lower()
         if key in out:
             warn(f'gallery/captions.yml lists {item["file"]} twice; the later entry is used.')
         out[key] = item
-    return out
+    return out, videos
+
+
+def video_link(url):
+    """(provider, id, link) for a YouTube, Vimeo or Google Drive link, or a direct link to a video file."""
+    u = str(url or '').strip()
+    m = re.search(r'(?:youtube(?:-nocookie)?\.com/(?:watch\?(?:[^#]*&)?v=|shorts/|embed/|live/)|youtu\.be/)([\w-]{11})', u, re.I)
+    if m:
+        return 'youtube', m.group(1), 'https://www.youtube.com/watch?v=' + m.group(1)
+    m = re.search(r'vimeo\.com/(?:video/)?(\d+)', u, re.I)
+    if m:
+        return 'vimeo', m.group(1), 'https://vimeo.com/' + m.group(1)
+    m = re.search(r'drive\.google\.com/(?:file/d/|open\?id=)([\w-]{10,})', u, re.I)
+    if m:
+        return 'drive', m.group(1), 'https://drive.google.com/file/d/' + m.group(1) + '/view'
+    if re.match(r'^https?://[^\s"\'<>]+\.(mp4|webm|m4v|mov)([?#][^\s"\'<>]*)?$', u, re.I):
+        return 'file', '', u
+    return None
+
+
+def fetch(url, limit=15 << 20):
+    req = urllib.request.Request(url, headers={'User-Agent': 'srujan721.github.io gallery builder'})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        ctype, data = r.headers.get('Content-Type', ''), r.read(limit + 1)
+    if len(data) > limit:
+        raise ValueError('file too large')
+    return ctype, data
+
+
+def video_cover(provider, vid, link):
+    """The video's cover image as bytes, or None (the page then shows a plain play button)."""
+    try:
+        if provider == 'youtube':
+            for name in ('maxresdefault', 'sddefault', 'hqdefault'):   # the large ones exist only for HD videos
+                try:
+                    ctype, data = fetch(f'https://i.ytimg.com/vi/{vid}/{name}.jpg')
+                except urllib.error.HTTPError:
+                    continue
+                if ctype.startswith('image/') and len(data) > 2000:
+                    return data
+        elif provider == 'vimeo':
+            _, data = fetch('https://vimeo.com/api/oembed.json?width=1280&url=' + urllib.parse.quote(link, safe=''))
+            thumb = json.loads(data).get('thumbnail_url')
+            if thumb:
+                ctype, data = fetch(thumb)
+                return data if ctype.startswith('image/') else None
+        elif provider == 'drive':   # only for files shared with "anyone with the link"
+            ctype, data = fetch(f'https://drive.google.com/thumbnail?id={vid}&sz=w1280')
+            return data if ctype.startswith('image/') else None
+    except Exception as e:
+        warn(f'the cover image of {link} could not be downloaded ({e}); its tile shows a plain play button.')
+    return None
+
+
+def without_letterbox(im):
+    """YouTube's smaller covers are 4:3 with black bands above and below a 16:9 picture: crop them off."""
+    w, h = im.size
+    if abs(w / h - 4 / 3) > 0.02:
+        return im
+    band = round(h * 0.125)
+    grey = im.convert('L')
+    dark = lambda box: ImageStat.Stat(grey.crop(box)).mean[0] < 24
+    if dark((0, 0, w, band - 2)) and dark((0, h - band + 2, w, h)):
+        return im.crop((0, band, w, h - band))
+    return im
 
 
 def caption_keys(rel):
@@ -174,7 +252,12 @@ def find_photos():
     for folder, dirs, files in os.walk(SRC):
         dirs[:] = sorted(d for d in dirs if not d.startswith('.'))
         for name in sorted(files):
-            if name.startswith('.') or os.path.splitext(name)[1].lower() not in PHOTO_EXTS:
+            ext = os.path.splitext(name)[1].lower()
+            if ext in VIDEO_EXTS and not name.startswith('.'):
+                warn(f'{name}: video files are not shown from this folder. Upload the video to YouTube '
+                     '(e.g. unlisted), Vimeo or Google Drive and add its link as "video:" in gallery/captions.yml.')
+                continue
+            if name.startswith('.') or ext not in PHOTO_EXTS:
                 continue
             if os.path.splitext(name)[1].lower() in ('.heic', '.heif') and not HEIF:
                 warn(f'{name}: HEIC photos need pillow-heif (pip install pillow-heif); skipped.')
@@ -226,16 +309,59 @@ def make_copies(path, pid):
         return {'w': top, 'h': max(1, round(h * top / w)), 'widths': widths, 'taken': taken}
 
 
+def describe(entry, meta):
+    """Adds the optional caption, place, album and alt text from captions.yml to a list entry."""
+    folder = entry.pop('album', '')   # a subfolder name; "album:" in captions.yml takes precedence
+    for key, val in (('caption', meta.get('caption')), ('place', meta.get('place')),
+                     ('album', meta.get('album') or folder), ('alt', meta.get('alt'))):
+        val = re.sub(r'\s+', ' ', str(val or '')).strip()
+        if val:
+            entry[key] = val
+    return entry
+
+
+def date_of(meta, name):
+    try:
+        return norm_date(meta.get('date'))
+    except ValueError:
+        warn(f'gallery/captions.yml, {name}: date "{meta.get("date")}" is not YYYY-MM-DD or YYYY-MM; ignored.')
+        return ''
+
+
 def main():
     os.makedirs(SRC, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
-    captions = load_captions()
+    captions, videos = load_captions()
     try:
-        old = {p['file']: p for p in json.load(open(LIST, encoding='utf-8')).get('photos', [])}
-    except (OSError, ValueError, AttributeError):
+        old = {('video:' + p['url']) if p.get('type') == 'video' else p['file']: p
+               for p in json.load(open(LIST, encoding='utf-8')).get('photos', [])}
+    except (OSError, ValueError, AttributeError, KeyError, TypeError):
         old = {}
 
-    photos = find_photos()
+    # video entries that will be listed: a valid link, and the first entry for each video
+    usable, seen, failed = [], set(), 0
+    for v in videos:
+        found = video_link(v['video'])
+        if not found:
+            warn(f'gallery/captions.yml: "{v["video"]}" is not a YouTube, Vimeo or Google Drive link, '
+                 'or a link to a video file; skipped.')
+            failed += 1
+        elif found[2] in seen:
+            warn(f'gallery/captions.yml lists the video {found[2]} twice; the first entry is used.')
+        else:
+            seen.add(found[2])
+            usable.append((v, found))
+
+    # photos named as a video's cover ("file:" in a video entry) are not listed on their own
+    everything = find_photos()
+    cover_keys = {str(v['file']).strip().replace('\\', '/').lower() for v, _ in usable if v.get('file')}
+    cover_of = {}
+    for rel in everything:
+        for k in caption_keys(rel):
+            if k in cover_keys:
+                cover_of.setdefault(k, rel)
+    photos = [rel for rel in everything if rel not in cover_of.values()]
+
     # ids: a photo keeps the id it had before, so its web addresses stay the same
     taken_ids, ids = set(), {}
     for rel in photos:
@@ -246,12 +372,12 @@ def main():
         if rel not in ids:
             base, k = slug(rel), 2
             pid = base
-            while pid in taken_ids:
+            while pid in taken_ids or pid.startswith('video-'):
                 pid, k = f'{base}-{k}', k + 1
             ids[rel] = pid
             taken_ids.add(pid)
 
-    entries, made, kept, failed = [], 0, 0, 0
+    entries, made, kept = [], 0, 0
     for rel in photos:
         path, pid = os.path.join(SRC, rel), ids[rel]
         fp = fingerprint(path)
@@ -274,32 +400,57 @@ def main():
                 continue
 
         meta = next((captions[k] for k in caption_keys(rel) if k in captions), {})
-        try:
-            date = norm_date(meta.get('date'))
-        except ValueError:
-            warn(f'gallery/captions.yml, {rel}: date "{meta.get("date")}" is not YYYY-MM-DD or YYYY-MM; ignored.')
-            date = ''
-        date = date or info['taken'] or name_date(os.path.basename(rel))
-        album = str(meta.get('album') or (rel.split('/')[0] if '/' in rel else '')).strip()
-        entry = {'id': pid, 'file': rel, 'sha': fp, 'w': info['w'], 'h': info['h'], 'widths': info['widths'],
-                 'taken': info['taken'], 'date': date}
-        for key, val in (('caption', meta.get('caption')), ('place', meta.get('place')),
-                         ('album', album), ('alt', meta.get('alt'))):
-            val = re.sub(r'\s+', ' ', str(val or '')).strip()
-            if val:
-                entry[key] = val
-        entries.append(entry)
+        date = date_of(meta, rel) or info['taken'] or name_date(os.path.basename(rel))
+        album = rel.split('/')[0] if '/' in rel else ''
+        entries.append(describe({'id': pid, 'file': rel, 'sha': fp, 'w': info['w'], 'h': info['h'],
+                                 'widths': info['widths'], 'taken': info['taken'], 'date': date, 'album': album}, meta))
 
     used = {k for e in entries for k in caption_keys(e['file'])}
     for key in captions:
         if key not in used:
             warn(f'gallery/captions.yml names "{captions[key]["file"]}", but no such photo is in gallery/.')
 
-    # newest first; photos without a date last, by name
-    entries.sort(key=lambda e: e['file'].lower())
+    # videos: a link in captions.yml; the cover is a photo named in "file:" or the video site's own image
+    for v, (provider, vid, link) in usable:
+        pid = 'video-' + hashlib.sha1(link.encode()).hexdigest()[:10]
+        cover_rel = cover_of.get(str(v.get('file') or '').strip().replace('\\', '/').lower(), '')
+        if v.get('file') and not cover_rel:
+            warn(f'gallery/captions.yml: the cover "{v["file"]}" for {link} is not in gallery/; the video site\'s image is used.')
+        cover_fp = fingerprint(os.path.join(SRC, cover_rel)) if cover_rel else 'from-' + provider
+        prev = old.get('video:' + link) or {}
+        unchanged = (prev.get('id') == pid and prev.get('sha') == cover_fp and bool(prev.get('widths'))
+                     and all(os.path.exists(os.path.join(OUT, f'{pid}-{x}.webp')) for x in prev['widths']))
+        info = {'w': 16, 'h': 9, 'widths': []}   # no cover: the tile shows a plain play button
+        if unchanged:
+            info = {k: prev[k] for k in ('w', 'h', 'widths')}
+            kept += 1
+        else:
+            try:
+                if cover_rel:
+                    info = make_copies(os.path.join(SRC, cover_rel), pid)
+                else:
+                    data = video_cover(provider, vid, link)
+                    if data:
+                        with tempfile.TemporaryDirectory() as tmp:
+                            im = Image.open(io.BytesIO(data))
+                            im.load()
+                            cover = os.path.join(tmp, 'cover.png')
+                            without_letterbox(im.convert('RGB')).save(cover)
+                            info = make_copies(cover, pid)
+                made += 1
+                print(f'  video {link}: cover {"from " + cover_rel if cover_rel else ("downloaded" if info["widths"] else "none")}')
+            except Exception as e:
+                warn(f'the cover image of {link} could not be made ({e}); its tile shows a plain play button.')
+                info = {'w': 16, 'h': 9, 'widths': []}
+        entries.append(describe({'id': pid, 'type': 'video', 'url': link, 'file': cover_rel, 'sha': cover_fp,
+                                 'w': info['w'], 'h': info['h'], 'widths': info['widths'], 'taken': '',
+                                 'date': date_of(v, link)}, v))
+
+    # newest first; items without a date last, by name
+    entries.sort(key=lambda e: (e.get('file') or e.get('url', '')).lower())
     entries.sort(key=lambda e: e['date'], reverse=True)
 
-    # remove copies that no listed photo uses any more
+    # remove copies that no listed item uses any more
     wanted = {f'{e["id"]}-{x}.webp' for e in entries for x in e['widths']}
     removed = 0
     for name in os.listdir(OUT):
@@ -310,7 +461,8 @@ def main():
     with open(LIST, 'w', encoding='utf-8', newline='\n') as f:
         json.dump({'photos': entries}, f, ensure_ascii=False, indent=1)
         f.write('\n')
-    print(f'Gallery: {len(entries)} photo(s) listed; {made} processed, {kept} unchanged, '
+    n_vid = sum(1 for e in entries if e.get('type') == 'video')
+    print(f'Gallery: {len(entries) - n_vid} photo(s) and {n_vid} video(s) listed; {made} processed, {kept} unchanged, '
           f'{failed} skipped, {removed} old file(s) removed.')
 
 
