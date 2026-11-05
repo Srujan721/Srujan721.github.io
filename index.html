@@ -406,7 +406,6 @@
         .chip{padding:7px 14px;border-radius:50px;color:var(--text);font-size:0.82rem}
         .chip[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
         .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--c)}
-        .chip .n{font-size:0.72rem;opacity:.6;font-variant-numeric:tabular-nums}
         .archive-toggle:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
         .ach-archive{display:flex;flex-direction:column;gap:10px}
@@ -1110,7 +1109,7 @@
                     <span class="pub-number">3.</span>
                     <div class="pub-content">
                         <p class="pub-text">
-                            <span class="author-highlight">Chalavadi, S.</span>, Singh, Y., Singh, M. (<span class="pub-year">2026</span>). Seismic Behavior of Tunnels in the Indian Himalayas. In: Deb, D., Murthy, V.M., Venkatesh, H., Rao, K.S., Goel, R.K., Singh, M. (eds) <span class="journal-name">Advances in Rock Mechanics—Infrastructure Development, Volume 5.</span> ARMS 2024. Lecture Notes in Civil Engineering, vol 787. Springer, Singapore.
+                            <span class="author-highlight">Chalavadi, S.</span>, Singh, Y., Singh, M. (<span class="pub-year">2026</span>). Seismic Behavior of Tunnels in the Indian Himalayas. In: Deb, D., Murthy, V.M., Venkatesh, H., Rao, K.S., Goel, R.K., Singh, M. (eds) <span class="journal-name">Advances in Rock Mechanics—Infrastructure Development, Volume 5.</span> ARMS 2024. Lecture Notes in Civil Engineering, vol 787. Springer, Singapore, pp. 41–48.
                             <a href="https://link.springer.com/chapter/10.1007/978-981-95-4251-2_5" target="_blank" class="pub-inline-link"><i class="fas fa-external-link-alt"></i> Springer</a>
                             <span class="pub-inline-award"><i class="fas fa-trophy"></i> ISRM Best Paper Award — ARMS13</span>
                         </p>
@@ -2345,7 +2344,7 @@
                     years.forEach((y) => { refreshYear(y); y.open = key !== '*' && !y.hidden; });
                     syncToggle();
                 };
-                const chip = (key, label, n) => {
+                const chip = (key, label) => {
                     const b = make('button', 'chip');
                     b.type = 'button';
                     b.dataset.key = key;
@@ -2357,12 +2356,11 @@
                         b.appendChild(dot);
                     }
                     b.appendChild(document.createTextNode(label));
-                    b.appendChild(make('span', 'n', String(n)));
                     b.addEventListener('click', () => apply(key));
                     return b;
                 };
-                filters.appendChild(chip('*', 'All', entries.length));
-                cats.forEach((c) => filters.appendChild(chip(c, catName(c), counts[c])));
+                filters.appendChild(chip('*', 'All'));
+                cats.forEach((c) => filters.appendChild(chip(c, catName(c))));
                 filters.hidden = false;
             }
             syncToggle();
@@ -2870,16 +2868,12 @@
                 const albums = [];
                 all.forEach((p) => { if (p.album && albums.indexOf(p.album) < 0) albums.push(p.album); });
                 if (filters && albums.length > 1) {
-                    const chip = (key, label, n) => {
+                    const chip = (key, label) => {
                         const b = document.createElement('button');
                         b.type = 'button';
                         b.className = 'chip';
                         b.setAttribute('aria-pressed', String(key === ''));
                         b.appendChild(document.createTextNode(label));
-                        const c = document.createElement('span');
-                        c.className = 'n';
-                        c.textContent = String(n);
-                        b.appendChild(c);
                         b.addEventListener('click', () => {
                             filters.querySelectorAll('.chip').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
                             list = key ? all.filter((p) => p.album === key) : all;
@@ -2887,8 +2881,8 @@
                         });
                         return b;
                     };
-                    filters.appendChild(chip('', 'All', all.length));
-                    albums.forEach((al) => filters.appendChild(chip(al, al, all.filter((p) => p.album === al).length)));
+                    filters.appendChild(chip('', 'All'));
+                    albums.forEach((al) => filters.appendChild(chip(al, al)));
                     filters.hidden = false;
                 }
                 render();
