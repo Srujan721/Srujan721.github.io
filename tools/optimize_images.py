@@ -4,10 +4,10 @@ The page shows the photo at 212 px, the DARTS icon at 64 px and the education lo
 58 px (CSS pixels). Screens draw 1 to 3 device pixels per CSS pixel, so each image is
 written at 1x, 1.25x, 1.5x, 1.75x, 2x, 2.5x and 3x as WebP; the browser picks the copy
 that matches the screen, so the image is shown pixel for pixel without a second resize.
-One 2x JPEG/PNG is kept for browsers without WebP. The originals are not modified
-(photo.jpg is also the link-preview image).
+One 2x JPEG/PNG is kept for browsers without WebP. The originals in images/ are not
+modified (images/photo.jpg is also the link-preview image).
 
-After replacing an original (keep its file name), run from the site folder:
+After replacing an original in images/ (keep its file name), run from the site folder:
     python tools/optimize_images.py
 Needs Python 3 and Pillow (pip install pillow).
 """
@@ -16,9 +16,10 @@ import os
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, 'images')
 OUT = os.path.join(ROOT, 'assets', 'img')
 
-# name: (original file, displayed width in CSS px, 'photo' = lossy WebP q95 / 'graphic' = lossless)
+# name: (original file in images/, displayed width in CSS px, 'photo' = lossy WebP q95 / 'graphic' = lossless)
 IMAGES = {
     'photo':     ('photo.jpg',     212, 'photo'),
     'darts':     ('DARTS_1.png',    64, 'graphic'),
@@ -57,7 +58,7 @@ def save_fallback(im, path, kind):
 def main():
     os.makedirs(OUT, exist_ok=True)
     for name, (src, css_w, kind) in IMAGES.items():
-        im = Image.open(os.path.join(ROOT, src))
+        im = Image.open(os.path.join(SRC, src))
         im.load()
         has_alpha = im.mode in ('RGBA', 'LA') or (im.mode == 'P' and 'transparency' in im.info)
         im = im.convert('RGBA' if has_alpha else 'RGB')
