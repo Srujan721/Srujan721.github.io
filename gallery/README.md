@@ -16,7 +16,7 @@ Photos are shown newest first, using the camera's date. A date written in the fi
 
 **Upload the file here** (MP4, or MOV from a phone, WebM, ...). The Action converts it to a web video that plays in every browser (H.264, at most 1280 px, 30 frames/s; a 50 MB phone clip usually becomes 5 to 10 MB) and takes a cover picture from it.
 
-- Name it **`typing.mp4`** (or `typing.mov`, any video format) to show it in the **Touch Typing** block. Any other name puts it under Photos & Videos.
+- Name it **`typing.mp4`** or **`Touch_Typing.mp4`** (any video format; capitals, spaces, hyphens and underscores do not matter) to show it in the **Touch Typing** block. Any other name puts it under Photos & Videos.
 - GitHub's website accepts at most **25 MB per file**. For a larger video either make it smaller first (for example HandBrake's "Fast 720p30" preset, or your phone's export at 720p), or upload it with **GitHub Desktop**, which accepts files up to 100 MB.
 - Captions, dates and albums work as for photos (`file: typing.mp4` in `captions.yml`). The recording date is read from the phone's video when no date is given.
 

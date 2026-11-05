@@ -1959,7 +1959,7 @@
                                 (no ads or trackers; TypeRacer still shows). "yes" only if it stays blank.
                data-video       the video: a YouTube or Vimeo link or a Google Drive share link.
                                 Or leave it empty and upload the video file to the gallery folder as
-                                typing.mp4 (or .mov etc.); it is converted for the web and used here.
+                                typing.mp4 or Touch_Typing.mp4 (or .mov etc.); it is converted for the web and used here.
                                 See gallery/README.md.
                data-video-ratio optional: 16/9 (default) or 9/16 for a portrait phone video
              The speed itself is the number in <span class="wpm-num">.
@@ -2707,7 +2707,7 @@
 
         // ===== Touch typing: result link, embedded result page or image, and the video =====
         // Everything comes from the data-* attributes on #typingFeature (see the comment there).
-        // Without a data-video link, a video uploaded as gallery/typing.<ext> is used (see below).
+        // Without a data-video link, a video uploaded as gallery/typing.<ext> or Touch_Typing.<ext> is used (see below).
         let useTypingVideo = () => {};
         const typing = document.getElementById('typingFeature');
         if (typing) {
@@ -2776,7 +2776,7 @@
                     if (ph) ph.appendChild(a);
                 }
             }
-            useTypingVideo = (item) => {   // item: the gallery.json entry made from gallery/typing.<ext>
+            useTypingVideo = (item) => {   // item: the gallery.json entry with role "typing" (gallery/typing.<ext> or Touch_Typing.<ext>)
                 if (!holder || raw) return;   // a link in data-video takes precedence
                 const fits = (item.widths || []).filter((w) => w <= 1280);
                 const poster = fits.length ? 'assets/gallery/' + item.id + '-' + fits[fits.length - 1] + '.webp' : '';

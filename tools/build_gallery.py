@@ -18,8 +18,9 @@ copies of photos deleted from gallery/ are removed.
 Videos come in two ways:
   - a video file uploaded to gallery/ (MP4, MOV from a phone, WebM, ...): converted with ffmpeg to a
     web MP4 that plays in every browser (H.264 + AAC, at most 1280 px, 30 frames/s) as
-    assets/gallery/<id>.mp4, with a cover taken from the video. A file named typing.<ext> becomes the
-    video of the Touch Typing block; other videos are listed with the photos.
+    assets/gallery/<id>.mp4, with a cover taken from the video. A file named typing.<ext> or
+    touch typing.<ext> (any capitals; spaces, hyphens or underscores allowed, e.g. Touch_Typing.mp4)
+    becomes the video of the Touch Typing block; other videos are listed with the photos.
   - a link in gallery/captions.yml ("video:" with a YouTube, Vimeo or Google Drive address): the
     video's cover image is downloaded once (or a photo from gallery/ named in "file:" is used).
 The page plays a video only when a visitor presses play.
@@ -481,7 +482,7 @@ def main():
                  'taken': info.get('taken') or '',
                  'date': date_of(meta, rel) or info.get('taken') or name_date(os.path.basename(rel)),
                  'album': rel.split('/')[0] if '/' in rel else ''}
-        if os.path.splitext(os.path.basename(rel))[0].lower() == 'typing':
+        if re.sub(r'[\s_-]+', '', os.path.splitext(os.path.basename(rel))[0].lower()) in ('typing', 'touchtyping'):
             if typing_taken:
                 warn(f'{rel}: another typing video is already used for the Touch Typing block; this one is listed with the photos.')
             else:

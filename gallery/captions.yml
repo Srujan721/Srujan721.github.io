@@ -2,7 +2,7 @@
 # photos without an entry still appear.
 #
 #   file:     the file name in this folder of a photo or an uploaded video, e.g. IMG_20251203_142233.jpg
-#             (in a subfolder: Conferences/IMG_20251203_142233.jpg; typing.mp4 is the Touch Typing video)
+#             (in a subfolder: Conferences/IMG_20251203_142233.jpg; typing.mp4 or Touch_Typing.mp4 is the Touch Typing video)
 #   video:    instead of a photo, a video link: YouTube (unlisted works), Vimeo, or a Google Drive
 #             file shared with "Anyone with the link". With a video, "file:" may name a photo in
 #             this folder to use as its cover; otherwise the video site's own cover is used.
