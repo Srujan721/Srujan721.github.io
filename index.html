@@ -250,7 +250,7 @@
         @media(max-width:600px){.hero h1{font-size:2rem}.hero .tagline{font-size:0.95rem}}
 
         /* ==========================================================
-           ABOUT — Bio, Interests, Education, Skills, Languages, Memberships
+           ABOUT — Bio, Research Interests, Education
            ========================================================== */
         .bio-text{font-size:1.02rem;line-height:1.9;color:var(--text);max-width:900px;margin-bottom:24px}
         .subsection{margin-bottom:56px}
@@ -281,41 +281,16 @@
         .edu-meta .score{color:var(--gold-strong)}
         @media(max-width:500px){.edu-card{flex-direction:column;align-items:center;text-align:center}.edu-meta{justify-content:center}}
 
-        /* Skills */
-        .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-        .skill-category{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:var(--transition)}
-        .skill-category:hover{box-shadow:var(--shadow);border-color:var(--accent)}
-        .skill-category h4{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent-strong);margin-bottom:14px}
-        .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
-        .skill-tag{padding:6px 14px;border-radius:6px;background:var(--bg-alt);border:1px solid var(--border);font-size:0.83rem;font-weight:500;color:var(--text);transition:var(--transition)}
-        .skill-tag:hover{background:var(--accent-light);border-color:var(--accent);color:var(--accent-strong)}
-
-        /* Languages */
-        .lang-grid{display:flex;gap:18px;flex-wrap:wrap}
-        .lang-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px 28px;text-align:center;min-width:150px;transition:var(--transition)}
-        .lang-card:hover{box-shadow:var(--shadow);border-color:var(--accent)}
-        .lang-card h4{font-weight:700;margin-bottom:3px;font-size:0.95rem}
-        .lang-card p{font-size:0.8rem;color:var(--text-light)}
-
-        /* Memberships */
-        .membership-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:10px}
-        .mem-item{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;background:var(--bg);border:1px solid var(--border);font-size:0.88rem;transition:var(--transition)}
-        .mem-item:hover{box-shadow:var(--shadow-sm);border-color:var(--accent)}
-        .mem-item i{color:var(--accent);flex-shrink:0}
-
-        /* Education beside Technical Skills + Languages (one column below 900 px) */
-        .about-split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:start;margin-bottom:56px}
-        .about-split>.subsection{margin-bottom:0}
-        .about-side>.subsection{margin-bottom:36px}
-        .about-side>.subsection:last-child{margin-bottom:0}
-        .about-side .skills-grid{grid-template-columns:minmax(0,1fr);gap:12px}
-        .about-side .skill-category{padding:18px 20px}
-        .about-side .lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-        .about-side .lang-card{min-width:0;padding:14px 18px;text-align:left}
-        @media(max-width:900px){.about-split{grid-template-columns:minmax(0,1fr);gap:56px}}
+        /* Education: two cards per row; one column below 900 px */
+        .edu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+        .edu-grid .edu-card{margin-bottom:0}
+        @media(max-width:900px){.edu-grid{grid-template-columns:minmax(0,1fr)}}
+        /* Link in the bio text (to the Software section) */
+        .bio-text a{color:var(--accent-strong);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+        .bio-text a:hover{text-decoration-thickness:2px}
 
         /* ==========================================================
-           RESEARCH — Publications, Projects, Open-Source
+           RESEARCH — Publications, Projects, Professional Memberships
            ========================================================== */
         /* Compact Publications */
         .pub-list{padding-left:0}
@@ -348,6 +323,26 @@
         .projects-grid .project-card{margin-bottom:0;display:flex;flex-direction:column}
         .projects-grid .project-card>p{flex-grow:1}
         .projects-grid .project-card.featured{grid-column:1 / -1}
+        /* Professional Memberships: a fold-out card, closed until clicked */
+        .fold{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);transition:border-color .3s,box-shadow .3s}
+        .section-alt .fold{background:var(--bg)}
+        .fold:hover{border-color:#CBD5E1}
+        .fold[open]{box-shadow:var(--shadow)}
+        .fold>summary{display:flex;align-items:center;gap:16px;padding:16px 22px;cursor:pointer;list-style:none;border-radius:var(--radius)}
+        .fold>summary::-webkit-details-marker{display:none}
+        .fold>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+        .fold-title{display:flex;align-items:center;gap:10px;flex:0 1 auto;min-width:0;font-size:1.15rem;font-weight:700;color:var(--primary)}
+        .fold-title i{color:var(--accent);font-size:0.95rem}
+        .fold-preview{flex:1;min-width:0;font-size:0.84rem;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .25s}
+        .fold[open] .fold-preview{opacity:0}
+        .fold-chev{flex-shrink:0;margin-left:auto;color:var(--text-light);font-size:0.78rem;transition:transform .3s}
+        .fold[open] .fold-chev{transform:rotate(180deg)}
+        .fold-body{margin:0 22px;padding:16px 0 20px;border-top:1px solid var(--border)}
+        .membership-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:10px}
+        .mem-item{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;background:var(--bg);border:1px solid var(--border);font-size:0.88rem;transition:var(--transition)}
+        .mem-item:hover{box-shadow:var(--shadow-sm);border-color:var(--accent)}
+        .mem-item i{color:var(--accent);flex-shrink:0}
+        @media(max-width:600px){.fold-preview{display:none}.fold>summary{padding:14px 16px}.fold-title{font-size:1.05rem}.fold-body{margin:0 16px}}
 
         /* GitHub Repos */
         .repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(310px,100%),1fr));gap:18px}
@@ -422,7 +417,6 @@
         .ach-year>summary::-webkit-details-marker{display:none}
         .ach-year>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
         .yr{font-size:1.08rem;font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums;min-width:46px}
-        .yr-count{flex-shrink:0;font-size:0.72rem;font-weight:700;color:var(--accent-strong);background:var(--accent-light);padding:2px 10px;border-radius:50px;white-space:nowrap}
         .yr-dots{display:flex;gap:4px;flex-shrink:0}
         .yr-dots span{width:8px;height:8px;border-radius:50%;background:var(--c)}
         .yr-preview{flex:1;min-width:0;font-size:0.84rem;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .25s}
@@ -441,12 +435,12 @@
         .ach-points li{font-size:0.83rem;color:var(--text-light);line-height:1.6;padding:2px 0 2px 18px;position:relative}
         .ach-points li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
         @media(max-width:600px){.yr-preview{display:none}.ach-year>summary{padding:13px 16px}.ach-list{margin:0 16px}}
-        /* Years open and close smoothly where the browser can animate to the content height */
+        /* Years (and the memberships fold-out) open and close smoothly where the browser can animate to the content height */
         @media (prefers-reduced-motion: no-preference){
             @supports (interpolate-size:allow-keywords) and selector(::details-content){
-                .ach-year{interpolate-size:allow-keywords}
-                .ach-year::details-content{block-size:0;overflow:hidden;transition:block-size .35s cubic-bezier(.4,0,.2,1),content-visibility .35s allow-discrete}
-                .ach-year[open]::details-content{block-size:auto}
+                .ach-year,.fold{interpolate-size:allow-keywords}
+                .ach-year::details-content,.fold::details-content{block-size:0;overflow:hidden;transition:block-size .35s cubic-bezier(.4,0,.2,1),content-visibility .35s allow-discrete}
+                .ach-year[open]::details-content,.fold[open]::details-content{block-size:auto}
             }
         }
 
@@ -560,7 +554,7 @@
             .section{padding:28px 0!important}
             main > section,body > footer{opacity:1!important}
             .footer{background:none!important;color:#334155!important}
-            .edu-card,.project-card,.exp-card,.honour-card,.ach-year,.pub-item,.repo-card,.contact-card,.activity-card,.ldr-card,.typing-card{break-inside:avoid}
+            .edu-card,.project-card,.exp-card,.honour-card,.ach-year,.fold,.pub-item,.repo-card,.contact-card,.activity-card,.ldr-card,.typing-card{break-inside:avoid}
         }
 
         /* ==========================================================
@@ -904,7 +898,9 @@
 
 <!-- ==============================================================
      ABOUT SECTION
-     Contains: Bio, Research Interests, Education, Skills, Languages, Memberships
+     Contains: Bio, Research Interests, Education.
+     Software (DARTS, MIDAS GTS NX, MATLAB, Python) and languages are mentioned in the bio;
+     Professional Memberships are in the Research section.
      ============================================================== -->
 <section class="section section-alt" id="about">
     <div class="container">
@@ -917,10 +913,10 @@
         <!-- ======== BIO — Edit the paragraphs below ======== -->
         <div class="subsection fade-in">
             <p class="bio-text">
-                Dr. Sai Srujan Kumar Chalavadi is a researcher specializing in Rock Mechanics and Geotechnical Earthquake Engineering. He is currently serving as a Research Associate - III at the Indian Institute of Technology (IIT) Roorkee, where he recently completed his doctoral research on the seismic fragility analysis of rock tunnels in the Indian Himalayas. His work integrates advanced numerical modelling, probabilistic seismic hazard assessment, and performance-based design to evaluate the vulnerability of underground structures subjected to earthquake loading.
+                Dr. Sai Srujan Kumar Chalavadi is a researcher specializing in Rock Mechanics and Geotechnical Earthquake Engineering. He is currently serving as a Research Associate - III at the Indian Institute of Technology (IIT) Roorkee, where he recently completed his doctoral research on the seismic fragility analysis of rock tunnels in the Indian Himalayas. His work integrates advanced numerical modelling, probabilistic seismic hazard assessment, and performance-based design to evaluate the vulnerability of underground structures subjected to earthquake loading. He developed <a href="#software">DARTS</a>, a standalone Windows application for the seismic support design of rock tunnels, and uses MIDAS GTS NX for nonlinear dynamic analysis and MATLAB and Python for computation and post-processing.
             </p>
             <p class="bio-text">
-                A recipient of the prestigious Prime Minister Research Fellowship (PMRF) and the ISRM Best Paper Award at the 13th Asian Rock Mechanics Symposium (ARMS13), he has published in leading international journals including <em>Rock Mechanics and Rock Engineering</em> and has presented at major conferences such as the 15th ISRM Congress in Salzburg, Austria. He is committed to open science and has made all computational tools and workflows developed during his research publicly available through GitHub. Beyond his core research, he has contributed as an AI Model Trainer, leveraging his domain expertise to support the development of advanced generative AI models.
+                A recipient of the prestigious Prime Minister Research Fellowship (PMRF) and the ISRM Best Paper Award at the 13th Asian Rock Mechanics Symposium (ARMS13), he has published in leading international journals including <em>Rock Mechanics and Rock Engineering</em> and has presented at major conferences such as the 15th ISRM Congress in Salzburg, Austria. He is committed to open science and has made all computational tools and workflows developed during his research publicly available through GitHub. Beyond his core research, he has contributed as an AI Model Trainer, leveraging his domain expertise to support the development of advanced generative AI models. He communicates in four languages (English, Hindi, Telugu, and Tamil) at varying levels of proficiency.
             </p>
         </div>
 
@@ -940,17 +936,15 @@
             </div>
         </div>
 
-        <!-- ======== TWO COLUMNS: Education (left) | Technical Skills + Languages (right) ========
-             One column on screens narrower than 900 px. -->
-        <div class="about-split">
-
         <!-- ======== EDUCATION — Edit cards below ========
+             Two cards per row on wide screens, one column below 900 px.
              Logo files: Place logo images in the same folder as index.html
              - IIT Roorkee & NIT Trichy: loaded from Wikipedia
              - chaitanya.jpg and stbem.jpg: from your local folder
         ======== -->
         <div class="subsection fade-in">
             <h3 class="subsection-title"><i class="fas fa-graduation-cap"></i>Education</h3>
+            <div class="edu-grid">
 
             <!-- PhD -->
             <div class="edu-card">
@@ -1042,72 +1036,7 @@
                 </div>
             </div>
             -->
-        </div>
-
-        <!-- right column: Technical Skills + Languages -->
-        <div class="about-side">
-
-        <!-- ======== TECHNICAL SKILLS — Edit tags below ======== -->
-        <div class="subsection fade-in">
-            <h3 class="subsection-title"><i class="fas fa-cogs"></i>Technical Skills</h3>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4>Numerical Modelling</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MIDAS GTS NX 2023</span>
-                        <span class="skill-tag">RocScience Suite</span>
-                        <span class="skill-tag">UDEC 7.0</span>
-                        <span class="skill-tag">Plaxis 2D 2023</span>
-                        <!-- <span class="skill-tag">New Software</span> -->
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4>Programming</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MATLAB 2024</span>
-                        <span class="skill-tag">Python</span>
-                        <!-- <span class="skill-tag">New Language</span> -->
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4>Design &amp; Drafting</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Autodesk AutoCAD 2024</span>
-                        <span class="skill-tag">Microsoft 365 Suite (Advanced)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ======== LANGUAGES — Add/remove cards below ======== -->
-        <div class="subsection fade-in">
-            <h3 class="subsection-title"><i class="fas fa-language"></i>Languages</h3>
-            <div class="lang-grid">
-                <div class="lang-card"><h4>English</h4><p>Professional Proficiency</p></div>
-                <div class="lang-card"><h4>Hindi</h4><p>Native / Fluent</p></div>
-                <div class="lang-card"><h4>Telugu</h4><p>Native / Fluent</p></div>
-                <div class="lang-card"><h4>Tamil</h4><p>Listening Comprehension</p></div>
-                <!-- <div class="lang-card"><h4>New Language</h4><p>Proficiency Level</p></div> -->
-            </div>
-        </div>
-
-        </div><!-- /about-side -->
-        </div><!-- /about-split -->
-
-        <!-- ======== PROFESSIONAL MEMBERSHIPS — Add/remove items below ======== -->
-        <div class="subsection fade-in">
-            <h3 class="subsection-title"><i class="fas fa-id-card"></i>Professional Memberships</h3>
-            <div class="membership-grid">
-                <div class="mem-item"><i class="fas fa-circle-check"></i><span>International Society for Rock Mechanics and Rock Engineering (ISRM)</span></div>
-                <div class="mem-item"><i class="fas fa-circle-check"></i><span>International Society for Soil Mechanics and Geotechnical Engineering (ISSMGE)</span></div>
-                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Geotechnical Society (LM-4577)</span></div>
-                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Society of Earthquake Technology (LM-1852)</span></div>
-                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Society for Rock Mechanics and Tunnelling Technology (LM-2280)</span></div>
-                <div class="mem-item"><i class="fas fa-circle-check"></i><span>Society for Earthquake and Civil Engineering Dynamics (SECED)</span></div>
-                <!-- To add:
-                <div class="mem-item"><i class="fas fa-circle-check"></i><span>New Society Name (Membership ID)</span></div>
-                -->
-            </div>
+            </div><!-- /edu-grid -->
         </div>
 
     </div>
@@ -1115,14 +1044,14 @@
 
 <!-- ==============================================================
      RESEARCH SECTION
-     Contains: Publications (compact), Research Projects, Open-Source Tools
+     Contains: Publications (compact), Research Projects, Professional Memberships (fold-out)
      ============================================================== -->
 <section class="section" id="research">
     <div class="container">
         <div class="fade-in">
             <div class="section-divider"></div>
             <h2 class="section-title">Research</h2>
-            <p class="section-subtitle">Publications, funded projects, and open-source tools</p>
+            <p class="section-subtitle">Publications, funded projects, and professional memberships</p>
         </div>
 
         <!-- ======== PUBLICATIONS — Compact format ========
@@ -1181,7 +1110,7 @@
                     <span class="pub-number">3.</span>
                     <div class="pub-content">
                         <p class="pub-text">
-                            <span class="author-highlight">Chalavadi, S.</span>, Singh, Y. and Singh, M. (<span class="pub-year">2026</span>). Seismic behavior of tunnels in the Indian Himalayas. In: Deb, D., Murthy, V.M.S.R., Venkatesh, H.S., Rao, K.S., Goel, R.K. and Singh, M., Eds., <span class="journal-name">Advances in Rock Mechanics — Infrastructure Development, Lecture Notes in Civil Engineering, Vol. 5.</span> Springer, Cham, pp. 41–48.
+                            <span class="author-highlight">Chalavadi, S.</span>, Singh, Y., Singh, M. (<span class="pub-year">2026</span>). Seismic Behavior of Tunnels in the Indian Himalayas. In: Deb, D., Murthy, V.M., Venkatesh, H., Rao, K.S., Goel, R.K., Singh, M. (eds) <span class="journal-name">Advances in Rock Mechanics—Infrastructure Development, Volume 5.</span> ARMS 2024. Lecture Notes in Civil Engineering, vol 787. Springer, Singapore.
                             <a href="https://link.springer.com/chapter/10.1007/978-981-95-4251-2_5" target="_blank" class="pub-inline-link"><i class="fas fa-external-link-alt"></i> Springer</a>
                             <span class="pub-inline-award"><i class="fas fa-trophy"></i> ISRM Best Paper Award — ARMS13</span>
                         </p>
@@ -1199,7 +1128,7 @@
                     <span class="pub-number">4.</span>
                     <div class="pub-content">
                         <p class="pub-text">
-                            <span class="author-highlight">Chalavadi, S.</span>, Singh, M., Singh, Y. and Choudhari, J. (<span class="pub-year">2023</span>). Effect of scale and in-situ stress ratio on the deformation modulus of rock mass around tunnels. <span class="journal-name">Proceedings of the 15th ISRM Congress,</span> Salzburg, Austria, October 9–14, 2023.
+                            <span class="author-highlight">Chalavadi, S.</span>, Singh, M., Singh, Y. and Choudhari, J. (<span class="pub-year">2023</span>). Effect of scale and in-situ stress ratio on the deformation modulus of rock mass around tunnels. <span class="journal-name">Proceedings of the 15th ISRM Congress,</span> Salzburg, Austria, 9–14 October 2023, pp. 2703–2708. Paper ISRM-15CONGRESS-2023-451.
                             <a href="https://onepetro.org/isrmcongress/proceedings/CONGRESS23/CONGRESS23/ISRM-15CONGRESS-2023-451/539763" target="_blank" class="pub-inline-link"><i class="fas fa-external-link-alt"></i> OnePetro</a>
                         </p>
                     </div>
@@ -1274,6 +1203,32 @@
 
             <!-- ADD NEW PROJECT HERE -->
             </div><!-- /projects-grid -->
+        </div>
+
+        <!-- ======== PROFESSIONAL MEMBERSHIPS — a fold-out, closed until clicked ========
+             To add a society, copy one <div class="mem-item">...</div> line in the list below.
+             The one-line preview beside the title is made by the script from these lines. -->
+        <div class="subsection fade-in">
+            <details class="fold" id="memberships">
+                <summary>
+                    <span class="fold-title"><i class="fas fa-id-card" aria-hidden="true"></i>Professional Memberships</span>
+                    <span class="fold-preview" aria-hidden="true"></span>
+                    <i class="fas fa-chevron-down fold-chev" aria-hidden="true"></i>
+                </summary>
+                <div class="fold-body">
+                    <div class="membership-grid">
+                        <div class="mem-item"><i class="fas fa-circle-check"></i><span>International Society for Rock Mechanics and Rock Engineering (ISRM)</span></div>
+                        <div class="mem-item"><i class="fas fa-circle-check"></i><span>International Society for Soil Mechanics and Geotechnical Engineering (ISSMGE)</span></div>
+                        <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Geotechnical Society (LM-4577)</span></div>
+                        <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Society of Earthquake Technology (LM-1852)</span></div>
+                        <div class="mem-item"><i class="fas fa-circle-check"></i><span>Indian Society for Rock Mechanics and Tunnelling Technology (LM-2280)</span></div>
+                        <div class="mem-item"><i class="fas fa-circle-check"></i><span>Society for Earthquake and Civil Engineering Dynamics (SECED)</span></div>
+                        <!-- To add:
+                        <div class="mem-item"><i class="fas fa-circle-check"></i><span>New Society Name (Membership ID)</span></div>
+                        -->
+                    </div>
+                </div>
+            </details>
         </div>
 
     </div>
@@ -1724,7 +1679,7 @@
      - "Selected Honours" shows the 6 newest entries that carry data-featured (newest year first).
        Mark a new notable entry with data-featured: older ones then leave the cards but stay in
        their year, marked with a star. The number of cards is set by data-max="6" below.
-     - Years start folded and open with a click. The filter buttons, the count beside each year
+     - Years start folded and open with a click. The filter buttons, the coloured dots beside each year
        and the one-line preview are made by the script from these entries.
 
      TO ADD AN ACHIEVEMENT
@@ -2272,8 +2227,8 @@
 
         // ===== Achievements: Selected Honours, year summaries, category filter =====
         // Each achievement is one <li> in its year (<details class="ach-year">). The newest entries
-        // marked data-featured are copied into Selected Honours; each year gets a count, coloured
-        // category dots and a one-line preview; the category buttons are built from data-cat.
+        // marked data-featured are copied into Selected Honours; each year gets coloured category
+        // dots and a one-line preview; the category buttons are built from data-cat.
         const archive = document.getElementById('achArchive');
         if (archive) {
             const CATS = {
@@ -2325,7 +2280,7 @@
                 honours.hidden = picks.length === 0;
             }
 
-            // Summary line of each year: count, category dots, preview of the titles, chevron
+            // Summary line of each year: category dots, preview of the titles, chevron
             years.forEach((y) => {
                 const s = y.querySelector('summary');
                 if (!s) return;
@@ -2335,13 +2290,11 @@
                 dots.setAttribute('aria-hidden', 'true');
                 preview.setAttribute('aria-hidden', 'true');
                 chev.setAttribute('aria-hidden', 'true');
-                s.append(make('span', 'yr-count'), dots, preview, chev);
+                s.append(dots, preview, chev);
             });
             const refreshYear = (y) => {
                 const shown = Array.from(y.querySelectorAll('.ach-list > li')).filter((li) => !li.hidden);
                 y.hidden = shown.length === 0;
-                const count = y.querySelector('.yr-count');
-                if (count) count.textContent = shown.length + (shown.length === 1 ? ' entry' : ' entries');
                 const dots = y.querySelector('.yr-dots');
                 if (dots) {
                     dots.textContent = '';
@@ -2423,13 +2376,32 @@
             });
         }
 
+        // ===== Fold-outs (Professional Memberships): one-line preview; open while printing =====
+        const folds = Array.from(document.querySelectorAll('details.fold'));
+        folds.forEach((f) => {
+            const preview = f.querySelector('.fold-preview');
+            if (!preview) return;
+            // short names: the abbreviation in brackets when there is one (ISRM), otherwise the name
+            preview.textContent = Array.from(f.querySelectorAll('.mem-item span')).map((el) => {
+                const t = el.textContent.replace(/\s+/g, ' ').trim();
+                const abbr = t.match(/\(([A-Z]{2,})\)$/);
+                return abbr ? abbr[1] : t.replace(/\s*\([^)]*\)$/, '');
+            }).join(' · ');
+        });
+        window.addEventListener('beforeprint', () => {
+            folds.forEach((f) => { f.dataset.wasOpen = f.open ? '1' : ''; f.open = true; });
+        });
+        window.addEventListener('afterprint', () => {
+            folds.forEach((f) => { f.open = f.dataset.wasOpen === '1'; });
+        });
+
         // ===== Reveal Animations (IntersectionObserver) =====
         // Content is visible by default. Blocks below the fold are held back and
         // revealed as they scroll into view; the cards inside them follow one
         // after another. With "reduce motion" set, blocks fade in without moving.
         const revealEls = Array.from(document.querySelectorAll('.fade-in, .reveal, .reveal-left, .reveal-right, .stagger'));
-        const cascadeGroups = '.interests-grid, .membership-grid, .leadership-grid, .honours-grid, .ach-archive, ' +
-            '.skills-grid, .lang-grid, .repo-grid, .contact-grid, .social-links, .pub-list, .exp-timeline, .projects-grid, .activity-grid';
+        const cascadeGroups = '.interests-grid, .edu-grid, .membership-grid, .leadership-grid, .honours-grid, .ach-archive, ' +
+            '.repo-grid, .contact-grid, .social-links, .pub-list, .exp-timeline, .projects-grid, .activity-grid';
         // Used by the section transitions: while holdReveals is true, blocks that pass through the
         // screen keep their entrance for later; releaseReveals() then shows the blocks now in view, and
         // rewindReveals(section) returns a section's blocks to their starting state to play them again.
@@ -2441,9 +2413,6 @@
             const mark = (el, i) => { el.classList.add('cascade-item'); el.style.setProperty('--i', Math.min(i, 10)); };
             document.querySelectorAll(cascadeGroups).forEach((group) => {
                 Array.from(group.children).forEach(mark);
-            });
-            document.querySelectorAll('.subsection').forEach((sub) => {
-                Array.from(sub.children).filter((c) => c.matches('.edu-card')).forEach(mark);
             });
 
             const fold = window.innerHeight * 0.92;
