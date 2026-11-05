@@ -1,3 +1,21 @@
 {
- "photos": []
+ "photos": [
+  {
+   "id": "touch-typing",
+   "type": "video",
+   "file": "Touch_Typing.mp4",
+   "url": "assets/gallery/touch-typing.mp4",
+   "sha": "9af8663a77163a03db33",
+   "w": 1280,
+   "h": 720,
+   "widths": [
+    400,
+    720,
+    1280
+   ],
+   "duration": 30.6,
+   "taken": "2026-11-05",
+   "date": "2026-11-05"
+  }
+ ]
 }
