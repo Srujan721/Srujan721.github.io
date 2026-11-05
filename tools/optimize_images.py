@@ -5,9 +5,9 @@ The page shows the photo at 212 px, the DARTS icon at 64 px and the education lo
 written at 1x, 1.25x, 1.5x, 1.75x, 2x, 2.5x and 3x as WebP; the browser picks the copy
 that matches the screen, so the image is shown pixel for pixel without a second resize.
 One 2x JPEG/PNG is kept for browsers without WebP. The originals in images/ are not
-modified (images/photo.jpg is also the link-preview image).
+modified (images/photo.png is also the link-preview image).
 
-After replacing an original in images/ (keep its file name), run from the site folder:
+After replacing an original in images/ (same file name and format), run from the site folder:
     python tools/optimize_images.py
 Needs Python 3 and Pillow (pip install pillow).
 """
@@ -21,12 +21,12 @@ OUT = os.path.join(ROOT, 'assets', 'img')
 
 # name: (original file in images/, displayed width in CSS px, 'photo' = lossy WebP q95 / 'graphic' = lossless)
 IMAGES = {
-    'photo':     ('photo.jpg',     212, 'photo'),
+    'photo':     ('photo.png',     212, 'photo'),
     'darts':     ('DARTS_1.png',    64, 'graphic'),
-    'iitr':      ('iitr.jpg',       58, 'graphic'),
+    'iitr':      ('iitr.png',       58, 'graphic'),
     'nitt':      ('nitt.png',       58, 'graphic'),
     'chaitanya': ('chaitanya.jpg',  58, 'graphic'),
-    'stbem':     ('stbem.jpg',      58, 'graphic'),
+    'stbem':     ('stbem.png',      58, 'graphic'),
 }
 SCALES = (1, 1.25, 1.5, 1.75, 2, 2.5, 3)
 
